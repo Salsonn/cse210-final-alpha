@@ -1,5 +1,5 @@
 # cse210-final Title
-Brief description of game goes here.
+There's no time to explain! Grab a weapon and kill the weird things, and most importantly don't let them touch you!
 
 ## Getting Started
 ---
@@ -23,12 +23,49 @@ click the "run" icon.
 The project files and folders are organized as follows:
 ```
 root                    (project root folder)
-+-- final               (source code for game)
++-- gameNameHere               (source code for game)
   +-- game              (specific game classes)
+    +-- director.py     (manages gameloop, level loading, etc)
+    +-- physics.py      (manages entity movement and bouncing)
+    +-- collision.py    (handles collision detection between entities)
+    +-- entity.py       (basic characteristics of in-game entities)
+
+  +-- maps              (stores map data for loading on demand)
+    +-- mainMenu.map    (data for loading the main menu map)
+
+  +-- img               (stores sprite data for all entities)
+    +-- player          (stores sprite data for the player)
+
+  +-- snd               (repository for sounds)
+  
   +-- __init__.py       (python package file)
   +-- __main__.py       (entry point for program)
 +-- README.md           (general info)
 ```
+
+## Current Delegations
+---
+The following are different general tasks, claimed and unclaimed:
+
+#### Caleb (Salsonn)
+  Movement Physics
+  Camera Physics
+  Collision Detection
+
+#### Austin (pondels | The Elite Gamer)
+  Weapons
+  Projectiles
+  Game Art
+
+#### Josh (coder199420 | coder20)
+  Map Design
+
+#### Tyler (Tjcaldron)
+  [null]
+
+#### Undelegated
+  Enemies (saving for later)
+
 
 ## Required Technologies
 ---
