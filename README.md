@@ -23,7 +23,7 @@ click the "run" icon.
 The project files and folders are organized as follows:
 ```
 root                    (project root folder)
-+-- gameNameHere               (source code for game)
++-- gameNameHere        (source code for game)
   +-- game              (specific game classes)
     +-- director.py     (manages gameloop, level loading, etc)
     +-- physics.py      (manages entity movement and bouncing)
