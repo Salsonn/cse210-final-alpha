@@ -6,8 +6,11 @@ Main Menu is a map you can walk around in.
 ## Weapons
 * Starting melee weapon
     * Frying Pan
+    * Wrench
+    * Baseball Bat?
+* Unlockable melee weapon
     * Propellor Sword
-    * Something else
+    * Chainsaw?
 * Pistol
     * Accurate, low power
 * Rifle
