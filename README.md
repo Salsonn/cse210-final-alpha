@@ -48,23 +48,23 @@ root                    (project root folder)
 The following are different general tasks, claimed and unclaimed:
 
 #### Caleb (Salsonn)
-  Movement Physics
-  Camera Physics
-  Collision Detection
+  * Movement Physics
+  * Camera Physics
+  * Collision Detection
 
 #### Austin (pondels | The Elite Gamer)
-  Weapons
-  Projectiles
-  Game Art
+  * Weapons
+  * Projectiles
+  * Game Art
 
 #### Josh (coder199420 | coder20)
-  Map Design
+  * Map Design
 
 #### Tyler (Tjcaldron)
-  [null]
+  * [null]
 
 #### Undelegated
-  Enemies (saving for later)
+  * Enemies (saving for later)
 
 
 ## Required Technologies
