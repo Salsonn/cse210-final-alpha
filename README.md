@@ -38,3 +38,4 @@ root                    (project root folder)
 ## Authors
 ---
 * Caleb Salyards - sal18014@byui.edu
+* Austin Oldroyd - old20004@byui.edu
