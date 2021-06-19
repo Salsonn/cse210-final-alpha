@@ -61,7 +61,7 @@ The following are different general tasks, claimed and unclaimed:
   * Map Design
 
 #### Tyler (Tjcaldron)
-  * [null]
+  * Ammo and health drops
 
 #### Undelegated
   * Enemies (saving for later)
