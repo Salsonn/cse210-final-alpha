@@ -30,6 +30,10 @@ class Game_textures:
         self.SOUND = arcade.load_sound('./sounds/Tada-sound.mp3')
         self.INFO = 'CHOOSE WHAT TO DO'
         self.TEMP = arcade.color.GREEN
+        self.COLUMN_SPACING = 20
+        self.ROW_SPACING = 20
+        self.LEFT_MARGIN = 110
+        self.BOTTOM_MARGIN = 110
         
 
         # arcade.load_texture(FLOOR)
@@ -40,6 +44,24 @@ class Game_textures:
         arcade.start_render()
         
         # Trying to import the sprites
+        # SINGLE IN BOTTOM LEFT CORNER VERSION
+        # texture = arcade.load_texture(FLOOR, 0.0, 0.0, 32.0, 32.0)
+        # texture.draw_scaled(FLOOR_W / 2.0, FLOOR_H / 2.0)
+
+        # NESTED FOR LOOP VERSION
+        for row in range(5):
+        # Loop for each column
+            for column in range(20):
+                # Calculate our location
+                x = column * self.COLUMN_SPACING + self.LEFT_MARGIN
+                y = row * self.ROW_SPACING + self.BOTTOM_MARGIN
+
+                # Draw the item
+                arcade.draw_rectangle_filled(x, y, FLOOR_W/2, FLOOR_H/2, arcade.color.AO)
+                # texture = arcade.load_texture(FLOOR, x, y, 32.0, 32.0)
+                # texture.draw_scaled(FLOOR_W / 2.0, FLOOR_H / 2.0)
+
+
         # texture.Texture.draw_sized(FLOOR,SPRITE_W /2,SPRITE_H/2,SCREEN_WIDTH,SCREEN_HEIGHT)
         # arcade.draw_texture_rectangle(SCREEN_WIDTH // 2, SCREEN_HEIGHT // 2, SPRITE_W //2, SPRITE_H//2, FLOOR)
 
