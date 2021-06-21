@@ -57,7 +57,7 @@ class Game_textures:
                 y = row * self.ROW_SPACING + self.BOTTOM_MARGIN
 
                 # Draw the item
-                arcade.draw_rectangle_filled(x, y, FLOOR_W/2, FLOOR_H/2, arcade.color.AO)
+                arcade.draw_rectangle_filled(x, y, self.FLOOR_W/2, self.FLOOR_H/2, arcade.color.AO)
                 # texture = arcade.load_texture(FLOOR, x, y, 32.0, 32.0)
                 # texture.draw_scaled(FLOOR_W / 2.0, FLOOR_H / 2.0)
 
