@@ -4,8 +4,6 @@ import time
 
 from arcade import texture
 
-
-
 class Game_textures:
     
 
@@ -27,7 +25,7 @@ class Game_textures:
         self.LEFT_WALL_Y = self.SCREEN_HEIGHT / 2
         self.TITLE = 'WELCOME TO THE GAME'
         self.RADIUS = 150
-        self.SOUND = arcade.load_sound('./sounds/Tada-sound.mp3')
+        #self.SOUND = arcade.load_sound('./sounds/Tada-sound.mp3')
         self.INFO = 'CHOOSE WHAT TO DO'
         self.TEMP = arcade.color.GREEN
         self.COLUMN_SPACING = 20
@@ -134,6 +132,5 @@ class Game_textures:
         arcade.draw_text(self.START, self.SCREEN_WIDTH / len(self.TITLE2) + 100, self.SCREEN_HEIGHT - 40, self.FONT_COLOR, 25, 340, 'center', 'calibri', True)
 
         arcade.finish_render()
-
 
 
