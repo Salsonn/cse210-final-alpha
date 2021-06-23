@@ -127,5 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-game/.vscode/settings.json
+game/.vscode
 *.json

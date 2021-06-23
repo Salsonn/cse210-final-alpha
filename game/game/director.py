@@ -2,8 +2,10 @@ import arcade
 from game import constants
 
 class Director(arcade.Window):
-    def __init__(self):
+    def __init__(self, entities, tasks):
         super().__init__(constants.windowX, constants.windowY, "Name this Game")
+        self._script = tasks
+        self._entities = entities
 
     def setup():
         arcade.set_background_color(arcade.color.BLACK)
@@ -29,4 +31,4 @@ class Director(arcade.Window):
             tag (string): The given tag.
         """ 
         for action in self._script[tag]:
-            action.execute(self._cast)
+            action.execute(self._entities)
