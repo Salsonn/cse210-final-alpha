@@ -1,5 +1,4 @@
 import arcade
-from pyglet.libs.win32.constants import BLACK_BRUSH
 from game import constants
 
 class Director(arcade.Window):
