@@ -2,12 +2,12 @@ import arcade
 from game import constants
 
 class Director(arcade.Window):
-    def __init__(self, entities, tasks):
+    def __init__(self, entities, tasks, input_service):
         super().__init__(constants.windowX, constants.windowY, "Name this Game")
         self._script = tasks
         self._entities = entities
 
-    def setup():
+    def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
 
     def on_update(self, delta_time):

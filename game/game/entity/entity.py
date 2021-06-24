@@ -1,7 +1,7 @@
 from game import constants
 import arcade
 
-class Entity():
+class Entity(arcade.Sprite):
 
     def __init__(self, inEntity, inX, inY, inW, inH, inOrient, inVX = 0, inVY = 0):
         self.__x = inX
@@ -15,6 +15,7 @@ class Entity():
             self.__w = inW
             self.__h = inH
         self.__type = inEntity
+        super().__init__(inEntity)
         print(f"Created new {self.__type} entity with the following information: x:{self.__x}, y:{self.__y}, w:{self.__w}, h:{self.__h}")
 
     def getAttribute(self, attributeName="type"):
