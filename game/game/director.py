@@ -6,7 +6,7 @@ class Director(arcade.Window):
         super().__init__(constants.windowX, constants.windowY, "Name this Game")
         self._script = tasks
         self._entities = entities
-        _input_service = input_service
+        self._input_service = input_service
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)

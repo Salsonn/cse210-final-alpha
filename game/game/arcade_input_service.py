@@ -33,14 +33,14 @@ class ArcadeInputService:
         x = 0
         y = 0
 
-        if arcade.key.LEFT in self._keys:
+        if arcade.key.LEFT in self._keys or arcade.key.A in self._keys:
             x = -1
-        elif arcade.key.RIGHT in self._keys:
+        elif arcade.key.RIGHT in self._keys or arcade.key.D in self._keys:
             x = 1
 
-        if arcade.key.UP in self._keys:
+        if arcade.key.UP in self._keys or arcade.key.W in self._keys:
             y = 1
-        elif arcade.key.DOWN in self._keys:
+        elif arcade.key.DOWN in self._keys or arcade.key.S in self._keys:
             y = -1
 
         velocity = Point(x, y)
