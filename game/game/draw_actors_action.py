@@ -21,7 +21,7 @@ class DrawActorsAction(Action):
         """
         self._output_service = output_service
 
-    def execute(self, cast):
+    def execute(self, cast, reticle):
         """Executes the action using the given actors.
 
         Args:
@@ -34,6 +34,9 @@ class DrawActorsAction(Action):
 
         player = cast["player"][0] # there's only one
         self._output_service.draw_actor(player)
+
+        for projectile in cast["projectile"]:
+            self._output_service.draw_actor(projectile)
 
         self._output_service.flush_buffer()
 

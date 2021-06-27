@@ -13,7 +13,7 @@ class MoveActorsAction(Action):
         _input_service (InputService): An instance of InputService.
     """
 
-    def execute(self, cast):
+    def execute(self, cast, reticle):
         """Executes the action using the given actors.
 
         Args:
@@ -36,6 +36,5 @@ class MoveActorsAction(Action):
         Args:
             actor (Actor): The actor to move.
         """
-
         actor.center_x = actor.center_x + actor.change_x
         actor.center_y = actor.center_y + actor.change_y
