@@ -43,8 +43,8 @@ def main():
     script["output"] = [draw_actors_action]
 
     # start the game
-    batter = Director(cast, script, input_service, reticle)
-    batter.setup()
+    game = Director(cast, script, input_service, reticle)
+    game.setup()
     arcade.run()
 
 
