@@ -47,7 +47,9 @@ class HandleCollisionsAction(Action):
 
         for entity in projectiles:
             if (entity.center_x + (entity._get_width() / 2) <= 0 or entity.center_x + (entity._get_width() / 2) >= constants.windowX) or (entity.center_y + (entity._get_height() / 2) <= 0 or entity.center_y + (entity._get_height() / 2) >= constants.windowY):
-                entity.remove_from_sprite_lists()
+                #projectiles[entity].remove_from_sprite_lists()
+                projectiles.remove(entity)
+                print("Removed a projectile")
 
     def _handle_wall_bounce(self, ball):
         ball_x = ball.center_x

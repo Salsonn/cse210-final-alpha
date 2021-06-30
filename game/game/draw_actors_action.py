@@ -1,3 +1,5 @@
+from game.maps.menu import MainMenu
+
 from game.action import Action
 from game import constants
 
@@ -20,8 +22,9 @@ class DrawActorsAction(Action):
             _output_service (OutputService): An instance of OutputService.
         """
         self._output_service = output_service
+        self._mainMenu = MainMenu()
 
-    def execute(self, cast, reticle):
+    def execute(self, cast, reticle, level=0):
         """Executes the action using the given actors.
 
         Args:
@@ -31,6 +34,9 @@ class DrawActorsAction(Action):
 
         #for ball in cast["balls"]:
         #    self._output_service.draw_actor(ball)
+
+        if level == 0:
+            self._mainMenu.drawMap()
 
         player = cast["player"][0] # there's only one
         self._output_service.draw_actor(player)
