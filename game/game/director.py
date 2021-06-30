@@ -15,6 +15,8 @@ class Director(arcade.Window):
     def setup(self):
         # arcade.set_background_color(constants.BACKGROUND_COLOR)
         Level.level_one(self)
+        # Level.welcome_screen(self)
+        # Level.instruction_screen(self)
 
 
     def on_update(self, delta_time):
@@ -23,8 +25,10 @@ class Director(arcade.Window):
         
 
     def on_draw(self):
+        # Level.instruction_screen(self)
+        # Level.welcome_screen(self)
         Level.level_one(self)
-        self._cue_action("output")
+        # self._cue_action("output")
 
     def on_key_press(self, symbol, modifiers):
         self._input_service.set_key(symbol, modifiers)
