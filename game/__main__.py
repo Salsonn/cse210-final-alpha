@@ -1,72 +1,52 @@
 import random
-import arcade
-
 from game import constants
+from game.point import Point
+from game.control_actors_action import ControlActorsAction
+from game.draw_actors_action import DrawActorsAction
+from game.handle_collisions_action import HandleCollisionsAction
+from game.move_actors_action import MoveActorsAction
+from game.arcade_input_service import ArcadeInputService
+from game.arcade_output_service import ArcadeOutputService
+from game.reticle import Reticle
+
+from game.entity.player import Player
 
 from game.director import Director
-from game.entity import Entity
-from game.point import Point
-from game.controls import controls
-from game.draw_actors_action import DrawActorsAction
-#from game.handle_collisions_action import HandleCollisionsAction
-#from game.move_actors_action import MoveActorsAction
-from game.physics import Physics
-from game.input_service import InputService
-from game.output_service import OutputService
+import arcade
 
-def main(screen):
+def main():
 
-    # create the entities {key: tag, value: list}
-    entities = {}
+    # create the cast {key: tag, value: list}
+    cast = {}
 
-    x = int(constants.MAX_X / 2)
-    y = int(constants.MAX_Y - 1)
-    position = Point(x, y)
-    paddle = Entity()
-    paddle.set_text("===========")
-    paddle.set_position(position)
-    entities["paddle"] = [paddle]
+    player = Player()
+    cast["player"] = [player]
 
-    entities["brick"] = []
-    for x in range(5, 75):
-        for y in range(2, 6):
-            position = Point(x, y)
-            brick = Entity()
-            brick.set_text("*")
-            brick.set_position(position)
-            entities["brick"].append(brick)
+    # create empty list of projectiles, will be filled automatically later
+    cast["projectile"] = []
 
-    x = int(constants.MAX_X / 2)
-    y = int(constants.MAX_Y / 2)
-    position = Point(x, y)
-    velocity = Point(1, -1)
-    ball = Entity()
-    ball.set_text("@")
-    ball.set_position(position)
-    ball.set_velocity(velocity)
-    entities["ball"] = [ball]
-    
     # create the script {key: tag, value: list}
     script = {}
 
-    physics = Physics
-
     input_service = ArcadeInputService()
     output_service = ArcadeOutputService()
+
+    reticle = Reticle()
     
-    playerControls = controls(input_service)
-    moveTick = physics.moveTick()
-    physicsTick = physics.physicsTick()
+    control_actors_action = ControlActorsAction(input_service)
+    move_actors_action = MoveActorsAction()
+    handle_collisions_action = HandleCollisionsAction()
     draw_actors_action = DrawActorsAction(output_service)
     
-    script["input"] = [playerControls]
-    script["update"] = [moveTick, physicsTick]
+    script["input"] = [control_actors_action]
+    script["update"] = [handle_collisions_action, move_actors_action]
     script["output"] = [draw_actors_action]
 
     # start the game
-    director = Director(entities, script)
-    director.setup()
+    batter = Director(cast, script, input_service, reticle)
+    batter.setup()
     arcade.run()
+
 
 if __name__ == "__main__":
     main()
