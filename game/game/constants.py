@@ -7,8 +7,8 @@ windowY = 720
 movementSpeed = 5 # Pixels per frame
 acceleration = 2 # Pixels per frame per frame
 
-playerImage = "./game/images/wall_tile_sprite.png"
-projectile1Image = "./game/images/floor_tile_sprite.png"
+playerImage = "./images/wall_tile_sprite.png"
+projectile1Image = "./images/floor_tile_sprite.png"
 
 BACKGROUND_COLOR = arcade.color.BLACK
 FLOOR = './game/images/floor_tile_sprite.png'

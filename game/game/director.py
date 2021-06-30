@@ -1,4 +1,4 @@
-from game.draw_level_1 import Level
+from game.draw_levels import Level
 import arcade
 from game import constants
 from game.point import Point
