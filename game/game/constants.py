@@ -9,3 +9,5 @@ acceleration = 2 # Pixels per frame per frame
 
 playerImage = "./images/wall_tile_sprite.png"
 projectile1Image = "./images/floor_tile_sprite.png"
+
+debug = False

@@ -1,4 +1,6 @@
 import arcade
+import time
+
 from game import constants
 from game.point import Point
 from game.math import *
@@ -10,6 +12,7 @@ class Director(arcade.Window):
         self._entities = entities
         self._input_service = input_service
         self._reticle = reticle
+        self._actionTime = {}
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
@@ -45,5 +48,13 @@ class Director(arcade.Window):
         Args:
             tag (string): The given tag.
         """ 
+        startTime = time.time()
+        if len(self._actionTime) >= 4:
+            self._actionTime = {}
         for action in self._script[tag]:
             action.execute(self._entities, self._reticle)
+            self._actionTime[tag] = f"Completed {tag} in {round((time.time() - startTime) * 1000, 2)} ms"
+        if len(self._actionTime) >= 3 and constants.debug == True:
+            print("\n\n\n")
+            for action in self._actionTime:
+                print(f"{self._actionTime[action]}")
