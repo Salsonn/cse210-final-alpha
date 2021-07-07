@@ -28,7 +28,7 @@ class DrawActorsAction(Action):
         self._welcome = Welcome()
         self._level1 = Level1()
 
-    def execute(self, cast, reticle, level=2):
+    def execute(self, cast, reticle, level=0):
         """Executes the action using the given actors.
 
         Args:

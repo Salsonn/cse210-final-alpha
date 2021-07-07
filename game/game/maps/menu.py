@@ -26,6 +26,7 @@ class MainMenu():
         self._ROW_SPACING = 20
         self._LEFT_MARGIN = 110
         self._BOTTOM_MARGIN = 110
+        self._TILE_SPACING = 1.6
 
     def drawMap(self):
         
@@ -41,36 +42,52 @@ class MainMenu():
         # Draw Walls to choose what to do next
         self.wall_list_h = arcade.SpriteList()
 
-        for i in range(constants.windowY // self._WALL_H - 8):
+        # Top left wall
+        for i in range(constants.windowY // self._WALL_H - 6):
 
             # Create the floor instance
             wall = arcade.Sprite(self._WALL, 1)
 
             # Position the floor sprites
-            wall.center_x = i * self._COLUMN_SPACING + self._LEFT_MARGIN
-            wall.center_y = self._ROW_SPACING + self._BOTTOM_MARGIN + 400
+            wall.center_x = i * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 140
+            wall.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 400
 
             # Add the floor to the lists
             self.wall_list_h.append(wall)
-            self.wall_list_h.draw()
+        self.wall_list_h.draw()
 
-        arcade.draw_text('Level 1', wall.center_x, constants.windowY - 150, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
+        # Top right wall
+        for l in range(constants.windowY // self._WALL_H - 4):
+
+            # Create the floor instance
+            wall = arcade.Sprite(self._WALL, 1)
+
+            # Position the floor sprites
+            wall.center_x = l * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) + 520
+            wall.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 400
+
+            # Add the floor to the lists
+            self.wall_list_h.append(wall)
+        self.wall_list_h.draw()
+
+        arcade.draw_text('Level 1', 430, constants.windowY - 90, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
 
              # Draw Walls to choose what to do next
         self.wall_list_v = arcade.SpriteList()
 
+        # Right Vertical Wall
         for j in range(constants.windowY // self._WALL_H - 8):
 
             # Create the floor instance
             wall = arcade.Sprite(self._WALL, 1)
 
             # Position the floor sprites
-            wall.center_x = self._COLUMN_SPACING + self._LEFT_MARGIN + 1000
-            wall.center_y = j * self._ROW_SPACING + self._BOTTOM_MARGIN 
+            wall.center_x = (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) + 1035
+            wall.center_y = j * (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) - 140
 
             # Add the floor to the lists
             self.wall_list_v.append(wall)
-            self.wall_list_v.draw()
+        self.wall_list_v.draw()
 
         
-        arcade.draw_text('Instructions', constants.windowX -300, constants.windowY - 250, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
+        arcade.draw_text('Instructions', constants.windowX - 270, constants.windowY - 160, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
