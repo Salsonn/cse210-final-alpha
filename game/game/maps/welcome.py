@@ -4,7 +4,8 @@ from game import constants
 
 class Welcome():
 
-    def __init__(self):
+    def __init__(self, entities):
+        self._collidableWalls = entities["wall"]
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FLOOR = '../images/floor_tile_sprite.png'
         self._FLOOR_W = 32

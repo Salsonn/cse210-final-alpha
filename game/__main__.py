@@ -22,8 +22,11 @@ def main():
     player = Player()
     cast["player"] = [player]
 
-    # create empty list of projectiles, will be filled automatically later
+    # create empty list of projectiles, will be populated automatically later
     cast["projectile"] = []
+
+    # create empty list of collidable walls, will be populated and drawn by the map code
+    cast["wall"] = []
 
     # create the script {key: tag, value: list}
     script = {}
@@ -36,7 +39,7 @@ def main():
     control_actors_action = ControlActorsAction(input_service)
     move_actors_action = MoveActorsAction()
     handle_collisions_action = HandleCollisionsAction()
-    draw_actors_action = DrawActorsAction(output_service)
+    draw_actors_action = DrawActorsAction(output_service, cast)
     
     script["input"] = [control_actors_action]
     script["update"] = [handle_collisions_action, move_actors_action]

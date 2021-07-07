@@ -1,10 +1,12 @@
 import arcade
+from arcade import sprite_list
 
 from game import constants
 
 class MainMenu():
 
-    def __init__(self):
+    def __init__(self, entities):
+        self._collidableWalls = entities["wall"]
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FLOOR = './images/floor_tile_sprite.png'
         self._FLOOR_W = 32
@@ -52,7 +54,9 @@ class MainMenu():
 
             # Add the floor to the lists
             self.wall_list_h.append(wall)
-            self.wall_list_h.draw()
+        self.wall_list_h.draw()
+        for wall in self.wall_list_h:
+            self._collidableWalls.append(wall)
 
         arcade.draw_text('Level 1', wall.center_x, constants.windowY - 150, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
 
@@ -70,7 +74,7 @@ class MainMenu():
 
             # Add the floor to the lists
             self.wall_list_v.append(wall)
-            self.wall_list_v.draw()
+        self.wall_list_v.draw()
 
         
         arcade.draw_text('Instructions', constants.windowX -300, constants.windowY - 250, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)

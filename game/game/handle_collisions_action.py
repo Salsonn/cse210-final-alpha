@@ -1,4 +1,6 @@
 import random
+import arcade
+
 from game import constants
 from game.action import Action
 
@@ -15,7 +17,8 @@ class HandleCollisionsAction(Action):
         Args:
             cast (dict): The game actors {key: tag, value: list}.
         """
-        self._wallDetection(cast["player"][0], cast["projectile"])
+        self._edgeDetection(cast["player"][0], cast["projectile"])
+        self._wallDetection(cast["player"][0], cast["projectile"], cast["wall"])
 
         """paddle = cast["paddle"][0]
 
@@ -34,7 +37,7 @@ class HandleCollisionsAction(Action):
         for ball in balls_to_remove:
             cast["balls"].remove(ball)"""
 
-    def _wallDetection(self, player, projectiles):
+    def _edgeDetection(self, player, projectiles):
         # Prevent player from leaving sides of window
         if (player.center_x - (player._get_width() / 2)) <= 0 and player.change_x < 0:
             player.change_x = max(player.change_x, 0)
@@ -50,6 +53,23 @@ class HandleCollisionsAction(Action):
                 #projectiles[entity].remove_from_sprite_lists()
                 projectiles.remove(entity)
                 print("Removed a projectile")
+
+    def _wallDetection(self, player, projectiles, walls):
+        collisionList = []
+        for wall in walls:
+            if player.center_x - (player._get_width() / 2) > wall.center_x + (wall._get_width() / 2) or player.center_x + (player._get_width() / 2) > wall.center_x - (wall._get_width() / 2) or player.center_y - (player._get_height() / 2) > wall.center_y + (wall._get_height() / 2) or player.center_y + (player._get_height() / 2) > wall.center_y - (wall._get_height() / 2):
+                collisionList.append(wall)
+        for entity in collisionList:
+            if entity.center_x < player.center_x:
+                player.change_x = max(player.change_x, 0)
+            if entity.center_x > player.center_x:
+                player.change_x = min(player.change_x, 0)
+            if entity.center_y < player.center_y:
+                player.change_y = max(player.change_y, 0)
+            if entity.center_y > player.center_x:
+                player.change_y = min(player.change_y, 0)
+                
+
 
     def _handle_wall_bounce(self, ball):
         ball_x = ball.center_x
