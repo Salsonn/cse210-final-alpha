@@ -57,7 +57,7 @@ class HandleCollisionsAction(Action):
     def _wallDetection(self, player, projectiles, walls):
         collisionList = []
         for wall in walls:
-            if player.center_x - (player._get_width() / 2) > wall.center_x + (wall._get_width() / 2) or player.center_x + (player._get_width() / 2) > wall.center_x - (wall._get_width() / 2) or player.center_y - (player._get_height() / 2) > wall.center_y + (wall._get_height() / 2) or player.center_y + (player._get_height() / 2) > wall.center_y - (wall._get_height() / 2):
+            if player.center_x - (player._get_width() / 2) > wall.center_x + (wall._get_width() / 2) or player.center_x + (player._get_width() / 2) < wall.center_x - (wall._get_width() / 2) or player.center_y - (player._get_height() / 2) > wall.center_y + (wall._get_height() / 2) or player.center_y + (player._get_height() / 2) < wall.center_y - (wall._get_height() / 2):
                 collisionList.append(wall)
         for entity in collisionList:
             if entity.center_x < player.center_x:
@@ -68,6 +68,8 @@ class HandleCollisionsAction(Action):
                 player.change_y = max(player.change_y, 0)
             if entity.center_y > player.center_x:
                 player.change_y = min(player.change_y, 0)
+        collisionList.clear()
+        print(len(collisionList), " ", len(walls))
                 
 
 
