@@ -54,23 +54,51 @@ class HandleCollisionsAction(Action):
                 projectiles.remove(entity)
                 print("Removed a projectile")
 
-    def _wallDetection(self, player, projectiles, walls):
+    def _badwallDetection(self, player, projectiles, walls):
         collisionList = []
         for wall in walls:
-            if player.center_x - (player._get_width() / 2) > wall.center_x + (wall._get_width() / 2) or player.center_x + (player._get_width() / 2) < wall.center_x - (wall._get_width() / 2) or player.center_y - (player._get_height() / 2) > wall.center_y + (wall._get_height() / 2) or player.center_y + (player._get_height() / 2) < wall.center_y - (wall._get_height() / 2):
+            #if player.center_x - (player._get_width() / 2) == wall.center_x + (wall._get_width() / 2) or player.center_x + (player._get_width() / 2) == wall.center_x - (wall._get_width() / 2) or player.center_y - (player._get_height() / 2) == wall.center_y + (wall._get_height() / 2) or player.center_y + (player._get_height() / 2) == wall.center_y - (wall._get_height() / 2):
+            if (player.center_x - (player._get_width() / 2) == wall.center_x + (wall._get_width() / 2) and player.center_y + (player._get_height() / 2) == wall.center_y - (wall._get_height() / 2)) or (player.center_y - (player._get_height() / 2) == wall.center_y + (wall._get_height() / 2) and player.center_x + (player._get_width() / 2) == wall.center_x - (wall._get_width() / 2)):
                 collisionList.append(wall)
+            if arcade.check_for_collision(player, wall):
+                collisionList.append(wall)
+        print(len(collisionList))
         for entity in collisionList:
             if entity.center_x < player.center_x:
                 player.change_x = max(player.change_x, 0)
+                print("collision detected from the left")
             if entity.center_x > player.center_x:
                 player.change_x = min(player.change_x, 0)
+                print("collision detected from the right")
             if entity.center_y < player.center_y:
                 player.change_y = max(player.change_y, 0)
-            if entity.center_y > player.center_x:
+                print("collision detected from the top")
+            if entity.center_y > player.center_y:
                 player.change_y = min(player.change_y, 0)
+                print("collision detected from the bottom")
         collisionList.clear()
-        print(len(collisionList), " ", len(walls))
-                
+    
+    def _wallDetection(self, player, projectiles, walls):
+        for entity in walls:
+            if ((self.bottomBound(entity) <= self.topBound(player) and self.topBound(player) <= self.topBound(entity)) or (self.bottomBound(entity) <= self.bottomBound(player) and self.bottomBound(player) <= self.topBound(entity))) and (self.leftBound(player, 1) <= self.rightBound(entity, 1) and self.rightBound(player, 1) >= self.leftBound(entity, 1)):
+                player.change_x = max(player.change_x, 0) # Stop leftward movement
+            if ((self.bottomBound(entity) <= self.topBound(player) and self.topBound(player) <= self.topBound(entity)) or (self.bottomBound(entity) <= self.bottomBound(player) and self.bottomBound(player) <= self.topBound(entity))) and (self.leftBound(entity, 1) <= self.rightBound(player, 1) and self.rightBound(entity, 1) >= self.leftBound(player, 1)):
+                player.change_x = min(player.change_x, 0) #, 1 Stop rightward movement
+            if ((self.leftBound(entity) <= self.rightBound(player) and self.rightBound(player) <= self.rightBound(entity)) or (self.leftBound(entity) <= self.leftBound(player) and self.leftBound(player) <= self.rightBound(entity))) and (self.bottomBound(player, 1) <= self.topBound(entity, 1) and self.topBound(player, 1) >= self.bottomBound(entity, 1)):
+                player.change_y = max(player.change_y, 0) # Stop downward movement
+            if ((self.leftBound(entity) <= self.rightBound(player) and self.rightBound(player) <= self.rightBound(entity)) or (self.leftBound(entity) <= self.leftBound(player) and self.leftBound(player) <= self.rightBound(entity))) and (self.bottomBound(entity, 1) <= self.topBound(player, 1) and self.topBound(entity, 1) >= self.bottomBound(player, 1)):
+                player.change_y = min(player.change_y, 0) # Stop updward movement
+            
+
+
+    def rightBound(self, entity, factorChange=0):
+        return entity.center_x + (entity.change_x * factorChange) + (entity._get_width() / 2) 
+    def leftBound(self, entity, factorChange=0):
+        return entity.center_x + (entity.change_x * factorChange) - (entity._get_width() / 2) 
+    def topBound(self, entity, factorChange=0):
+        return entity.center_y + (entity.change_y * factorChange) + (entity._get_height() / 2) 
+    def bottomBound(self, entity, factorChange=0):
+        return entity.center_y + (entity.change_y * factorChange) - (entity._get_height() / 2) 
 
 
     def _handle_wall_bounce(self, ball):

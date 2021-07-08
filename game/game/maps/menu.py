@@ -41,7 +41,7 @@ class MainMenu():
         arcade.draw_rectangle_filled(constants.windowX / 2, constants.windowY, constants.windowX, 20, self._WALL_COLOR)
         arcade.draw_rectangle_filled(constants.windowX / 2, 0, constants.windowX, 20, self._WALL_COLOR)
 
-        arcade.draw_text('Level 1', wall.center_x, constants.windowY - 150, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
+        arcade.draw_text('Level 1', constants.windowX / 2, constants.windowY - 150, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
 
         # Welcome Message
         arcade.draw_text(self._INFO, constants.windowX / len(self._TITLE) + 100, constants.windowY - 40, self._FONT_COLOR, 25, 340, 'center', 'calibri', True)
@@ -86,6 +86,7 @@ class MainMenu():
 
             # Add the floor to the lists
             self.wall_list_v.append(wall)
-
+        for wall in self.wall_list_v:
+            self._collidableWalls.append(wall)
         for wall in self.wall_list_h:
             self._collidableWalls.append(wall)
