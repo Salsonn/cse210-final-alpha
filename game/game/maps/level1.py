@@ -18,6 +18,7 @@ class Level1():
         self._LEFT_WALL_X = 0
         self._LEFT_WALL_Y = constants.windowY / 2
         self._TITLE = 'WELCOME TO THE GAME'
+        self._LEVEL1 = 'LEVEL 1'
         self._RADIUS = 150
         #SOUND = arcadeload_sound('/sounds/Tada-soundmp3')
         self._INFO = 'CHOOSE WHAT TO DO'
@@ -26,6 +27,7 @@ class Level1():
         self._ROW_SPACING = 20
         self._LEFT_MARGIN = 110
         self._BOTTOM_MARGIN = 110
+        self._TILE_SPACING = 1.6
 
     def drawMap(self):
         
@@ -36,7 +38,18 @@ class Level1():
         arcade.draw_rectangle_filled(constants.windowX / 2, 0, constants.windowX, 20, self._WALL_COLOR_2)
 
         # Welcome Message
-        arcade.draw_text(self._INFO, constants.windowX / len(self._TITLE) + 100, constants.windowY - 40, self._FONT_COLOR, 25, 340, 'center', 'calibri', True)
+        arcade.draw_text(self._LEVEL1, constants.windowX / len(self._LEVEL1) + 250, constants.windowY - 40, self._FONT_COLOR, 25, 340, 'center', 'calibri', True)
+        
+
+        self._health = 100
+
+        # Health
+        arcade.draw_text(f'HEALTH:{self._health}', 15, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
+
+        self._weapons = ['knife', 'sword', 'pistol', 'laser']
+
+        # Weapons
+        arcade.draw_text(f'WEAPON:{self._weapons[3]}', constants.windowX - 215, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
 
         self.floor_list = arcade.SpriteList()
         for i in range(constants.windowY // self._FLOOR_H - 5):
@@ -46,9 +59,39 @@ class Level1():
                 floor = arcade.Sprite(self._FLOOR, 1)
 
                 # Position the floor sprites
-                floor.center_x = j * self._COLUMN_SPACING + self._LEFT_MARGIN
-                floor.center_y = i * self._ROW_SPACING + self._BOTTOM_MARGIN
+                floor.center_x = j * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 145
+                floor.center_y = i * (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) - 73
 
                 # Add the floor to the lists
                 self.floor_list.append(floor)
-                self.floor_list.draw()
+        # arcade.SpriteList.preload_textures(self.floor_list)
+        self.floor_list.draw()
+
+        # self.floor_list = arcade.SpriteList()
+        # # Create the floor instance
+        # floor = arcade.Sprite(self._FLOOR, 1)
+
+
+        # # Position the floor sprites
+
+        # # for i, j in range((constants.windowX // self._FLOOR_H - 1),(constants.windowY // self._FLOOR_H - 1)):
+        # for i in range(constants.windowX // self._FLOOR_H - 1):
+            
+        #     # Position the floor sprites
+        #     floor.center_x = i * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 145
+        #     floor.center_y = (self._ROW_SPACING) + (self._BOTTOM_MARGIN)
+
+        # # Add the floor to the lists
+        #     self.floor_list.append(floor)
+        #     # self.floor_list[i].draw()
+        #     self.floor_list.draw()
+
+        # for j in range(constants.windowY // self._FLOOR_H - 8):
+            
+        #     # Position the floor sprites
+        #     floor.center_x = (self._COLUMN_SPACING) + (self._LEFT_MARGIN) - 100
+        #     floor.center_y = j*  (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) - 15
+            
+        #     self.floor_list.append(floor)
+        #     self.floor_list.draw()
+            
