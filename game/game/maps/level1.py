@@ -4,7 +4,8 @@ from game import constants
 
 class Level1():
 
-    def __init__(self):
+    def __init__(self, entities):
+        self._collidableWalls = entities["wall"]
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FLOOR = './images/floor_tile_sprite.png'
         self._FLOOR_W = 32
@@ -66,32 +67,3 @@ class Level1():
                 self.floor_list.append(floor)
         # arcade.SpriteList.preload_textures(self.floor_list)
         self.floor_list.draw()
-
-        # self.floor_list = arcade.SpriteList()
-        # # Create the floor instance
-        # floor = arcade.Sprite(self._FLOOR, 1)
-
-
-        # # Position the floor sprites
-
-        # # for i, j in range((constants.windowX // self._FLOOR_H - 1),(constants.windowY // self._FLOOR_H - 1)):
-        # for i in range(constants.windowX // self._FLOOR_H - 1):
-            
-        #     # Position the floor sprites
-        #     floor.center_x = i * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 145
-        #     floor.center_y = (self._ROW_SPACING) + (self._BOTTOM_MARGIN)
-
-        # # Add the floor to the lists
-        #     self.floor_list.append(floor)
-        #     # self.floor_list[i].draw()
-        #     self.floor_list.draw()
-
-        # for j in range(constants.windowY // self._FLOOR_H - 8):
-            
-        #     # Position the floor sprites
-        #     floor.center_x = (self._COLUMN_SPACING) + (self._LEFT_MARGIN) - 100
-        #     floor.center_y = j*  (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) - 15
-            
-        #     self.floor_list.append(floor)
-        #     self.floor_list.draw()
-            

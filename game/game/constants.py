@@ -11,3 +11,4 @@ playerImage = "./images/wall_tile_sprite.png"
 projectile1Image = "./images/floor_tile_sprite.png"
 
 debug = False
+collisionDebug = False

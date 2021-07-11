@@ -1,10 +1,12 @@
 import arcade
+from arcade import sprite_list
 
 from game import constants
 
 class MainMenu():
 
-    def __init__(self):
+    def __init__(self, entities):
+        self._collidableWalls = entities["wall"]
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FLOOR = './images/floor_tile_sprite.png'
         self._FLOOR_W = 32
@@ -27,6 +29,10 @@ class MainMenu():
         self._LEFT_MARGIN = 110
         self._BOTTOM_MARGIN = 110
 
+        
+        self.wall_list_h = arcade.SpriteList()
+        self._prepareMap()
+
     def drawMap(self):
         
         # Draw the Walls
@@ -35,11 +41,21 @@ class MainMenu():
         arcade.draw_rectangle_filled(constants.windowX / 2, constants.windowY, constants.windowX, 20, self._WALL_COLOR)
         arcade.draw_rectangle_filled(constants.windowX / 2, 0, constants.windowX, 20, self._WALL_COLOR)
 
+        arcade.draw_text('Level 1', constants.windowX / 2, constants.windowY - 150, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
+
         # Welcome Message
         arcade.draw_text(self._INFO, constants.windowX / len(self._TITLE) + 100, constants.windowY - 40, self._FONT_COLOR, 25, 340, 'center', 'calibri', True)
 
+        self.wall_list_v.draw()
+        
+        self.wall_list_h.draw()
+
+        
+        arcade.draw_text('Instructions', constants.windowX -300, constants.windowY - 250, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
+
+    def _prepareMap(self):
+
         # Draw Walls to choose what to do next
-        self.wall_list_h = arcade.SpriteList()
 
         for i in range(constants.windowY // self._WALL_H - 8):
 
@@ -52,9 +68,9 @@ class MainMenu():
 
             # Add the floor to the lists
             self.wall_list_h.append(wall)
-            self.wall_list_h.draw()
 
-        arcade.draw_text('Level 1', wall.center_x, constants.windowY - 150, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
+        for wall in self.wall_list_h:
+            self._collidableWalls.append(wall)
 
              # Draw Walls to choose what to do next
         self.wall_list_v = arcade.SpriteList()
@@ -70,7 +86,7 @@ class MainMenu():
 
             # Add the floor to the lists
             self.wall_list_v.append(wall)
-            self.wall_list_v.draw()
-
-        
-        arcade.draw_text('Instructions', constants.windowX -300, constants.windowY - 250, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
+        for wall in self.wall_list_v:
+            self._collidableWalls.append(wall)
+        for wall in self.wall_list_h:
+            self._collidableWalls.append(wall)

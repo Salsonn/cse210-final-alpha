@@ -13,13 +13,13 @@ class MoveActorsAction(Action):
         _input_service (InputService): An instance of InputService.
     """
 
-    def execute(self, cast, reticle):
+    def execute(self, entities, reticle):
         """Executes the action using the given actors.
 
         Args:
-            cast (dict): The game actors {key: tag, value: list}.
+            entities (dict): The game actors {key: tag, value: list}.
         """
-        for group in cast.values():
+        for group in entities.values():
             for actor in group:
                 # It would be nice to add something to a base Actor class
                 # to detect is_zero()...
@@ -27,6 +27,9 @@ class MoveActorsAction(Action):
 
                 if actor.change_x != 0 or actor.change_y != 0:
                     self._move_actor(actor)
+
+        # DEGUGGING: Prints players x,y coordinates
+        #print(entities["player"][0].center_x, " ", entities["player"][0].center_y)
 
     def _move_actor(self, actor):
         """Moves the given actor to its next position according to its 
