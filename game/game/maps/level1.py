@@ -4,7 +4,8 @@ from game import constants
 
 class Level1():
 
-    def __init__(self):
+    def __init__(self, entities):
+        self._collidableWalls = entities["wall"]
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FLOOR = './images/catacombs/cata_v1.0/mainlevbuild.png'
         self._FLOOR_W = 32

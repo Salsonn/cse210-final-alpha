@@ -17,16 +17,16 @@ class DrawActorsAction(Action):
         _output_service (OutputService): An instance of OutputService.
     """
 
-    def __init__(self, output_service):
+    def __init__(self, output_service, entities):
         """The class constructor.
         
         Args:
             _output_service (OutputService): An instance of OutputService.
         """
         self._output_service = output_service
-        self._mainMenu = MainMenu()
-        self._welcome = Welcome()
-        self._level1 = Level1()
+        self._mainMenu = MainMenu(entities)
+        self._welcome = Welcome(entities)
+        self._level1 = Level1(entities)
 
     def execute(self, cast, reticle, level=0):
         """Executes the action using the given actors.

@@ -7,7 +7,7 @@ from game.math import *
 
 class Director(arcade.Window):
     def __init__(self, entities, tasks, input_service, reticle):
-        super().__init__(constants.windowX, constants.windowY, "Name this Game")
+        super().__init__(constants.windowX, constants.windowY, "Dino Destroyer")
         self._script = tasks
         self._entities = entities
         self._input_service = input_service
