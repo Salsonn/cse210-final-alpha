@@ -4,7 +4,9 @@ from game import constants
 
 class MainMenu():
 
-    def __init__(self, cast):
+    def __init__(self, entities):
+        self._collidableWalls = entities["wall"]
+
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FONT_COLOR = arcade.color.PALE_BLUE
         
@@ -35,13 +37,17 @@ class MainMenu():
         self._BOTTOM_MARGIN = 110
         self._TILE_SPACING = 1.6
 
+        self.prepare_walls()
+        self.prepare_floor()
+
     def drawMap(self):
     
-        # MainMenu.draw_edges(self)
-        MainMenu.draw_walls(self)
-        MainMenu.draw_messages(self)
-        MainMenu.draw_floor(self)
-        MainMenu.draw_decor(self)
+        # self.draw_edges()
+        self.wall_list_v.draw()
+        self.wall_list_h.draw()
+        self.draw_messages()
+        self.floor_list.draw()
+        self.draw_decor()
 
     def draw_edges(self):
         # Draw the edges
@@ -50,7 +56,7 @@ class MainMenu():
         arcade.draw_rectangle_filled(constants.windowX / 2, constants.windowY, constants.windowX, 20, self._WALL_COLOR)
         arcade.draw_rectangle_filled(constants.windowX / 2, 0, constants.windowX, 20, self._WALL_COLOR)
 
-    def draw_walls(self):
+    def prepare_walls(self):
         
         # Draw Walls to choose what to do next
         self.wall_list_h = arcade.SpriteList()
@@ -66,7 +72,7 @@ class MainMenu():
 
             # Add the floor to the lists
             self.wall_list_h.append(wall)
-        self.wall_list_h.draw()
+
 
 
         # Top right wall
@@ -81,7 +87,6 @@ class MainMenu():
 
             # Add the floor to the lists
             self.wall_list_h.append(wall)
-        self.wall_list_h.draw()
 
 
         # Draw Walls to choose what to do next
@@ -99,7 +104,6 @@ class MainMenu():
 
             # Add the floor to the lists
             self.wall_list_v.append(wall)
-        self.wall_list_v.draw()
 
         # Left Vertical Wall
         for k in range(constants.windowY // self._WALL_H - 4):
@@ -113,25 +117,26 @@ class MainMenu():
 
             # Add the floor to the lists
             self.wall_list_v.append(wall)
-        self.wall_list_v.draw()
 
         # Bottom Wall
         for m in range(constants.windowX // self._WALL_H - 3):
 
-            # Create the floor instance
+            # Create sprite
             wall = arcade.Sprite(self._WALL, 1,736.0,320.0,self._WALL_W, self._WALL_H)
 
-            # Position the floor sprites
+            # Position position sprite
             wall.center_x = m * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 110
             wall.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) - 172
 
-            # Add the floor to the lists
+            # Add sprite to necessary lists
             self.wall_list_h.append(wall)
-        self.wall_list_h.draw()
 
-        
+        for wall in self.wall_list_h:
+            self._collidableWalls.append(wall)
+        for wall in self.wall_list_v:
+            self._collidableWalls.append(wall)    
 
-    def draw_floor(self):
+    def prepare_floor(self):
         self.floor_list = arcade.SpriteList()
         for i in range(constants.windowY // self._FLOOR_H + 1):
             for j in range(constants.windowX // self._FLOOR_W + 16):
@@ -145,7 +150,6 @@ class MainMenu():
 
                 # Add the floor to the lists
                 self.floor_list.append(floor)
-        self.floor_list.draw()
 
     def draw_messages(self):
         

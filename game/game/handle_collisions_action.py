@@ -66,16 +66,18 @@ class HandleCollisionsAction(Action):
         for wall in walls:
             for projectile in projectiles:
                 # Skip precise collision math if objects are far apart. Didn't seem to help much though.
-                # if abs(projectile.center_x + projectile.change_x - wall.center_x + wall.change_x) >= 10 or abs(projectile.center_y + projectile.change_y - wall.center_y + wall.change_y) >= 10:
+                # if abs(projectile.center_x + projectile.change_x - wall.center_x + wall.change_x) >= wall._get_width() or abs(projectile.center_y + projectile.change_y - wall.center_y + wall.change_y) >= wall._get_width():
+                    # continue
                 l, r, t, b = self._detectCollision(projectile, wall)
                 if True in {l, r, t, b}:
                     projectile.reflect(projectiles, l, r, t, b)
-                # print(f"x:{projectile.change_x},y:{projectile.change_y}")
+                    # print(f"x:{projectile.change_x},y:{projectile.change_y}")
                     
             
     def _detectCollision(self, entity1, entity2, factorChange=0):
         __left = __right = __top = __bottom = False
-        
+        if self.bottomBound(entity2) - self.bottomBound(entity1) > entity1._get_height() + entity2._get_height():
+            return __left, __right, __top, __bottom
         if ((self.bottomBound(entity2) <= self.topBound(entity1) and self.topBound(entity1) <= self.topBound(entity2)) or (self.bottomBound(entity2) <= self.bottomBound(entity1) and self.bottomBound(entity1) <= self.topBound(entity2))) and ((self.leftBound(entity1, 1) <= self.rightBound(entity2, 1) and self.rightBound(entity1, factorChange) >= self.leftBound(entity2, factorChange))):
             __left = True
         if ((self.bottomBound(entity2) <= self.topBound(entity1) and self.topBound(entity1) <= self.topBound(entity2)) or (self.bottomBound(entity2) <= self.bottomBound(entity1) and self.bottomBound(entity1) <= self.topBound(entity2))) and ((self.leftBound(entity2, 1) <= self.rightBound(entity1, 1) and self.rightBound(entity2, factorChange) >= self.leftBound(entity1, factorChange))):

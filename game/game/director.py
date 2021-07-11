@@ -34,7 +34,8 @@ class Director(arcade.Window):
 
     def on_mouse_press(self, mouseX, mouseY, button, modifiers):
         self._input_service.add_mousebtn(button, modifiers)
-        print(f"Click detected at {mouseX}, {mouseY}")
+        if constants.debug:
+            print(f"Click detected at {mouseX}, {mouseY}")
     
     def on_mouse_release(self, mouseX, mouseY, button, modifiers):
         self._input_service.remove_mousebtn(button, modifiers)

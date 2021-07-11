@@ -15,13 +15,14 @@ class Projectile(arcade.Sprite):
 
     def reflect(self, projectiles, l, r, t, b):
         if True in {l, r}:
-            self.change_x = self.change_x * -0.5
+            self.change_x *= -1
         if True in {t, b}:
-            self.change_y = self.change_y * -0.5
+            self.change_y *= -1
         if not False in {l, r, t, b}:
             self.center_x += self.change_x
             self.center_y += self.change_y
         if self.bounces == 0:
             projectiles.remove(self)
-            print(f"Removed a projectile. There are now {len(projectiles)} on screen.")
+            if constants.debug:
+                print(f"Removed a projectile. There are now {len(projectiles)} on screen.")
         else: self.bounces -= 1
