@@ -4,7 +4,7 @@ from game import constants
 
 class MainMenu():
 
-    def __init__(self):
+    def __init__(self, cast):
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FONT_COLOR = arcade.color.PALE_BLUE
         
