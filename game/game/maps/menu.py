@@ -37,7 +37,7 @@ class MainMenu():
 
     def drawMap(self):
     
-        MainMenu.draw_edges(self)
+        # MainMenu.draw_edges(self)
         MainMenu.draw_walls(self)
         MainMenu.draw_messages(self)
         MainMenu.draw_floor(self)
