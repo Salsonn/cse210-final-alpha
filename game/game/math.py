@@ -13,3 +13,9 @@ def vector(p1, p2):
 
 def theta(p1, p2):
     return math.atan2(p2.get_y() - p1.get_y(), p2.get_x() - p1.get_x())
+
+def hypotenuse(x, y):
+    return math.sqrt((x**2) + (y**2))
+
+def angle(h, y):
+    return math.sin(y / h)

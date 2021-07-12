@@ -48,6 +48,12 @@ class DrawActorsAction(Action):
 
         player = cast["player"][0] # there's only one
         self._output_service.draw_actor(player)
+        
+        weapon = cast["weapon"][0]
+        self._output_service.draw_actor(weapon)
+
+        enemy = cast["enemy"][0]
+        self._output_service.draw_actor(enemy)
 
         for projectile in cast["projectile"]:
             self._output_service.draw_actor(projectile)

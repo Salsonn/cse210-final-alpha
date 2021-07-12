@@ -4,8 +4,8 @@ from game import constants
 import arcade
 
 class Player(arcade.Sprite):
-    def __init__(self):
-        super().__init__(constants.playerImage)
+    def __init__(self, position, check_flip=None):
+        super().__init__(constants.playerImage, flipped_horizontally=check_flip, center_x=position[0], center_y=position[1])
 
-        self.center_x = int(constants.windowX / 2)
-        self.center_y = int(constants.windowY / 2)
+        self.center_x = position[0]
+        self.center_y = position[1]
