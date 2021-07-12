@@ -10,6 +10,8 @@ from game.arcade_output_service import ArcadeOutputService
 from game.reticle import Reticle
 
 from game.entity.player import Player
+from game.entity.enemy import Enemy
+from game.entity.weapon import Weapon
 
 from game.director import Director
 import arcade
@@ -19,14 +21,20 @@ def main():
     # create the cast {key: tag, value: list}
     cast = {}
 
-    player = Player()
+    player = Player((640, 360), False)
     cast["player"] = [player]
 
     # create empty list of projectiles, will be populated automatically later
     cast["projectile"] = []
 
+    weapon = Weapon(False, (640, 360))
+    cast["weapon"] = [weapon]
+
     # create empty list of collidable walls, will be populated and drawn by the map code
     cast["wall"] = []
+
+    enemy = Enemy()
+    cast["enemy"] = [enemy]
 
     # create the script {key: tag, value: list}
     script = {}
