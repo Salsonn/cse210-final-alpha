@@ -66,12 +66,10 @@ class HandleCollisionsAction(Action):
         for wall in walls:
             for projectile in projectiles:
                 # Skip precise collision math if objects are far apart. Didn't seem to help much though.
-                # if abs(projectile.center_x + projectile.change_x - wall.center_x + wall.change_x) >= wall._get_width() or abs(projectile.center_y + projectile.change_y - wall.center_y + wall.change_y) >= wall._get_width():
-                    # continue
-                l, r, t, b = self._detectCollision(projectile, wall)
-                if True in {l, r, t, b}:
-                    projectile.reflect(projectiles, l, r, t, b)
-                    # print(f"x:{projectile.change_x},y:{projectile.change_y}")
+                if not abs(projectile.center_x + projectile.change_x - wall.center_x + wall.change_x) >= wall._get_width() or not abs(projectile.center_y + projectile.change_y - wall.center_y + wall.change_y) >= wall._get_width():
+                    l, r, t, b = self._detectCollision(projectile, wall)
+                    if True in {l, r, t, b}:
+                        projectile.reflect(projectiles, l, r, t, b)
                     
             
     def _detectCollision(self, entity1, entity2, factorChange=0):
