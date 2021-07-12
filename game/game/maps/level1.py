@@ -4,12 +4,14 @@ from game import constants
 
 class Level1():
 
-    def __init__(self):
+    def __init__(self, entities):
+        self._collidableWalls = entities["wall"]
         self._BACKGROUND_COLOR = arcade.color.BLACK
-        self._FLOOR = './images/floor_tile_sprite.png'
+        self._FLOOR = './images/catacombs/cata_v1.0/mainlevbuild.png'
         self._FLOOR_W = 32
         self._FLOOR_H = 32
-        self._WALL = './images/wall_tile_sprite.png'
+        # self._WALL = './images/wall_tile_sprite.png'
+        self._WALL = './images/catacombs/cata_v1.0/mainlevbuild.png'
         self._WALL_W = 32
         self._WALL_H = 32
         self._FONT_COLOR = arcade.color.PALE_BLUE
@@ -29,28 +31,27 @@ class Level1():
         self._BOTTOM_MARGIN = 110
         self._TILE_SPACING = 1.6
 
-    def drawMap(self):
-        
-        # Draw the Walls
+    def draw_edges(self):
+        # Draw the Edges
         arcade.draw_rectangle_filled(self._LEFT_WALL_X, self._LEFT_WALL_Y, 20, constants.windowY, self._WALL_COLOR_2)
         arcade.draw_rectangle_filled(constants.windowX, self._LEFT_WALL_Y, 20, constants.windowY, self._WALL_COLOR_2)
         arcade.draw_rectangle_filled(constants.windowX / 2, constants.windowY, constants.windowX, 20, self._WALL_COLOR_2)
         arcade.draw_rectangle_filled(constants.windowX / 2, 0, constants.windowX, 20, self._WALL_COLOR_2)
 
+    def draw_messages(self):
+        self._health = 100
+        self._weapons = ['knife', 'sword', 'pistol', 'laser']
+
         # Welcome Message
         arcade.draw_text(self._LEVEL1, constants.windowX / len(self._LEVEL1) + 250, constants.windowY - 40, self._FONT_COLOR, 25, 340, 'center', 'calibri', True)
-        
-
-        self._health = 100
 
         # Health
         arcade.draw_text(f'HEALTH:{self._health}', 15, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
 
-        self._weapons = ['knife', 'sword', 'pistol', 'laser']
-
         # Weapons
         arcade.draw_text(f'WEAPON:{self._weapons[3]}', constants.windowX - 215, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
 
+    def draw_floor(self):
         self.floor_list = arcade.SpriteList()
         for i in range(constants.windowY // self._FLOOR_H - 5):
             for j in range(constants.windowX // self._FLOOR_W -1):
@@ -64,7 +65,6 @@ class Level1():
 
                 # Add the floor to the lists
                 self.floor_list.append(floor)
-        # arcade.SpriteList.preload_textures(self.floor_list)
         self.floor_list.draw()
 
         # self.floor_list = arcade.SpriteList()
@@ -94,4 +94,8 @@ class Level1():
             
         #     self.floor_list.append(floor)
         #     self.floor_list.draw()
-            
+
+    def drawMap(self):
+        Level1.draw_edges(self)
+        Level1.draw_messages(self)
+        Level1.draw_floor(self)

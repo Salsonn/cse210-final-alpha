@@ -7,7 +7,7 @@ from game.math import *
 
 class Director(arcade.Window):
     def __init__(self, entities, tasks, input_service, reticle):
-        super().__init__(constants.windowX, constants.windowY, "Name this Game")
+        super().__init__(constants.windowX, constants.windowY, "Dino Destroyer")
         self._script = tasks
         self._entities = entities
         self._input_service = input_service
@@ -34,7 +34,8 @@ class Director(arcade.Window):
 
     def on_mouse_press(self, mouseX, mouseY, button, modifiers):
         self._input_service.add_mousebtn(button, modifiers)
-        print(f"Click detected at {mouseX}, {mouseY}")
+        if constants.debug:
+            print(f"Click detected at {mouseX}, {mouseY}")
     
     def on_mouse_release(self, mouseX, mouseY, button, modifiers):
         self._input_service.remove_mousebtn(button, modifiers)

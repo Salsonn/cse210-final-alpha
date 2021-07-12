@@ -1,5 +1,5 @@
-# cse210-final Title
-There's no time to explain! Grab a weapon and kill the weird things, and most importantly don't let them touch you!
+# cse210-final **Dino Dash**
+There's no time to explain! Grab a weapon and defend yourself from the angry dinosaurs! Most importantly don't let them touch you!
 
 ## Getting Started
 ---
@@ -29,14 +29,16 @@ root                    (project root folder)
     +-- physics.py      (manages entity movement and bouncing)
     +-- collision.py    (handles collision detection between entities)
     +-- entity.py       (basic characteristics of in-game entities)
+  
+  +-- entity            (stores attributes and methods for entities)
+    +-- player.py       (information unique to the player)
+    +-- projectile.py   (information unique to projectiles)
 
   +-- maps              (stores map data for loading on demand)
-    +-- mainMenu.map    (data for loading the main menu map)
+    +-- mainMenu.py     (data for loading the main menu map)
 
-  +-- img               (stores sprite data for all entities)
-    +-- player          (stores sprite data for the player)
-
-  +-- snd               (repository for sounds)
+  +-- images            (stores sprite data for all entities)
+  +-- sounds            (repository for sounds)
   
   +-- __init__.py       (python package file)
   +-- __main__.py       (entry point for program)
