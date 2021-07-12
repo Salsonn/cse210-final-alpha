@@ -9,10 +9,10 @@ projectileSpeed = 30
 acceleration = 2 # Pixels per frame per frame
 
 dropsImage = "./images/wall_tile_sprite.png"
-playerImage = "game\\images\\characters\\Player.gif"
-projectile1Image = "game\\images\\bullet.png"
-enemyImage = "game\\images\\characters\\Enemy.gif"
-weaponImage = "game\\images\\weapons\\ak.png"
+playerImage = "./images/characters/Player.gif"
+projectile1Image = "./images/bullet.png"
+enemyImage = "./images/characters/Enemy.gif"
+weaponImage = "./images/weapons/ak.png"
 
 debug = False
 collisionDebug = False
