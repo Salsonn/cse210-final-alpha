@@ -40,11 +40,11 @@ class Enemy(arcade.Sprite):
 
         if eX != pX:
             if eX <= pX:
-                self.center_x += self._speed
+                self.change_x += self._speed
             else:
-                self.center_x -= self._speed
+                self.change_x -= self._speed
         if eY != pY:
             if eY <= pY:
-                self.center_y += self._speed
+                self.change_y += self._speed
             else:
-                self.center_y -= self._speed
+                self.change_y -= self._speed

@@ -43,25 +43,8 @@ class HandleCollisionsAction(Action):
     def _wallPlayerDetection(self, player, projectiles, walls):
         for entity in walls:
             l, r, t, b = self._detectCollision(player, entity, 1)
-            if not False in {l, r, t, b}:
-                player.center_x += player.change_x * -1
-                player.center_y += player.change_y * -1
-            if l:
-                player.change_x = max(player.change_x, 0) # Stop leftward movement
-                if constants.collisionDebug:
-                    print("Player cannot move left")
-            if r:
-                player.change_x = min(player.change_x, 0) # Stop rightward movement
-                if constants.collisionDebug:
-                    print("Player cannot move right")
-            if b:
-                player.change_y = max(player.change_y, 0) # Stop downward movement
-                if constants.collisionDebug:
-                    print("Player cannot move down")
-            if t:
-                player.change_y = min(player.change_y, 0) # Stop updward movement
-                if constants.collisionDebug:
-                    print("Player cannot move up")
+            if True in {l, r, t, b}:
+                self._handleCollision(player, l, r, t, b)
 
     def _wallProjectileDetection(self, projectiles, walls):
         for wall in walls:
@@ -73,8 +56,24 @@ class HandleCollisionsAction(Action):
                         projectile.reflect(projectiles, l, r, t, b)
 
     def _enemyPlayerDetection(self, player, enemies):
-        pass
-                    
+        for enemy in enemies:
+            l, r, t, b = self._detectCollision(enemy, player)
+            if True in {l, r, t, b}:
+                self._handleCollision(enemy, l, r, t, b)
+
+    def _handleCollision(self, entity, l, r, t, b):
+        if not False in {l, r, t, b}:
+                entity.center_x += entity.change_x * -1
+                entity.center_y += entity.change_y * -1
+        if l:
+            entity.change_x = max(entity.change_x, 0) # Stop leftward movement
+        if r:
+            entity.change_x = min(entity.change_x, 0) # Stop rightward movement
+        if b:
+            entity.change_y = max(entity.change_y, 0) # Stop downward movement
+        if t:
+            entity.change_y = min(entity.change_y, 0) # Stop updward movement
+        return
             
     def _detectCollision(self, entity1, entity2, factorChange=0):
         __left = __right = __top = __bottom = False

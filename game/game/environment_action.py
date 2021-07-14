@@ -15,13 +15,11 @@ class EnvironmentAction:
         self.enemyAItick(self.enemies, entities["player"][0])
 
     def enemyAItick(self, enemies, player):
+        for enemy in enemies:
+            tragectory = theta(Point(enemy.center_x, enemy.center_y), Point(player.center_x, player.center_y))
+            enemy.change_x = round(math.cos(tragectory) * constants.enemySpeed)
+            enemy.change_y = round(math.sin(tragectory) * constants.enemySpeed)
 
-        position_player = player.position
-        position_enemy = enemies[0].position
-        self.enemies[0].move_enemy(position_player, position_enemy)
-        
-        
-        # for enemy in enemies:
-        #     tragectory = theta(Point(enemy.center_x, enemy.center_y), Point(player.center_x, player.center_y))
-        #     enemy.change_x = round(math.cos(tragectory) * constants.enemySpeed)
-        #     enemy.change_y = round(math.sin(tragectory) * constants.enemySpeed)
+        # position_player = player.position
+        # position_enemy = enemies[0].position
+        # self.enemies[0].move_enemy(position_player, position_enemy)
