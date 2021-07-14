@@ -40,9 +40,9 @@ class DrawActorsAction(Action):
         #    self._output_service.draw_actor(ball)
 
         if level == 0:
-            self._mainMenu.drawMap()
-        elif level == 1:
             self._welcome.drawMap()
+        elif level == 1:
+            self._mainMenu.drawMap()
         elif level == 2:
             self._level1.drawMap()
 

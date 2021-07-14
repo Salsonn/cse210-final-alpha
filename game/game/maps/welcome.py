@@ -26,13 +26,14 @@ class Welcome():
         self._ROW_SPACING = 20
         self._LEFT_MARGIN = 110
         self._BOTTOM_MARGIN = 110
+
+        self._LOGO = './images/splash.png'
     
     def drawMap(self):
-        # Draw the Edges
-        arcade.draw_rectangle_filled(self._LEFT_WALL_X, self._LEFT_WALL_Y, 20, constants.windowY, self._WALL_COLOR)
-        arcade.draw_rectangle_filled(constants.windowX, self._LEFT_WALL_Y, 20, constants.windowY, self._WALL_COLOR)
-        arcade.draw_rectangle_filled(constants.windowX / 2, constants.windowY, constants.windowX, 20, self._WALL_COLOR)
-        arcade.draw_rectangle_filled(constants.windowX / 2, 0, constants.windowX, 20, self._WALL_COLOR)
+        
 
         # Welcome Message
-        arcade.draw_text('WELCOME', constants.windowX / 2, constants.windowY / 2, self._FONT_COLOR, 50, 300, 'center', 'calibri', True)
+        splash = arcade.Sprite(self._LOGO , 5)
+        splash.center_x = constants.windowX // 2
+        splash.center_y = constants.windowY // 2
+        splash.draw()
