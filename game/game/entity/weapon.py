@@ -60,34 +60,14 @@ class Weapon(arcade.Sprite):
 
         > Moves according to Character Position <
         '''
-        if mouseY < playerY:
-            if mouseX < playerX:
-                self.cartesian = 3
-            else:
-                self.cartesian = 4
-        elif mouseY > playerY:
-            if mouseX > playerX:
-                self.cartesian = 1
-            else:
-                self.cartesian = 2
+        self.cartesian = cartesian(mouseX, mouseY, playerX, playerY)
 
         finalX = abs(playerX - mouseX)
         finalY = abs(playerY - mouseY)
         h = hypotenuse(finalX, finalY)
         av = angle(h, finalY)
-
-        if self.cartesian == 1:
-            self.angle = av * 100
-
-        elif self.cartesian == 2:
-            self.angle = 180 - (av * 100)
-
-        elif self.cartesian == 3:
-            self.angle = 180 + (av * 100)
-
-        elif self.cartesian == 4:
-            self.angle = 360 - (av * 100)
-
+        self.angle = direction(self.cartesian, av)
+        
         return self.angle
 
         
