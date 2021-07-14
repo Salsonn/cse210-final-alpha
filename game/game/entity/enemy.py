@@ -12,7 +12,7 @@ class Enemy(arcade.Sprite):
         self._check_pos = 0
         self._speed = 3
 
-    def move_enemy(self, entities, position_player, position_enemy):
+    def move_enemy(self, position_player, position_enemy):
         eX, eY = position_enemy[0], position_enemy[1]
         pX, pY = position_player[0], position_player[1]
 
@@ -40,11 +40,11 @@ class Enemy(arcade.Sprite):
 
         if eX != pX:
             if eX <= pX:
-                entities["enemy"][0].center_x += self._speed
+                self.center_x += self._speed
             else:
-                entities["enemy"][0].center_x -= self._speed
+                self.center_x -= self._speed
         if eY != pY:
             if eY <= pY:
-                entities["enemy"][0].center_y += self._speed
+                self.center_y += self._speed
             else:
-                entities["enemy"][0].center_y -= self._speed
+                self.center_y -= self._speed

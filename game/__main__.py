@@ -4,6 +4,7 @@ from game.point import Point
 from game.control_actors_action import ControlActorsAction
 from game.draw_actors_action import DrawActorsAction
 from game.handle_collisions_action import HandleCollisionsAction
+from game.environment_action import EnvironmentAction
 from game.move_actors_action import MoveActorsAction
 from game.arcade_input_service import ArcadeInputService
 from game.arcade_output_service import ArcadeOutputService
@@ -51,9 +52,11 @@ def main():
     move_actors_action = MoveActorsAction()
     handle_collisions_action = HandleCollisionsAction()
     draw_actors_action = DrawActorsAction(output_service, cast)
+    environment_action = EnvironmentAction(cast["enemy"])
+
     
     script["input"] = [control_actors_action]
-    script["update"] = [handle_collisions_action, move_actors_action]
+    script["update"] = [environment_action, handle_collisions_action, move_actors_action]
     script["output"] = [draw_actors_action]
 
     # start the game

@@ -22,6 +22,7 @@ class HandleCollisionsAction(Action):
         if entities["player"][0].change_x or entities["player"][0].change_y: 
             self._wallPlayerDetection(entities["player"][0], entities["projectile"], entities["wall"])
         self._wallProjectileDetection(entities["projectile"], entities["wall"])
+        self._enemyPlayerDetection(entities["player"][0], entities["enemy"])
 
     def _screenEdgeDetection(self, player, projectiles):
         # Prevent player from leaving sides of window
@@ -70,6 +71,9 @@ class HandleCollisionsAction(Action):
                     l, r, t, b = self._detectCollision(projectile, wall)
                     if True in {l, r, t, b}:
                         projectile.reflect(projectiles, l, r, t, b)
+
+    def _enemyPlayerDetection(self, player, enemies):
+        pass
                     
             
     def _detectCollision(self, entity1, entity2, factorChange=0):
