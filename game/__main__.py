@@ -21,18 +21,21 @@ def main():
     # create the cast {key: tag, value: list}
     cast = {}
 
+    # create the player and place in default location
     player = Player((640, 360), False)
     cast["player"] = [player]
 
     # create empty list of projectiles, will be populated automatically later
     cast["projectile"] = []
 
+    # create the first weapon, will automatically position near the player
     weapon = Weapon(False, (640, 360))
     cast["weapon"] = [weapon]
 
     # create empty list of collidable walls, will be populated and drawn by the map code
     cast["wall"] = []
 
+    # create empty list of enemies, will be populated on map load
     enemy = Enemy((150, 450))
     cast["enemy"] = [enemy]
 
