@@ -16,10 +16,10 @@ class Reticle():
         return self._reticle
 
     def get_reticleX(self):
-        return self._reticle.get_x
+        return self._reticle.get_x()
 
     def get_reticleY(self):
-        return self._reticle.get_y
+        return self._reticle.get_y()
 
     def get_reticle_dx(self):
         return self._reticle_dx

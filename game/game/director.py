@@ -15,9 +15,6 @@ class Director(arcade.Window):
         self._input_service = input_service
         self._reticle = reticle
         self._actionTime = {}
-        self.weapon = Weapon(False, (640, 360))
-        self.flipped = False
-        self.player = Player((640, 360), False)
         self.enemy = Enemy((150, 450))
 
     def setup(self):
@@ -48,21 +45,7 @@ class Director(arcade.Window):
 
     def on_mouse_motion(self, mouseX, mouseY, mouse_dx, mouse_dy):
         self._reticle.set_reticle(Point(mouseX, mouseY), mouse_dx, mouse_dy)
-        weapon_angle = self.weapon.update_weapon_angle(self._entities["player"][0].center_x, self._entities["player"][0].center_y, mouseX, mouseY)
-        self._entities["weapon"][0].angle = weapon_angle
-        flip = self.weapon.flip()
-        if not flip and self.flipped:
-            self.flipped = flip
-            position = self._entities["player"][0].position
-            self._entities["weapon"] = [Weapon(flip, position)]
-            self._entities["player"] = [Player(position, flip)]
-
-        if flip and not self.flipped:
-            self.flipped = flip
-            position = self._entities["player"][0].position
-            self._entities["weapon"] = [Weapon(flip, position)]
-            self._entities["player"] = [Player(position, flip)]
-            
+        
     def _cue_action(self, tag):
         """Executes the actions with the given tag.
         

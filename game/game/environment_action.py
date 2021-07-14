@@ -4,15 +4,21 @@ import arcade
 from game import constants
 from game.math import *
 from game.action import Action
+from game.entity.player import Player
+from game.entity.weapon import Weapon
 
 class EnvironmentAction:
 
     def __init__(self, enemies):
         self.enemies = enemies
+        self.weapon = Weapon(False, (640, 360))
+        self.playerFlipped = False
+        self.player = Player((640, 360), False)
 
     def execute(self, entities, reticle):
         # List of specific actions to take every tick
         self.enemyAItick(self.enemies, entities["player"][0])
+        self.reticleUpdate(entities, reticle)
 
     def enemyAItick(self, enemies, player):
         for enemy in enemies:
@@ -23,3 +29,20 @@ class EnvironmentAction:
         # position_player = player.position
         # position_enemy = enemies[0].position
         # self.enemies[0].move_enemy(position_player, position_enemy)
+
+    def reticleUpdate(self, entities, reticle):
+        weapon_angle = self.weapon.update_weapon_angle(entities["player"][0].center_x, entities["player"][0].center_y, reticle.get_reticleX(), reticle.get_reticleY())
+        entities["weapon"][0].angle = weapon_angle
+        flip = self.weapon.flip()
+        if not flip and self.playerFlipped:
+            self.playerFlipped = flip
+            position = entities["player"][0].position
+            entities["weapon"] = [Weapon(flip, position)]
+            entities["player"] = [Player(position, flip)]
+
+        if flip and not self.playerFlipped:
+            self.playerFlipped = flip
+            position = entities["player"][0].position
+            entities["weapon"] = [Weapon(flip, position)]
+            entities["player"] = [Player(position, flip)]
+            
