@@ -33,7 +33,7 @@ def main():
     # create empty list of collidable walls, will be populated and drawn by the map code
     cast["wall"] = []
 
-    enemy = Enemy()
+    enemy = Enemy((150, 450))
     cast["enemy"] = [enemy]
 
     # create the script {key: tag, value: list}

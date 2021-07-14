@@ -7,11 +7,11 @@ class Level1():
     def __init__(self, entities):
         self._collidableWalls = entities["wall"]
         self._BACKGROUND_COLOR = arcade.color.BLACK
-        self._FLOOR = './images/catacombs/cata_v1.0/mainlevbuild.png'
+        self._FLOOR = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
         self._FLOOR_W = 32
         self._FLOOR_H = 32
         # self._WALL = './images/wall_tile_sprite.png'
-        self._WALL = './images/catacombs/cata_v1.0/mainlevbuild.png'
+        self._WALL = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
         self._WALL_W = 32
         self._WALL_H = 32
         self._FONT_COLOR = arcade.color.PALE_BLUE

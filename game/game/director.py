@@ -5,6 +5,7 @@ from game.point import Point
 from game.math import *
 from game.entity.weapon import Weapon
 from game.entity.player import Player
+from game.entity.enemy import Enemy
 
 class Director(arcade.Window):
     def __init__(self, entities, tasks, input_service, reticle):
@@ -17,11 +18,16 @@ class Director(arcade.Window):
         self.weapon = Weapon(False, (640, 360))
         self.flipped = False
         self.player = Player((640, 360), False)
+        self.enemy = Enemy((150, 450))
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
 
     def on_update(self, delta_time):
+        position_player = self._entities["player"][0].position
+        position_enemy = self._entities["enemy"][0].position
+        self.enemy.move_enemy(self._entities, position_player, position_enemy)
+
         self._cue_action("update")
         self._cue_action("input")
 

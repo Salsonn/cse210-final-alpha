@@ -3,27 +3,25 @@ from game import constants
 from game.entity.player import Player
 
 class Enemy(arcade.Sprite):
-    def __init__(self):
-        super().__init__(constants.enemyImage)
-
+    def __init__(self, position):
+        super().__init__(constants.enemyImage, center_x=position[0], center_y=position[1])
         self.player = Player((640, 360), False)
-        self.center_x = 150
-        self.center_y = 450
+        self.center_x = position[0]
+        self.center_y = position[1]
 
-    def move_enemy(self):
-        
-        if abs(self.center_x - self.player.center_x) < 10:
-            self.center_x += 1
-            if self.center_x < self.player.center_x:
-                self.center_x += 1
+    def move_enemy(self, entities, position_player, position_enemy):
+        eX, eY = position_enemy[0], position_enemy[1]
+        pX, pY = position_player[0], position_player[1]
+
+        speed = 4
+
+        if eX != pX:
+            if eX < pX:
+                entities["enemy"][0].center_x += speed
             else:
-                self.center_x -= 1
-
-        if abs(self.center_y - self.player.center_y) < 10:
-            if self.center_y < self.player.center_y:
-                self.center_y += 1
+                entities["enemy"][0].center_x -= speed
+        if eY != pY:
+            if eY < pY:
+                entities["enemy"][0].center_y += speed
             else:
-                self.center_y -= 1
-        
-        
-
+                entities["enemy"][0].center_y -= speed

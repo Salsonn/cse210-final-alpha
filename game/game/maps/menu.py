@@ -13,11 +13,11 @@ class MainMenu():
         self._TITLE = 'WELCOME TO THE GAME'
         self._INFO = 'CHOOSE WHAT TO DO'
 
-        self._FLOOR = './images/mainlevbuild.png'
+        self._FLOOR = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
         self._FLOOR_W = 65
         self._FLOOR_H = 48
         
-        self._WALL = './images/mainlevbuild.png'
+        self._WALL = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
         self._WALL_W = 32
         self._WALL_H = 32
         self._WALL_COLOR = arcade.color.RED
@@ -25,7 +25,7 @@ class MainMenu():
         self._LEFT_WALL_X = 0
         self._LEFT_WALL_Y = constants.windowY / 2
 
-        self._POT = './images/TX_Props.png'
+        self._POT = 'game\\images\\TX_Props.png'
         self._POT_W = 24
         self._POT_H = 36
         
