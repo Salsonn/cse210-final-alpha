@@ -20,12 +20,43 @@ class HandleCollisionsAction(Action):
         Args:
             entities (dict): The game actors {key: tag, value: list}.
         """
+        # Prevent the player from moving off-screen
         self._screenEdgeDetection(entities["player"][0], entities["projectile"])
+
+        # Prevent the player from smashing through walls
         if entities["player"][0].change_x or entities["player"][0].change_y: 
             self._wallPlayerDetection(entities["player"][0], entities["projectile"], entities["wall"])
+
+        # Bounce projectiles off the walls
         self._wallProjectileDetection(entities["projectile"], entities["wall"])
+
+        # Keeps the enemies from making inappropriate advances on the player.
         self._enemyPlayerDetection(entities["player"][0], entities["enemy"])
+
+        # Detects when the player hits a level trigger
         self._levelChangeDetection(entities["player"][0], entities["trigger"])
+
+        # Keep the enemies from trampling each other and hitting walls.
+        self._enemySocialDistancing(entities["enemy"])
+        self._wallEnemyDetection(entities["enemy"], entities["wall"])
+
+    def _enemySocialDistancing(self, enemies):
+        for enemy in enemies:
+            for enemy2 in enemies:
+                if self.proxCheck(enemy, enemy2):
+                    if enemy != enemy2:
+                        l, r, t, b = self._detectCollision(enemy, enemy2, 1)
+                        if True in {l, r, t, b}:
+                            self._handleCollision(enemy, l, r, t, b)
+
+    def _wallEnemyDetection(self, enemies, walls):
+        for enemy in enemies:
+            for wall in walls:
+                if self.proxCheck(enemy, wall):
+                    l, r, t, b = self._detectCollision(enemy, wall, 1)
+                    if True in {l, r, t, b}:
+                        self._handleCollision(enemy, l, r, t, b)
+
 
     def _levelChangeDetection(self, player, triggers):
         if self.levelControl.getLevel() != 0:
@@ -57,7 +88,8 @@ class HandleCollisionsAction(Action):
         for wall in walls:
             for projectile in projectiles:
                 # Skip precise collision math if objects are far apart. Didn't seem to help much though.
-                if not abs(projectile.center_x + projectile.change_x - wall.center_x + wall.change_x) >= wall._get_width() or not abs(projectile.center_y + projectile.change_y - wall.center_y + wall.change_y) >= wall._get_width():
+                #if not abs(projectile.center_x + projectile.change_x - wall.center_x + wall.change_x) >= wall._get_width() or not abs(projectile.center_y + projectile.change_y - wall.center_y + wall.change_y) >= wall._get_width():
+                if self.proxCheck(projectile, wall):
                     l, r, t, b = self._detectCollision(projectile, wall)
                     if True in {l, r, t, b}:
                         projectile.reflect(projectiles, l, r, t, b)
@@ -96,6 +128,8 @@ class HandleCollisionsAction(Action):
             __top = True
         return __left, __right, __top, __bottom
 
+    def proxCheck(self, entity1, entity2):
+        return not abs(entity1.center_x + entity1.change_x - entity2.center_x + entity2.change_x) >= entity2._get_width() or not abs(entity1.center_y + entity1.change_y - entity2.center_y + entity2.change_y) >= entity2._get_width()
 
     def rightBound(self, entity, factorChange=0):
         return entity.center_x + (entity.change_x * factorChange) + (entity._get_width() / 2) 
