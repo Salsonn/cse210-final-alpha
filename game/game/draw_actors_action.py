@@ -28,6 +28,7 @@ class DrawActorsAction(Action):
         self._mainMenu = MainMenu(entities)
         self._welcome = Welcome(entities)
         self._level1 = Level1(entities)
+        self.changeLevel(self.activeLevel)
 
     def execute(self, cast, reticle):
         """Executes the action using the given actors.
