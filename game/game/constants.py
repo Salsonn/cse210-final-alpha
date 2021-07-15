@@ -6,7 +6,9 @@ windowY = 720
 
 movementSpeed = 5 # Pixels per frame
 projectileSpeed = 30
-enemySpeed = 4
+blueEnemySpeed = 4
+yellowEnemySpeed = 5
+redEnemySpeed = 6
 acceleration = 2 # Pixels per frame per frame
 
 dropsImage = "game\\images\\medkit_sprite.png"
