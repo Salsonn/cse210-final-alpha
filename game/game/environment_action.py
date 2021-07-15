@@ -6,6 +6,7 @@ from game.math import *
 from game.action import Action
 from game.entity.player import Player
 from game.entity.weapon import Weapon
+from game.entity.enemy import Enemy
 
 class EnvironmentAction:
 
@@ -14,6 +15,8 @@ class EnvironmentAction:
         self.weapon = Weapon(False, (640, 360))
         self.playerFlipped = False
         self.player = Player((640, 360), False)
+        self.enemy_adder = 0
+        self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50)
 
     def execute(self, entities, reticle):
         # List of specific actions to take every tick
@@ -25,6 +28,12 @@ class EnvironmentAction:
             tragectory = theta(Point(enemy.center_x, enemy.center_y), Point(player.center_x, player.center_y))
             enemy.change_x = round(math.cos(tragectory) * enemy.speed)
             enemy.change_y = round(math.sin(tragectory) * enemy.speed)
+
+        if self.enemy_adder % 60 == 0:
+            enemy = self.enemy.chooseEnemy()
+            enemies.append(enemy)
+        self.enemy_adder += 1
+
         # position_player = player.position
         # position_enemy = enemies[0].position
         # self.enemies[0].move_enemy(position_player, position_enemy)

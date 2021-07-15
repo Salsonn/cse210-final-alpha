@@ -15,8 +15,9 @@ class Director(arcade.Window):
         self._input_service = input_service
         self._reticle = reticle
         self._actionTime = {}
-        self.enemy = Enemy((150, 450), constants.enemyImages[0], 4)
+        self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50)
         self.music = None
+        self.enemy_adder = 0
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
