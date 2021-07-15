@@ -41,8 +41,10 @@ def main():
     cast["trigger"] = []
 
     # create empty list of enemies, will be populated on map load
-    enemy = Enemy((150, 450))
-    cast["enemy"] = [enemy]
+    blue_enemy = Enemy((150, 400), constants.enemyImages[2], 1)
+    yellow_enemy = Enemy((150,350), constants.enemyImages[1], 2)
+    red_enemy = Enemy((150, 450), constants.enemyImages[0], 3)
+    cast["enemy"] = [red_enemy, blue_enemy, yellow_enemy]
 
     # create a medkit to reset the player health to max value
     drops = Drops((25, 20))
