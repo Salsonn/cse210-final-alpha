@@ -47,7 +47,7 @@ def main():
     cast["enemy"] = [red_enemy, blue_enemy, yellow_enemy]
 
     # create a medkit to reset the player health to max value
-    drops = Drops((25, 20))
+    drops = Drops((1150, 85))
     cast["drops"] = [drops]
 
     # create the script {key: tag, value: list}
