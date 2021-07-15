@@ -16,9 +16,11 @@ class Director(arcade.Window):
         self._reticle = reticle
         self._actionTime = {}
         self.enemy = Enemy((150, 450))
+        self.music = None
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
+        self.play_song()
 
     def on_update(self, delta_time):
         self._cue_action("update")
@@ -62,3 +64,15 @@ class Director(arcade.Window):
             print("\n\n\n")
             for action in self._actionTime:
                 print(f"{self._actionTime[action]}")
+
+    def play_song(self):
+        if self.music:
+            self.music.stop()
+
+        # Play the next song
+        self.music = arcade.Sound(constants.menuMusic, streaming=True)
+        self.current_player = self.music.play(1)
+        # This is a quick delay. If we don't do this, our elapsed time is 0.0
+        # and on_update will think the music is over and advance us to the next
+        # song before starting this one.
+        time.sleep(0.03)

@@ -14,6 +14,9 @@ playerImage = "game\\images\\characters\\Player.gif"
 projectile1Image = "game\\images\\bullet.png"
 enemyImages = ["game\\images\\characters\\Enemy.gif", "game\\images\\characters\\Enemy2.gif", "game\\images\\characters\\Enemy3.gif"]
 weaponImage = "game\\images\\weapons\\ak.png"
+menuMusic = "game\\sounds\\background.mp3"
+# menuMusic = "game\\sounds\\CoconutMall.mp3"
+levelMusic = "game\\sounds\\ангел.mp3"
 
 debug = False
 collisionDebug = False
