@@ -6,9 +6,19 @@ windowY = 720
 
 movementSpeed = 5 # Pixels per frame
 projectileSpeed = 30
-blueEnemySpeed = 4
-yellowEnemySpeed = 5
-redEnemySpeed = 6
+blueEnemySpeed = 3
+yellowEnemySpeed = 4
+redEnemySpeed = 5
+
+enemyTopRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 450, 'max_y': 575}
+enemyBottomRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 75, 'max_y': 150}
+enemyLeftRandom = {'min_x': 75, 'max_x': 150, 'min_y': 75, 'max_y': 575}
+enemyRightRandom = {'min_x': 950, 'max_x': 1100, 'min_y': 75, 'max_y': 575}
+
+blueEnemyPoints = 50
+yellowEnemyPoints = 100
+redEnemyPoints = 150
+
 acceleration = 2 # Pixels per frame per frame
 
 dropsImage = "game\\images\\medkit_sprite.png"
