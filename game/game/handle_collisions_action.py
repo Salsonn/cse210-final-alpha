@@ -45,7 +45,7 @@ class HandleCollisionsAction(Action):
             for enemy2 in enemies:
                 if self.proxCheck(enemy, enemy2):
                     if enemy != enemy2:
-                        l, r, t, b = self._detectCollision(enemy, enemy2, 1)
+                        l, r, t, b = self._detectCollision(enemy, enemy2, 0)
                         if True in {l, r, t, b}:
                             self._handleCollision(enemy, l, r, t, b)
 
