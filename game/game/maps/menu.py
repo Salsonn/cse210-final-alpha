@@ -37,6 +37,8 @@ class MainMenu():
         self._BOTTOM_MARGIN = 110
         self._TILE_SPACING = 1.6
 
+    def load(self):
+        self._collidableWalls.clear()
         self.prepare_walls()
         self.prepare_floor()
 
