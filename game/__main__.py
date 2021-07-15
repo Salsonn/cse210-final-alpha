@@ -13,6 +13,7 @@ from game.reticle import Reticle
 from game.entity.player import Player
 from game.entity.enemy import Enemy
 from game.entity.weapon import Weapon
+from game.entity.drops import Drops
 
 from game.director import Director
 import arcade
@@ -39,6 +40,10 @@ def main():
     # create empty list of enemies, will be populated on map load
     enemy = Enemy((150, 450))
     cast["enemy"] = [enemy]
+
+    # create a medkit to reset the player health to max value
+    drops = Drops((25, 20))
+    cast["drops"] = [drops]
 
     # create the script {key: tag, value: list}
     script = {}

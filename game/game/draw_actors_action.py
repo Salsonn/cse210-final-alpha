@@ -55,6 +55,9 @@ class DrawActorsAction(Action):
         enemy = cast["enemy"][0]
         self._output_service.draw_actor(enemy)
 
+        drops = cast["drops"][0]
+        self._output_service.draw_actor(drops)
+        
         for projectile in cast["projectile"]:
             self._output_service.draw_actor(projectile)
 
