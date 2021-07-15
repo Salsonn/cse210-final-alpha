@@ -11,6 +11,8 @@ class HandleCollisionsAction(Action):
     Stereotype:
         Controller
     """
+    def __init__(self, draw_actors_action):
+        self.levelControl = draw_actors_action
 
     def execute(self, entities, reticle):
         """Executes the action using the given actors.
@@ -23,6 +25,11 @@ class HandleCollisionsAction(Action):
             self._wallPlayerDetection(entities["player"][0], entities["projectile"], entities["wall"])
         self._wallProjectileDetection(entities["projectile"], entities["wall"])
         self._enemyPlayerDetection(entities["player"][0], entities["enemy"])
+        self._levelChangeDetection(entities["player"][0], entities["trigger"])
+
+    def _levelChangeDetection(self, player, triggers):
+        if self.levelControl.getLevel() != 0:
+            self.levelControl.changeLevel(0)
 
     def _screenEdgeDetection(self, player, projectiles):
         # Prevent player from leaving sides of window

@@ -37,6 +37,9 @@ def main():
     # create empty list of collidable walls, will be populated and drawn by the map code
     cast["wall"] = []
 
+    # create empty list of triggers, will be populated by maps
+    cast["trigger"] = []
+
     # create empty list of enemies, will be populated on map load
     enemy = Enemy((150, 450))
     cast["enemy"] = [enemy]
@@ -55,8 +58,8 @@ def main():
     
     control_actors_action = ControlActorsAction(input_service)
     move_actors_action = MoveActorsAction()
-    handle_collisions_action = HandleCollisionsAction()
     draw_actors_action = DrawActorsAction(output_service, cast)
+    handle_collisions_action = HandleCollisionsAction(draw_actors_action)
     environment_action = EnvironmentAction(cast["enemy"])
 
     

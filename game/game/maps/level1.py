@@ -5,6 +5,7 @@ from game import constants
 class Level1():
 
     def __init__(self, entities):
+        self._enemies = entities["enemy"]
         self._collidableWalls = entities["wall"]
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FLOOR = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
@@ -30,6 +31,9 @@ class Level1():
         self._LEFT_MARGIN = 110
         self._BOTTOM_MARGIN = 110
         self._TILE_SPACING = 1.6
+
+    def load(self):
+        self._collidableWalls.clear()
 
     def draw_edges(self):
         # Draw the Edges

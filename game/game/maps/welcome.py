@@ -27,6 +27,9 @@ class Welcome():
         self._ROW_SPACING = 20
         self._LEFT_MARGIN = 110
         self._BOTTOM_MARGIN = 110
+
+    def load(self):
+        self._collidableWalls.clear()
     
     def drawMap(self):
         # Draw the Edges
