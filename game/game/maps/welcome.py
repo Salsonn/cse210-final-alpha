@@ -4,8 +4,10 @@ from game import constants
 
 class Welcome():
 
-    def __init__(self, entities):
+    def __init__(self, levelController, entities):
         self._collidableWalls = entities["wall"]
+        self._levelController = levelController
+
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FLOOR = '../images/floor_tile_sprite.png'
         self._FLOOR_W = 32
@@ -40,3 +42,6 @@ class Welcome():
 
         # Welcome Message
         arcade.draw_text('WELCOME', constants.windowX / 2, constants.windowY / 2, self._FONT_COLOR, 50, 300, 'center', 'calibri', True)
+
+    def handleTrigger(self, actionIndex):
+        pass

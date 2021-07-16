@@ -4,8 +4,10 @@ from game import constants
 
 class MainMenu():
 
-    def __init__(self, entities):
+    def __init__(self, levelController, entities):
+        self._levelController = levelController
         self._collidableWalls = entities["wall"]
+        self._triggers = entities["trigger"]
 
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FONT_COLOR = arcade.color.PALE_BLUE
@@ -171,6 +173,7 @@ class MainMenu():
         arch1.center_x = 27 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         arch1.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 430
         arch1.draw()
+        self._triggers.append(arch1)
 
         # Draw Arch for Instructions
         arch2 = arcade.Sprite(self._WALL, 1, 640.0, 0.0,80,96)
@@ -183,3 +186,7 @@ class MainMenu():
         pot.center_x = 2 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         pot.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 30
         pot.draw()
+
+    def handleTrigger(self, actionIndex):
+        if actionIndex == 1:
+            self._levelController.changeLevel(1)

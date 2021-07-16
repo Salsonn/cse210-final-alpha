@@ -25,9 +25,9 @@ class DrawActorsAction(Action):
         """
         self._output_service = output_service
         self.activeLevel = 0
-        self._mainMenu = MainMenu(entities)
-        self._welcome = Welcome(entities)
-        self._level1 = Level1(entities)
+        self._mainMenu = MainMenu(self, entities)
+        self._welcome = Welcome(self, entities)
+        self._level1 = Level1(self, entities)
         self.changeLevel(self.activeLevel)
 
     def execute(self, cast, reticle):

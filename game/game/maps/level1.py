@@ -4,9 +4,11 @@ from game import constants
 
 class Level1():
 
-    def __init__(self, entities):
+    def __init__(self, levelController, entities):
         self._enemies = entities["enemy"]
         self._collidableWalls = entities["wall"]
+        self._levelController = levelController
+
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FLOOR = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
         self._FLOOR_W = 32
@@ -103,3 +105,6 @@ class Level1():
         Level1.draw_edges(self)
         Level1.draw_messages(self)
         Level1.draw_floor(self)
+
+    def handleTrigger(self, actionIndex):
+        pass

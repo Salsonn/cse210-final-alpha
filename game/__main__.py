@@ -14,6 +14,7 @@ from game.entity.player import Player
 from game.entity.enemy import Enemy
 from game.entity.weapon import Weapon
 from game.entity.drops import Drops
+from game.entity.trigger import Trigger
 
 from game.director import Director
 import arcade
