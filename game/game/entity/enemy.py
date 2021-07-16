@@ -10,7 +10,7 @@ class Enemy(arcade.Sprite):
         self.player = Player((640, 360), False)
         self._center_x = position[0]
         self._center_y = position[1]
-        self.speed = speed
+        self.speed = speed + (random.randint(speed * -1, speed) / 7)
 
         self.pointValue = points
         self.power = damage
