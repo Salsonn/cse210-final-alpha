@@ -10,13 +10,18 @@ class Enemy(arcade.Sprite):
         self.player = Player((640, 360), False)
         self._center_x = position[0]
         self._center_y = position[1]
-        self.speed = speed
         self.enemyType = enemyType
+        self.speed = speed
         self.pointValue = points
-        self.scale = 1.25
-        self.check_flip = check_flip
         self.power = damage
+        self.check_flip = check_flip
+        self.scale = 1.25
     
+    def drawEnemy(self, position, enemyType, enemyScale, check_flip):
+        self._center_x = position[0]
+        self._center_y = position[1]
+        super().__init__(enemyType, center_x=self._center_x, center_y=self._center_y, scale = self.scale, flipped_horizontally=check_flip)
+
     def chooseEnemy(self):
         random_position = [constants.enemyTopRandom, constants.enemyBottomRandom, constants.enemyLeftRandom, constants.enemyRightRandom]
         

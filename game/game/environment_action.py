@@ -50,11 +50,11 @@ class EnvironmentAction:
 
         if side == 1 or side == 4 and not enemy.check_flip:
             enemy.check_flip = True
-            enemy.__init__(enemy.position, enemy.enemyType, enemy.speed, enemy.pointValue, enemy.scale, enemy.check_flip)
+            enemy.drawEnemy(enemy.position, enemy.enemyType, enemy.scale, enemy.check_flip)
 
         elif side == 2 or side == 3 and enemy.check_flip:
             enemy.check_flip = False
-            enemy.__init__(enemy.position, enemy.enemyType, enemy.speed, enemy.pointValue, enemy.scale, enemy.check_flip)
+            enemy.drawEnemy(enemy.position, enemy.enemyType, enemy.scale, enemy.check_flip)
 
     def change_tick(self):
         if self.tick == (60 * 10):

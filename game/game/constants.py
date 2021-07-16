@@ -8,17 +8,17 @@ windowY = 720
 movementSpeed = 5 # Pixels per frame
 projectileSpeed = 30
 
-blueEnemySpeed = random.randrange(2, 3)
+blueEnemySpeed = random.randrange(5, 6)
 yellowEnemySpeed = random.randrange(3, 5)
-redEnemySpeed = random.randrange(5, 6)
+redEnemySpeed = random.randrange(2, 3)
 
 blueEnemyDamage = 2
 yellowEnemyDamage = 4
 redEnemyDamage = 6
-# 10
-blueEnemyPoints = 30
+
+blueEnemyPoints = 60
 yellowEnemyPoints = 40
-redEnemyPoints = 60
+redEnemyPoints = 30
 
 playerScore = 0
 playerHealth = 100
