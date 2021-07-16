@@ -75,5 +75,5 @@ class Director(arcade.Window):
             self.menuMusic.stop()
 
         self.menuMusic = arcade.Sound(constants.menuMusic, streaming=True)
-        self.current_player = self.menuMusic.play(1)
+        if not constants.mute: self.current_player = self.menuMusic.play(1)
         time.sleep(0.03)

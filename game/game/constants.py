@@ -35,5 +35,6 @@ weaponImage = "game\\images\\weapons\\ak.png"
 menuMusic = "game\\sounds\\CoconutMall.mp3"
 levelMusic = "game\\sounds\\ангел.mp3"
 
+mute = False
 debug = False
 collisionDebug = False
