@@ -34,3 +34,4 @@ class Enemy(arcade.Sprite):
     def damage(self, damage, enemies, player):
         player.changeScore(self.pointValue)
         enemies.remove(self)
+        # print()

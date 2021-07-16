@@ -10,11 +10,17 @@ class Player(arcade.Sprite):
         self.center_x = position[0]
         self.center_y = position[1]
         self.__score = constants.playerScore
+        self.__health = constants.playerHealth
 
     def changeScore(self, delta):
         self.__score += delta
         constants.playerScore = self.__score
-        print(self.__score)
 
     def getScore(self):
         return self.__score
+
+    def loseHealth(self, damage):
+        self.__health -= damage
+        constants.playerHealth = self.__health
+        if self.__health <= 0:
+            print('DEAD')

@@ -20,6 +20,7 @@ yellowEnemyPoints = 100
 redEnemyPoints = 150
 
 playerScore = 0
+playerHealth = 100
 
 enemyTopRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 450, 'max_y': 575}
 enemyBottomRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 75, 'max_y': 150}

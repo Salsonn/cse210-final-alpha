@@ -119,6 +119,8 @@ class HandleCollisionsAction(Action):
             l, r, t, b = self._detectCollision(enemy, player)
             if True in {l, r, t, b}:
                 self._handleCollision(enemy, l, r, t, b, player)
+                enemies.remove(enemy)
+                player.loseHealth(enemy.power)
 
     def _handleCollision(self, entity, l, r, t, b, opposingEntity=None):
         if not False in {l, r, t, b}:
