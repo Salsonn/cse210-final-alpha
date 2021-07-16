@@ -91,7 +91,8 @@ class HandleCollisionsAction(Action):
         for projectile in projectiles:
             if (projectile.center_x + (projectile._get_width() / 2) <= 0 or projectile.center_x + (projectile._get_width() / 2) >= constants.windowX) or (projectile.center_y + (projectile._get_height() / 2) <= 0 or projectile.center_y + (projectile._get_height() / 2) >= constants.windowY):
                 projectiles.remove(projectile)
-                print("Removed a projectile")
+                if constants.debug:
+                    print("Removed a projectile")
     
     def _wallPlayerDetection(self, player, projectiles, walls):
         for entity in walls:
