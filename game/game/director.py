@@ -19,7 +19,7 @@ class Director(arcade.Window):
         self._reticle = reticle
         self._actionTime = {}
         self.music = None
-        self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5)
+        self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
         self.menuMusic = None
 
     def setup(self):
