@@ -1,8 +1,11 @@
 import arcade
 import time
+import subprocess
+
 from game import constants
 from game.point import Point
 from game.math import *
+
 from game.entity.weapon import Weapon
 from game.entity.player import Player
 from game.entity.enemy import Enemy
@@ -16,7 +19,7 @@ class Director(arcade.Window):
         self._reticle = reticle
         self._actionTime = {}
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5)
-        self.music = None
+        self.menuMusic = None
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
@@ -66,8 +69,10 @@ class Director(arcade.Window):
                 print(f"{self._actionTime[action]}")
 
     def play_song(self):
-        # if self.music:
-        #     self.music.stop()
+        # subprocess.call(f'.\game\sounds\sounder.exe {constants.menuMusic}', shell=True)
+        # return
+        if self.music:
+            self.music.stop()
 
         self.music = arcade.Sound(constants.menuMusic, streaming=True)
         self.current_player = self.music.play(1)

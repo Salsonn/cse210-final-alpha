@@ -28,5 +28,9 @@ class Projectile(arcade.Sprite):
                 print(f"Removed a projectile. There are now {len(projectiles)} on screen.")
         else: self.bounces -= 1
 
+    def hit(self, projectiles):
+        if self in projectiles:
+            projectiles.remove(self)
+
     def getPower(self):
         return self.__power

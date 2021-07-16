@@ -52,8 +52,8 @@ class HandleCollisionsAction(Action):
                 if self.proxCheck(projectile, enemy):
                     l, r, t, b = self._detectCollision(projectile, enemy, 0)
                     if True in {l, r, t, b}:
-                        enemy.damage(projectile.getPower(), enemies, player)
-                        projectiles.remove(projectile)
+                        enemy.damage(projectile, enemies, player)
+                        projectile.hit(projectiles)
 
     def _enemySocialDistancing(self, enemies):
         for enemy in enemies:
