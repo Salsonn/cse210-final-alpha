@@ -14,13 +14,15 @@ redEnemySpeed = 5
 blueEnemyDamage = 2
 yellowEnemyDamage = 4
 redEnemyDamage = 6
-
-blueEnemyPoints = 10
-yellowEnemyPoints = 20
-redEnemyPoints = 30
+# 10
+blueEnemyPoints = 30
+yellowEnemyPoints = 40
+redEnemyPoints = 60
 
 playerScore = 0
 playerHealth = 100
+
+tickSpeed = 120
 
 enemyTopRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 450, 'max_y': 575}
 enemyBottomRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 75, 'max_y': 150}

@@ -17,6 +17,7 @@ class EnvironmentAction:
         self.player = Player((640, 360), False)
         self.enemy_adder = 0
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5)
+        self.tick = 0
 
     def execute(self, entities, reticle):
         # List of specific actions to take every tick
@@ -29,15 +30,30 @@ class EnvironmentAction:
             enemy.change_x = round(math.cos(tragectory) * enemy.speed)
             enemy.change_y = round(math.sin(tragectory) * enemy.speed)
 
-        if self.enemy_adder % 15 == 0:
+        if self.enemy_adder % constants.tickSpeed == 0:
             if len(enemies) <= 30:
                 enemy = self.enemy.chooseEnemy()
                 enemies.append(enemy)
         self.enemy_adder += 1
-
+        self.tick += 1
+        self.change_tick()
         # position_player = player.position
         # position_enemy = enemies[0].position
         # self.enemies[0].move_enemy(position_player, position_enemy)
+
+    def change_tick(self):
+        if self.tick == (60 * 10):
+            constants.tickSpeed = 60
+        elif self.tick == (60 * 30):
+            constants.tickSpeed = 45
+        elif self.tick == (60 * 45):
+            constants.tickSpeed = 30
+        elif self.tick == (60 * 75):
+            constants.tickSpeed = 15
+        elif self.tick == (60 * 100):
+            constants.tickSpeed = 10
+        elif self.tick == (60 * 120):
+            constants.tickSpeed = 5
 
     def reticleUpdate(self, entities, reticle):
         weapon_angle = self.weapon.update_weapon_angle(entities["player"][0].center_x, entities["player"][0].center_y, reticle.get_reticleX(), reticle.get_reticleY())
