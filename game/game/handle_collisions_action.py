@@ -31,13 +31,15 @@ class HandleCollisionsAction(Action):
         self._wallProjectileDetection(entities["projectile"], entities["wall"])
 
         # Keeps the enemies from making inappropriate advances on the player.
-        self._enemyPlayerDetection(entities["player"][0], entities["enemy"])
+        if len(entities["enemy"]):
+            self._enemyPlayerDetection(entities["player"][0], entities["enemy"])
 
         # Detects when the player hits a level trigger
         self._levelChangeDetection(entities["player"][0], entities["trigger"])
 
         # Keep the enemies from trampling each other and hitting walls.
-        self._enemySocialDistancing(entities["enemy"])
+        if len(entities["enemy"]):
+            self._enemySocialDistancing(entities["enemy"])
         self._wallEnemyDetection(entities["enemy"], entities["wall"])
 
     def _enemySocialDistancing(self, enemies):
