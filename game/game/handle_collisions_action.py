@@ -39,7 +39,7 @@ class HandleCollisionsAction(Action):
 
         # Keep the enemies from trampling each other and hitting walls.
         if len(entities["enemy"]):
-            self._enemySocialDistancing(entities["enemy"])
+            self._enemySocialDistancing(entities["enemy"], entities["player"][0])
         self._wallEnemyDetection(entities["enemy"], entities["wall"])
 
         # Erase done-for enemies and give the player points
@@ -55,12 +55,12 @@ class HandleCollisionsAction(Action):
                         enemy.damage(projectile, enemies, player)
                         projectile.hit(projectiles)
 
-    def _enemySocialDistancing(self, enemies):
+    def _enemySocialDistancing(self, enemies, player):
         for enemy in enemies:
             for enemy2 in enemies:
-                if self.proxCheck(enemy, enemy2):
-                    if enemy != enemy2:
-                        l, r, t, b = self._detectCollision(enemy, enemy2, 0)
+                if enemy != enemy2:
+                    if self.proxCheck(enemy, enemy2) and self.proxCheck(enemy, player, 2):
+                        l, r, t, b = self._detectCollision(enemy, enemy2, 1)
                         if True in {l, r, t, b}:
                             self._handleCollision(enemy, l, r, t, b, enemy2)
 
@@ -129,9 +129,8 @@ class HandleCollisionsAction(Action):
                 else:
                     if entity.center_y > opposingEntity.center_y: entity.change_y += abs(entity.change_y)
                     else: entity.change_y -= abs(entity.change_y)
-
-
-
+                    
+                    # OLD COLLISION ALLOWS FOR SHOVING ENTITIES INTO WALLS, ETC
                 # if entity.center_x > opposingEntity.center_x: entity.center_x += abs(entity.change_x)
                 # else: entity.center_x -= abs(entity.change_x)
                 # if entity.center_y > opposingEntity.center_y: entity.center_y += abs(entity.change_y)
@@ -163,8 +162,8 @@ class HandleCollisionsAction(Action):
             __top = True
         return __left, __right, __top, __bottom
 
-    def proxCheck(self, entity1, entity2):
-        return not abs(entity1.center_x + entity1.change_x - entity2.center_x + entity2.change_x) >= entity2._get_width() or not abs(entity1.center_y + entity1.change_y - entity2.center_y + entity2.change_y) >= entity2._get_width()
+    def proxCheck(self, entity1, entity2, multiplier=1):
+        return not abs(entity1.center_x + entity1.change_x - entity2.center_x + entity2.change_x) >= entity2._get_width() * multiplier or not abs(entity1.center_y + entity1.change_y - entity2.center_y + entity2.change_y) >= entity2._get_height() * multiplier
 
     def rightBound(self, entity, factorChange=0):
         return entity.center_x + (entity.change_x * factorChange) + (entity._get_width() / 2) 
