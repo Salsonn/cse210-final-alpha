@@ -16,7 +16,7 @@ class EnvironmentAction:
         self.playerFlipped = False
         self.player = Player((640, 360), False)
         self.enemy_adder = 0
-        self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50)
+        self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5)
 
     def execute(self, entities, reticle):
         # List of specific actions to take every tick
@@ -29,9 +29,10 @@ class EnvironmentAction:
             enemy.change_x = round(math.cos(tragectory) * enemy.speed)
             enemy.change_y = round(math.sin(tragectory) * enemy.speed)
 
-        if self.enemy_adder % 60 == 0:
-            enemy = self.enemy.chooseEnemy()
-            enemies.append(enemy)
+        if self.enemy_adder % 30 == 0:
+            if len(enemies) <= 30:
+                enemy = self.enemy.chooseEnemy()
+                enemies.append(enemy)
         self.enemy_adder += 1
 
         # position_player = player.position
