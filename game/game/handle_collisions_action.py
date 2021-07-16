@@ -21,7 +21,7 @@ class HandleCollisionsAction(Action):
             entities (dict): The game actors {key: tag, value: list}.
         """
         # Prevent the player from moving off-screen
-        self._screenEdgeDetection(entities["player"][0], entities["projectile"])
+        self._screenEdgeDetection(entities["player"][0], entities["projectile"], entities["enemy"])
 
         # Prevent the player from smashing through walls
         if entities["player"][0].change_x or entities["player"][0].change_y: 
@@ -62,7 +62,7 @@ class HandleCollisionsAction(Action):
                     if enemy != enemy2:
                         l, r, t, b = self._detectCollision(enemy, enemy2, 0)
                         if True in {l, r, t, b}:
-                            self._handleCollision(enemy, l, r, t, b)
+                            self._handleCollision(enemy, l, r, t, b, enemy2)
 
     def _wallEnemyDetection(self, enemies, walls):
         for enemy in enemies:
@@ -77,7 +77,7 @@ class HandleCollisionsAction(Action):
         if self.levelControl.getLevel() != 0:
             self.levelControl.changeLevel(0)
 
-    def _screenEdgeDetection(self, player, projectiles):
+    def _screenEdgeDetection(self, player, projectiles, enemies):
         # Prevent player from leaving sides of window
         if (player.center_x - (player._get_width() / 2)) <= 0 and player.change_x < 0:
             player.change_x = max(player.change_x, 0)
@@ -88,11 +88,15 @@ class HandleCollisionsAction(Action):
         if (player.center_y + (player._get_height() / 2)) >= constants.windowY and player.change_y > 0:
             player.change_y = min(player.change_y, 0)
 
-        for projectile in projectiles:
-            if (projectile.center_x + (projectile._get_width() / 2) <= 0 or projectile.center_x + (projectile._get_width() / 2) >= constants.windowX) or (projectile.center_y + (projectile._get_height() / 2) <= 0 or projectile.center_y + (projectile._get_height() / 2) >= constants.windowY):
-                projectiles.remove(projectile)
+        despawnable = []
+        despawnable.extend(projectiles)
+        despawnable.extend(enemies)
+        for entity in despawnable:
+            if (entity.center_x + (entity._get_width() / 2) <= 0 or entity.center_x + (entity._get_width() / 2) >= constants.windowX) or (entity.center_y + (entity._get_height() / 2) <= 0 or entity.center_y + (entity._get_height() / 2) >= constants.windowY):
+                if entity in projectiles: projectiles.remove(entity)
+                elif entity in enemies: enemies.remove(entity)
                 if constants.debug:
-                    print("Removed a projectile")
+                    print("Something left the screen...delete")
     
     def _wallPlayerDetection(self, player, projectiles, walls):
         for entity in walls:
@@ -114,12 +118,28 @@ class HandleCollisionsAction(Action):
         for enemy in enemies:
             l, r, t, b = self._detectCollision(enemy, player)
             if True in {l, r, t, b}:
-                self._handleCollision(enemy, l, r, t, b)
+                self._handleCollision(enemy, l, r, t, b, player)
 
-    def _handleCollision(self, entity, l, r, t, b):
+    def _handleCollision(self, entity, l, r, t, b, opposingEntity=None):
         if not False in {l, r, t, b}:
+            if opposingEntity and (not False in {l, r} or not False in {t, b}):
+                if (entity.center_x - opposingEntity.center_x) > (entity.center_y - opposingEntity.center_y):
+                    if entity.center_x > opposingEntity.center_x: entity.change_x += abs(entity.change_x)
+                    else: entity.change_x -= abs(entity.change_x)
+                else:
+                    if entity.center_y > opposingEntity.center_y: entity.change_y += abs(entity.change_y)
+                    else: entity.change_y -= abs(entity.change_y)
+
+
+
+                # if entity.center_x > opposingEntity.center_x: entity.center_x += abs(entity.change_x)
+                # else: entity.center_x -= abs(entity.change_x)
+                # if entity.center_y > opposingEntity.center_y: entity.center_y += abs(entity.change_y)
+                # else: entity.center_y -= abs(entity.change_y)
+            else:
                 entity.center_x += entity.change_x * -1
                 entity.center_y += entity.change_y * -1
+            return
         if l:
             entity.change_x = max(entity.change_x, 0) # Stop leftward movement
         if r:
@@ -128,7 +148,6 @@ class HandleCollisionsAction(Action):
             entity.change_y = max(entity.change_y, 0) # Stop downward movement
         if t:
             entity.change_y = min(entity.change_y, 0) # Stop updward movement
-        return
             
     def _detectCollision(self, entity1, entity2, factorChange=0):
         __left = __right = __top = __bottom = False
