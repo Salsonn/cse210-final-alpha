@@ -13,7 +13,7 @@ class Weapon(arcade.Sprite):
     # CHECK SPECIFIC WEAPON AND DETERMINE THE SPRITE LOCATION ON THE SPRITE SHEET
 
     def __init__(self, check_flip, position):
-        super().__init__(constants.weaponImage, center_x = 0, center_y = 0, flipped_horizontally=True, flipped_vertically=check_flip)
+        super().__init__(constants.weaponImage, center_x = 0, center_y = 0, flipped_horizontally=True, flipped_vertically=check_flip, scale = 1.25)
         self.center_x = position[0]
         self.center_y = position[1]
         self.angle = 0

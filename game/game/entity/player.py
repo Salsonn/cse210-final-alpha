@@ -5,7 +5,7 @@ import arcade
 
 class Player(arcade.Sprite):
     def __init__(self, position, check_flip=None):
-        super().__init__(constants.playerImage, flipped_horizontally=check_flip, center_x=position[0], center_y=position[1])
+        super().__init__(constants.playerImage, flipped_horizontally=check_flip, center_x=position[0], center_y=position[1], scale = 1.25)
 
         self.center_x = position[0]
         self.center_y = position[1]

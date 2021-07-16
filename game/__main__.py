@@ -43,18 +43,6 @@ def main():
     # create empty list of enemies, will be populated on map load
     cast["enemy"] = []
 
-
-    # Sets random coordinates and speed for set enemies
-    random_position = [constants.enemyTopRandom, constants.enemyBottomRandom, constants.enemyLeftRandom, constants.enemyRightRandom]
-    blue_position = random.choice(random_position)
-    blue_enemy = Enemy((random.randrange(blue_position["min_x"], blue_position["max_x"]), random.randrange(blue_position["min_y"], blue_position["max_y"])), constants.enemyImages[2], constants.blueEnemySpeed, constants.blueEnemyPoints)
-    yellow_position = random.choice(random_position)
-    yellow_enemy = Enemy((random.randrange(yellow_position["min_x"], yellow_position["max_x"]), random.randrange(yellow_position["min_y"], yellow_position["max_y"])), constants.enemyImages[1], constants.yellowEnemySpeed, constants.yellowEnemyPoints)
-    red_position = random.choice(random_position)
-    red_enemy = Enemy((random.randrange(red_position["min_x"], red_position["max_x"]), random.randrange(red_position["min_y"], red_position["max_y"])), constants.enemyImages[0], constants.redEnemySpeed, constants.redEnemyPoints)
-    cast["enemy"].append(blue_enemy)
-    cast["enemy"].append(yellow_enemy)
-    cast["enemy"].append(red_enemy)
     # create a medkit to reset the player health to max value
     drops = Drops((1150, 85))
     cast["drops"] = [drops]
