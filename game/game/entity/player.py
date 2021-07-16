@@ -23,4 +23,5 @@ class Player(arcade.Sprite):
         self.__health -= damage
         constants.playerHealth = self.__health
         if self.__health <= 0:
-            print('DEAD')
+            # This is where the game will stop running and the end screen will display with their final score.
+            print(f'YOU DIED, YOUR FINAL SCORE WAS {self.__score}')

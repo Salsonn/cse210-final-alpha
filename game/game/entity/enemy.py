@@ -26,7 +26,7 @@ class Enemy(arcade.Sprite):
         yellow_enemy = Enemy((random.randrange(yellow_position["min_x"], yellow_position["max_x"]), random.randrange(yellow_position["min_y"], yellow_position["max_y"])), constants.enemyImages[1], constants.yellowEnemySpeed, constants.yellowEnemyPoints, constants.yellowEnemyDamage)
         red_enemy = Enemy((random.randrange(red_position["min_x"], red_position["max_x"]), random.randrange(red_position["min_y"], red_position["max_y"])), constants.enemyImages[0], constants.redEnemySpeed, constants.redEnemyPoints, constants.redEnemyDamage)
  
-        enemyTypes = [blue_enemy, yellow_enemy, red_enemy]
+        enemyTypes = [blue_enemy, blue_enemy, blue_enemy, yellow_enemy, yellow_enemy, red_enemy]
         chosen_enemy = random.choice(enemyTypes)
 
         return chosen_enemy

@@ -11,13 +11,13 @@ blueEnemySpeed = 3
 yellowEnemySpeed = 4
 redEnemySpeed = 5
 
-blueEnemyDamage = 5
-yellowEnemyDamage = 10
-redEnemyDamage = 20
+blueEnemyDamage = 2
+yellowEnemyDamage = 4
+redEnemyDamage = 6
 
-blueEnemyPoints = 50
-yellowEnemyPoints = 100
-redEnemyPoints = 150
+blueEnemyPoints = 10
+yellowEnemyPoints = 20
+redEnemyPoints = 30
 
 playerScore = 0
 playerHealth = 100
