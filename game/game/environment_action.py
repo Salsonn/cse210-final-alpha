@@ -29,7 +29,7 @@ class EnvironmentAction:
             enemy.change_x = round(math.cos(tragectory) * enemy.speed)
             enemy.change_y = round(math.sin(tragectory) * enemy.speed)
 
-        if self.enemy_adder % 30 == 0:
+        if self.enemy_adder % 15 == 0:
             if len(enemies) <= 30:
                 enemy = self.enemy.chooseEnemy()
                 enemies.append(enemy)

@@ -11,7 +11,7 @@ class Projectile(arcade.Sprite):
         self.center_y = startingY
         self.change_x = dX
         self.change_y = dY
-        self.bounces = 5 # add 1 for every bounce, -1 for infinite bouncing
+        self.bounces = 2 # add 1 for every bounce, -1 for infinite bouncing
         self.__power = 1 # use this for future hitpoint system
 
     def reflect(self, projectiles, l, r, t, b):

@@ -9,10 +9,12 @@ class Player(arcade.Sprite):
 
         self.center_x = position[0]
         self.center_y = position[1]
-        self.__score = 0
+        self.__score = constants.playerScore
 
     def changeScore(self, delta):
         self.__score += delta
+        constants.playerScore = self.__score
+        print(self.__score)
 
     def getScore(self):
         return self.__score

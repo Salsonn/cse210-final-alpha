@@ -19,6 +19,8 @@ blueEnemyPoints = 50
 yellowEnemyPoints = 100
 redEnemyPoints = 150
 
+playerScore = 0
+
 enemyTopRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 450, 'max_y': 575}
 enemyBottomRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 75, 'max_y': 150}
 enemyLeftRandom = {'min_x': 75, 'max_x': 150, 'min_y': 75, 'max_y': 575}
@@ -31,10 +33,14 @@ playerImage = "game\\images\\characters\\Player.gif"
 projectile1Image = "game\\images\\bullet.png"
 enemyImages = ["game\\images\\characters\\Enemy.gif", "game\\images\\characters\\Enemy2.gif", "game\\images\\characters\\Enemy3.gif"]
 weaponImage = "game\\images\\weapons\\ak.png"
+
 # menuMusic = "game\\sounds\\background.mp3"
 menuMusic = "game\\sounds\\CoconutMall.mp3"
 levelMusic = "game\\sounds\\ангел.mp3"
 
 mute = False
+# Music length in seconds
+menuMusicLength = 127
+
 debug = False
 collisionDebug = False
