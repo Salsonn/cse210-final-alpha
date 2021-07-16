@@ -16,7 +16,7 @@ class EnvironmentAction:
         self.playerFlipped = False
         self.player = Player((640, 360), False)
         self.enemy_adder = 0
-        self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5)
+        self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
         self.tick = 0
 
     def execute(self, entities, reticle):
@@ -26,6 +26,7 @@ class EnvironmentAction:
 
     def enemyAItick(self, enemies, player):
         for enemy in enemies:
+            self.check_player_side(enemy, player)
             tragectory = theta(Point(enemy.center_x, enemy.center_y), Point(player.center_x, player.center_y))
             enemy.change_x = round(math.cos(tragectory) * enemy.speed)
             enemy.change_y = round(math.sin(tragectory) * enemy.speed)
@@ -34,12 +35,26 @@ class EnvironmentAction:
             if len(enemies) <= 30:
                 enemy = self.enemy.chooseEnemy()
                 enemies.append(enemy)
+                
         self.enemy_adder += 1
         self.tick += 1
         self.change_tick()
         # position_player = player.position
         # position_enemy = enemies[0].position
         # self.enemies[0].move_enemy(position_player, position_enemy)
+
+    def check_player_side(self, enemy, player):
+        eX, eY = enemy.position
+        pX, pY = player.position
+        side = cartesian(eX, eY, pX, pY)
+
+        if side == 1 or side == 4 and not enemy.check_flip:
+            enemy.check_flip = True
+            enemy.__init__(enemy.position, enemy.enemyType, enemy.speed, enemy.pointValue, enemy.scale, enemy.check_flip)
+
+        elif side == 2 or side == 3 and enemy.check_flip:
+            enemy.check_flip = False
+            enemy.__init__(enemy.position, enemy.enemyType, enemy.speed, enemy.pointValue, enemy.scale, enemy.check_flip)
 
     def change_tick(self):
         if self.tick == (60 * 10):
