@@ -1,5 +1,6 @@
 import os
 import arcade
+import random
 
 windowX = 1280
 windowY = 720
@@ -7,9 +8,9 @@ windowY = 720
 movementSpeed = 5 # Pixels per frame
 projectileSpeed = 30
 
-blueEnemySpeed = 3
-yellowEnemySpeed = 4
-redEnemySpeed = 5
+blueEnemySpeed = random.randrange(2, 3)
+yellowEnemySpeed = random.randrange(3, 5)
+redEnemySpeed = random.randrange(5, 6)
 
 blueEnemyDamage = 2
 yellowEnemyDamage = 4
@@ -38,8 +39,8 @@ enemyImages = ["game\\images\\characters\\Enemy.gif", "game\\images\\characters\
 weaponImage = "game\\images\\weapons\\ak.png"
 
 # menuMusic = "game\\sounds\\background.mp3"
-menuMusic = "game\\sounds\\CoconutMall.mp3"
-levelMusic = "game\\sounds\\ангел.mp3"
+# menuMusic = "game\\sounds\\CoconutMall.mp3"
+menuMusic = "game\\sounds\\ангел.mp3"
 
 mute = False
 # Music length in seconds
