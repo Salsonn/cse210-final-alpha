@@ -42,6 +42,19 @@ class HandleCollisionsAction(Action):
             self._enemySocialDistancing(entities["enemy"])
         self._wallEnemyDetection(entities["enemy"], entities["wall"])
 
+        # Erase done-for enemies and give the player points
+        if len(entities["projectile"]):
+            self._enemyProjectileDetection(entities["enemy"], entities["projectile"], entities["player"][0])
+
+    def _enemyProjectileDetection(self, enemies, projectiles, player):
+        for projectile in projectiles:
+            for enemy in enemies:
+                if self.proxCheck(projectile, enemy):
+                    l, r, t, b = self._detectCollision(projectile, enemy, 0)
+                    if True in {l, r, t, b}:
+                        enemy.damage(projectile.getPower(), enemies, player)
+                        projectiles.remove(projectile)
+
     def _enemySocialDistancing(self, enemies):
         for enemy in enemies:
             for enemy2 in enemies:

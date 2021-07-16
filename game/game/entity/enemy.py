@@ -11,7 +11,7 @@ class Enemy(arcade.Sprite):
         self._center_x = position[0]
         self._center_y = position[1]
         self.speed = speed
-        self.points = points
+        self.pointValue = points
     
     def chooseEnemy(self):
         random_position = [constants.enemyTopRandom, constants.enemyBottomRandom, constants.enemyLeftRandom, constants.enemyRightRandom]
@@ -28,3 +28,7 @@ class Enemy(arcade.Sprite):
         chosen_enemy = random.choice(enemyTypes)
 
         return chosen_enemy
+
+    def damage(self, damage, enemies, player):
+        player.changeScore(self.pointValue)
+        enemies.remove(self)

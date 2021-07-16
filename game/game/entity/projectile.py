@@ -12,6 +12,7 @@ class Projectile(arcade.Sprite):
         self.change_x = dX
         self.change_y = dY
         self.bounces = 5 # add 1 for every bounce, -1 for infinite bouncing
+        self.__power = 1 # use this for future hitpoint system
 
     def reflect(self, projectiles, l, r, t, b):
         if True in {l, r}:
@@ -26,3 +27,6 @@ class Projectile(arcade.Sprite):
             if constants.debug:
                 print(f"Removed a projectile. There are now {len(projectiles)} on screen.")
         else: self.bounces -= 1
+
+    def getPower(self):
+        return self.__power
