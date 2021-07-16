@@ -71,9 +71,9 @@ class Director(arcade.Window):
     def play_song(self):
         # subprocess.call(f'.\game\sounds\sounder.exe {constants.menuMusic}', shell=True)
         # return
-        if self.music:
-            self.music.stop()
+        if self.menuMusic:
+            self.menuMusic.stop()
 
-        self.music = arcade.Sound(constants.menuMusic, streaming=True)
-        self.current_player = self.music.play(1)
+        self.menuMusic = arcade.Sound(constants.menuMusic, streaming=True)
+        self.current_player = self.menuMusic.play(1)
         time.sleep(0.03)
