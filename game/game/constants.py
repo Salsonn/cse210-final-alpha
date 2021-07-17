@@ -39,10 +39,10 @@ enemyImages = ["game\\images\\characters\\Enemy.gif", "game\\images\\characters\
 weaponImage = "game\\images\\weapons\\ak.png"
 
 # menuMusic = "game\\sounds\\background.mp3"
-# menuMusic = "game\\sounds\\CoconutMall.mp3"
-menuMusic = "game\\sounds\\ангел.mp3"
+menuMusic = "game\\sounds\\CoconutMall.mp3"
+levelMusic = "game\\sounds\\ангел.mp3"
 
-mute = True
+mute = False
 # Music length in seconds
 menuMusicLength = 127
 
