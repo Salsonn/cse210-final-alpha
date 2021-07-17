@@ -12,5 +12,5 @@ class Drops(arcade.Sprite):
         self.center_y = position[1]
 
     def heal(self, heal, drops, player):
-        player.changeScore(100)
+        player.changeHealth(100)
         drops.remove(self)
