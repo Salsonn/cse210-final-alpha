@@ -66,7 +66,7 @@ class DrawActorsAction(Action):
             for enemy in entities["enemy"]:
                 self._output_service.draw_actor(enemy)
 
-        if self.activeLevel == 1:
+        if self._activeLevel == 1:
             for drop in entities["drops"]:
                 self._output_service.draw_actor(drop)
         

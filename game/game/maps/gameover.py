@@ -8,6 +8,7 @@ class Gameover:
         self._triggers = entities["trigger"]
         self._collidableWalls = entities["wall"]
         self._levelController = levelController
+        self._enemies = entities["enemy"]
 
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._GAME_OVER_COLOR = arcade.color.RED_DEVIL
@@ -35,6 +36,7 @@ class Gameover:
     def load(self):
         self._triggers.clear()
         self._collidableWalls.clear()
+        self._enemies.clear()
         # self.prepare_floor()
 
     def drawMap(self, playerScore):
