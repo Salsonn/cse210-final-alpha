@@ -58,17 +58,17 @@ class EnvironmentAction:
     def change_tick(self, player):
         self.score = player.getScore()
 
-        if 50 <= self.score < 100:
+        if constants.firstWave <= self.score < constants.secondWave:
             self.tick_speed = 60
-        elif 100 <= self.score < 150:
+        elif constants.secondWave <= self.score < constants.thirdWave:
             self.tick_speed = 45
-        elif 150 <= self.score < 200:
+        elif constants.thirdWave <= self.score < constants.fourthWave:
             self.tick_speed = 30
-        elif 200 <= self.score < 250:
+        elif constants.fourthWave <= self.score < constants.fifthWave:
             self.tick_speed = 15
-        elif 250 <= self.score < 300:
+        elif constants.fifthWave <= self.score < constants.sixthWave:
             self.tick_speed = 10
-        elif 350 <= self.score:
+        elif constants.sixthWave <= self.score:
             self.tick_speed = 5
 
     def reticleUpdate(self, player, weapon, reticle):

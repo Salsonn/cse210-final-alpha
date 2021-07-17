@@ -25,6 +25,13 @@ playerHealth = 100
 
 tickSpeed = 120
 
+firstWave = 50
+secondWave = 150
+thirdWave = 450
+fourthWave = 1350
+fifthWave = 4050
+sixthWave = 12150
+
 enemyTopRandom = {'min_x': 100, 'max_x': 1000, 'min_y': windowY-1, 'max_y': windowY}
 enemyBottomRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 0, 'max_y': 1}
 enemyLeftRandom = {'min_x': 0, 'max_x': 1, 'min_y': 75, 'max_y': 575}
