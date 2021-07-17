@@ -5,7 +5,7 @@ import arcade
 
 class Projectile(arcade.Sprite):
     def __init__(self, startingX, startingY, dX, dY):
-        super().__init__(constants.projectile1Image)
+        super().__init__(constants.projectile1Image, scale=1.25)
 
         self.center_x = startingX
         self.center_y = startingY

@@ -25,10 +25,10 @@ playerHealth = 100
 
 tickSpeed = 120
 
-enemyTopRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 450, 'max_y': 575}
-enemyBottomRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 75, 'max_y': 150}
-enemyLeftRandom = {'min_x': 75, 'max_x': 150, 'min_y': 75, 'max_y': 575}
-enemyRightRandom = {'min_x': 950, 'max_x': 1100, 'min_y': 75, 'max_y': 575}
+enemyTopRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 719, 'max_y': 720}
+enemyBottomRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 0, 'max_y': 1}
+enemyLeftRandom = {'min_x': 0, 'max_x': 1, 'min_y': 75, 'max_y': 575}
+enemyRightRandom = {'min_x': 1279, 'max_x': 1280, 'min_y': 75, 'max_y': 575}
 
 acceleration = 2 # Pixels per frame per frame
 

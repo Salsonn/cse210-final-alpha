@@ -6,7 +6,7 @@ from game.entity.player import Player
 
 class Enemy(arcade.Sprite):
     def __init__(self, position, enemyType, speed, points, damage, check_flip):
-        super().__init__(enemyType, center_x=position[0], center_y=position[1], scale = 1.25, flipped_horizontally=check_flip)
+        super().__init__(enemyType, center_x=position[0], center_y=position[1], scale = 1.5, flipped_horizontally=check_flip)
         self.player = Player((640, 360), False)
         self._center_x = position[0]
         self._center_y = position[1]
@@ -15,7 +15,7 @@ class Enemy(arcade.Sprite):
         self.pointValue = points
         self.power = damage
         self.check_flip = check_flip
-        self.scale = 1.25
+        self.scale = 1.5
     
     def drawEnemy(self, position, enemyType, check_flip):
         self._center_x = position[0]
