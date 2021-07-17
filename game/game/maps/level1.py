@@ -1,5 +1,4 @@
 import arcade
-from game.entity.player import Player
 from game import constants
 
 class Level1():
@@ -8,8 +7,6 @@ class Level1():
         self._triggers = entities["trigger"]
         self._collidableWalls = entities["wall"]
         self._levelController = levelController
-
-        self.player = Player((640, 360), False)
 
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FLOOR = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
@@ -49,17 +46,16 @@ class Level1():
         arcade.draw_rectangle_filled(constants.windowX / 2, 0, constants.windowX, 20, self._WALL_COLOR_2)
 
     def draw_messages(self, player):
-        self._health = player.getHealth()
         self._weapons = ['knife', 'sword', 'pistol', 'laser']
 
         # Welcome Message
         arcade.draw_text(self._LEVEL1, constants.windowX / len(self._LEVEL1) + 250, constants.windowY - 40, self._FONT_COLOR, 25, 340, 'center', 'calibri', True)
 
         # Health
-        arcade.draw_text(f'HEALTH:{constants.playerHealth}', 15, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
+        arcade.draw_text(f'HEALTH:{player.getHealth()}', 15, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
 
         # Score
-        arcade.draw_text(f'Score:{constants.playerScore}', 200, 15, self._FONT_COLOR, 25, 200, 'center', 'helvetica', True)
+        arcade.draw_text(f'Score:{player.getScore()}', 200, 15, self._FONT_COLOR, 25, 200, 'center', 'helvetica', True)
 
         # Weapons
         arcade.draw_text(f'WEAPON:{self._weapons[3]}', constants.windowX - 215, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
