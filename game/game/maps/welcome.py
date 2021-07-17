@@ -27,3 +27,6 @@ class Welcome():
             splash.draw()
         
         arcade.draw_text('START', 240, 350, arcade.color.CADMIUM_ORANGE, self.font_size, 200, 'center', 'helvetica', True)
+
+    def redrawMap(self):
+        arcade.draw_text('START', 240, 350, arcade.color.CADMIUM_ORANGE, self.font_size, 200, 'center', 'helvetica', True)

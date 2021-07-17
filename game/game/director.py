@@ -51,7 +51,7 @@ class Director(arcade.Window):
         if constants.debug:
             print(f"Click detected at {mouseX}, {mouseY}")
         
-        if (260 <= mouseX <= 420) and (360 <= mouseY <= 400):
+        if (260 <= mouseX <= 420) and (360 <= mouseY <= 400) and constants.currentLevel == -1:
             # CHANGES LEVEL FROM -1 TO 0
             self._script["output"][0].changeLevel(0)
     
@@ -64,15 +64,15 @@ class Director(arcade.Window):
         '''WORK ON THIS BIT LATER
            CHANGES FONT SIZE WHEN HOVERING OVER THE START BUTTON'''
 
-        # if (260 <= mouseX <= 420) and (360 <= mouseY <= 400) and not self.startHover:
-        #     self.startHover = True
-        #     self.welcome.font_size += 10
-        #     self.welcome.drawMap()
+        if (260 <= mouseX <= 420) and (360 <= mouseY <= 400) and not self.startHover:
+            self.startHover = True
+            self.welcome.font_size += 10
+            self.welcome.redrawMap()
 
-        # elif self.startHover and (((mouseX < 260) or (420 < mouseX)) or ((mouseY < 360) or (400 < mouseY))):
-        #     self.startHover = False
-        #     self.welcome.font_size -= 10
-        #     self.welcome.drawMap('fontChange')
+        elif self.startHover and (((mouseX < 260) or (420 < mouseX)) or ((mouseY < 360) or (400 < mouseY))):
+            self.startHover = False
+            self.welcome.font_size -= 10
+            self.welcome.redrawMap()
         
     def _cue_action(self, tag):
         """Executes the actions with the given tag.
