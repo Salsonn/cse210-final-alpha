@@ -41,7 +41,7 @@ class DrawActorsAction(Action):
         #    self._output_service.draw_actor(ball)
 
         if self._activeLevel == -1:
-            self._welcome.drawMap()
+            self._welcome.drawMap(reticle)
             return self._activeLevel
         elif self._activeLevel == 0:
             self._mainMenu.drawMap()

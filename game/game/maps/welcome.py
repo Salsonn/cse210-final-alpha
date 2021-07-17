@@ -18,7 +18,19 @@ class Welcome():
         # self._LOGO = './images/dinoSplash.png'
         # self.font_size = 40
 
-    def drawMap(self, check_font = None):
+    def drawMap(self, reticle, check_font = None):
+               
+        '''WORK ON THIS BIT LATER
+           CHANGES FONT SIZE WHEN HOVERING OVER THE START BUTTON'''
+
+        if (260 <= reticle.get_reticleX() <= 420) and (360 <= reticle.get_reticleY() <= 400):
+            self.startHover = True
+            self.font_size = 50
+
+        elif (((reticle.get_reticleX() < 260) or (420 < reticle.get_reticleX())) or ((reticle.get_reticleY() < 360) or (400 < reticle.get_reticleY()))):
+            self.startHover = False
+            self.font_size = 40
+        
         # Welcome Message
         if check_font == None:
             splash = arcade.Sprite(self._LOGO , 1)

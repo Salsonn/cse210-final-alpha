@@ -22,7 +22,6 @@ class Director(arcade.Window):
         self.welcome = Welcome(self, entities)
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
         self.menuMusic = None
-        self.startHover = False
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
@@ -60,19 +59,6 @@ class Director(arcade.Window):
 
     def on_mouse_motion(self, mouseX, mouseY, mouse_dx, mouse_dy):
         self._reticle.set_reticle(Point(mouseX, mouseY), mouse_dx, mouse_dy)
-       
-        '''WORK ON THIS BIT LATER
-           CHANGES FONT SIZE WHEN HOVERING OVER THE START BUTTON'''
-
-        if (260 <= mouseX <= 420) and (360 <= mouseY <= 400) and not self.startHover:
-            self.startHover = True
-            self.welcome.font_size += 10
-            self.welcome.redrawMap()
-
-        elif self.startHover and (((mouseX < 260) or (420 < mouseX)) or ((mouseY < 360) or (400 < mouseY))):
-            self.startHover = False
-            self.welcome.font_size -= 10
-            self.welcome.redrawMap()
         
     def _cue_action(self, tag):
         """Executes the actions with the given tag.
