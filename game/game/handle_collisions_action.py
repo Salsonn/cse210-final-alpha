@@ -14,7 +14,7 @@ class HandleCollisionsAction(Action):
     def __init__(self, draw_actors_action):
         self.levelControl = draw_actors_action
 
-    def execute(self, entities, reticle, current_level):
+    def execute(self, entities, reticle, current_level, script):
         """Executes the action using the given actors.
 
         Args:
@@ -32,7 +32,7 @@ class HandleCollisionsAction(Action):
 
         # Keeps the enemies from making inappropriate advances on the player.
         if len(entities["enemy"]):
-            self._enemyPlayerDetection(entities["player"][0], entities["enemy"])
+            self._enemyPlayerDetection(entities["player"][0], entities["enemy"], script)
 
         # Keep the enemies from trampling each other and hitting walls.
         if len(entities["enemy"]):
@@ -121,13 +121,13 @@ class HandleCollisionsAction(Action):
                     if True in {l, r, t, b}:
                         projectile.reflect(projectiles, l, r, t, b)
 
-    def _enemyPlayerDetection(self, player, enemies):
+    def _enemyPlayerDetection(self, player, enemies, script):
         for enemy in enemies:
             l, r, t, b = self._detectCollision(enemy, player)
             if True in {l, r, t, b}:
                 self._handleCollision(enemy, l, r, t, b, player)
                 enemies.remove(enemy)
-                player.loseHealth(enemy.power)
+                player.loseHealth(enemy.power, script)
 
     def _triggerPlayerDetection(self, player, triggers):
         for trigger in triggers:
@@ -140,9 +140,8 @@ class HandleCollisionsAction(Action):
         for drop in drops:
             l, r, t, b = self._detectCollision(drops, player)
             if True in {l, r, t, b}:
-                self._handleCollision(drops, l, r, t, b, player)
                 drops.remove(drop)
-                
+                player.setHealth(100)
 
 
     def _handleCollision(self, entity, l, r, t, b, opposingEntity=None):

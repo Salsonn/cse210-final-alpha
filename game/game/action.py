@@ -9,7 +9,7 @@ class Action:
         _tag (string): The action tag (input, update or output).
     """
 
-    def execute(self, cast, reticle, current_level):
+    def execute(self, cast, reticle, current_level, script):
         """Executes the action using the given actors.
 
         Args:

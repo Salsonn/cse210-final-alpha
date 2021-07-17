@@ -19,7 +19,7 @@ class EnvironmentAction:
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
         self.tick_speed = constants.tickSpeed
 
-    def execute(self, entities, reticle, current_level):
+    def execute(self, entities, reticle, current_level, script):
         # List of specific actions to take every tick
         self.enemyAItick(self.enemies, entities["player"][0], current_level)
         self.reticleUpdate(entities, reticle)
@@ -59,17 +59,17 @@ class EnvironmentAction:
     def change_tick(self, player):
         self.score = player.getScore()
 
-        if self.score == 50:
+        if 50 <= self.score < 100:
             self.tick_speed = 60
-        elif self.score == 100:
+        elif 100 <= self.score < 150:
             self.tick_speed = 45
-        elif self.score == 150:
+        elif 150 <= self.score < 200:
             self.tick_speed = 30
-        elif self.score == 200:
+        elif 200 <= self.score < 250:
             self.tick_speed = 15
-        elif self.score == 250:
+        elif 250 <= self.score < 300:
             self.tick_speed = 10
-        elif self.score == 300:
+        elif 350 <= self.score:
             self.tick_speed = 5
 
     def reticleUpdate(self, entities, reticle):

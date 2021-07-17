@@ -2,6 +2,7 @@ from game.maps.menu import MainMenu
 from game.maps.welcome import Welcome
 from game.maps.level1 import Level1
 from game.maps.instructions import Instructions
+from game.maps.gameover import Gameover
 
 from game.action import Action
 from game import constants
@@ -29,9 +30,10 @@ class DrawActorsAction(Action):
         self._welcome = Welcome(self, entities)
         self._instructions = Instructions(self, entities)
         self._level1 = Level1(self, entities)
+        self._gameover = Gameover(self, entities, entities["player"][0].getScore())
         self.changeLevel(-1)
 
-    def execute(self, entities, reticle, current_level):
+    def execute(self, entities, reticle, current_level, script):
         """Executes the action using the given actors.
 
         Args:
@@ -51,6 +53,8 @@ class DrawActorsAction(Action):
             self._level1.drawMap(entities["player"][0])
         elif self._activeLevel == 0:
             self._mainMenu.drawMap()
+        elif self._activeLevel == -3:
+            self._gameover.drawMap(entities["player"][0].getScore())
 
         player = entities["player"][0] # there's only one
         self._output_service.draw_actor(player)
@@ -70,8 +74,6 @@ class DrawActorsAction(Action):
 
         self._output_service.flush_buffer()
 
-        return self._activeLevel
-
     def changeLevel(self, newLevel):
         self._activeLevel = newLevel
         constants.currentLevel = self._activeLevel
@@ -83,8 +85,8 @@ class DrawActorsAction(Action):
             self._level1.load()
         elif newLevel == -2:
             self._instructions.load()
-        
-        return self._activeLevel
+        elif newLevel == -3:
+            self._gameover.load()
 
     def getLevel(self):
         return self._activeLevel
