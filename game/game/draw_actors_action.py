@@ -26,7 +26,7 @@ class DrawActorsAction(Action):
         self._output_service = output_service
         self.activeLevel = 0
         self._mainMenu = MainMenu(entities)
-        self._welcome = Welcome(entities)
+        self._welcome = Welcome()
         self._level1 = Level1(entities)
         self.changeLevel(self.activeLevel)
 
@@ -42,9 +42,9 @@ class DrawActorsAction(Action):
         #    self._output_service.draw_actor(ball)
 
         if self.activeLevel == 0:
-            self._mainMenu.drawMap()
-        elif self.activeLevel == 1:
             self._welcome.drawMap()
+        elif self.activeLevel == 1:
+            self._mainMenu.drawMap()
         elif self.activeLevel == 2:
             self._level1.drawMap()
 
