@@ -42,6 +42,8 @@ weaponImage = "game\\images\\weapons\\ak.png"
 menuMusic = "game\\sounds\\CoconutMall.mp3"
 levelMusic = "game\\sounds\\ангел.mp3"
 
+currentLevel = 0
+
 mute = False
 # Music length in seconds
 menuMusicLength = 127

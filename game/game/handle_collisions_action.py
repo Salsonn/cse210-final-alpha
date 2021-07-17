@@ -14,7 +14,7 @@ class HandleCollisionsAction(Action):
     def __init__(self, draw_actors_action):
         self.levelControl = draw_actors_action
 
-    def execute(self, entities, reticle):
+    def execute(self, entities, reticle, current_level):
         """Executes the action using the given actors.
 
         Args:

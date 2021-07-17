@@ -19,26 +19,27 @@ class EnvironmentAction:
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
         self.tick = 0
 
-    def execute(self, entities, reticle):
+    def execute(self, entities, reticle, current_level):
         # List of specific actions to take every tick
-        self.enemyAItick(self.enemies, entities["player"][0])
+        self.enemyAItick(self.enemies, entities["player"][0], current_level)
         self.reticleUpdate(entities, reticle)
 
-    def enemyAItick(self, enemies, player):
-        for enemy in enemies:
-            self.check_player_side(enemy, player)
-            tragectory = theta(Point(enemy.center_x, enemy.center_y), Point(player.center_x, player.center_y))
-            enemy.change_x = round(math.cos(tragectory) * enemy.speed)
-            enemy.change_y = round(math.sin(tragectory) * enemy.speed)
+    def enemyAItick(self, enemies, player, current_level):
+        if current_level == 1:
+            for enemy in enemies:
+                self.check_player_side(enemy, player)
+                tragectory = theta(Point(enemy.center_x, enemy.center_y), Point(player.center_x, player.center_y))
+                enemy.change_x = round(math.cos(tragectory) * enemy.speed)
+                enemy.change_y = round(math.sin(tragectory) * enemy.speed)
 
-        if self.enemy_adder % constants.tickSpeed == 0:
-            if len(enemies) <= 30:
-                enemy = self.enemy.chooseEnemy()
-                enemies.append(enemy)
-                
-        self.enemy_adder += 1
-        self.tick += 1
-        self.change_tick()
+            if self.enemy_adder % constants.tickSpeed == 0:
+                if len(enemies) <= 30:
+                    enemy = self.enemy.chooseEnemy()
+                    enemies.append(enemy)
+                    
+            self.enemy_adder += 1
+            self.tick += 1
+            self.change_tick()
         # position_player = player.position
         # position_enemy = enemies[0].position
         # self.enemies[0].move_enemy(position_player, position_enemy)

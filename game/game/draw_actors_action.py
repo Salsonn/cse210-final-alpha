@@ -29,7 +29,7 @@ class DrawActorsAction(Action):
         self._level1 = Level1(self, entities)
         self.changeLevel(0)
 
-    def execute(self, cast, reticle):
+    def execute(self, cast, reticle, current_level):
         """Executes the action using the given actors.
 
         Args:
@@ -65,14 +65,19 @@ class DrawActorsAction(Action):
 
         self._output_service.flush_buffer()
 
+        return self._activeLevel
+
     def changeLevel(self, newLevel):
         self._activeLevel = newLevel
+        constants.currentLevel = self._activeLevel
         if newLevel == -1:
             self._welcome.load()
         elif newLevel == 0:
             self._mainMenu.load()
         elif newLevel == 1:
             self._level1.load()
+        
+        return self._activeLevel
 
     def getLevel(self):
         return self._activeLevel

@@ -27,6 +27,7 @@ class Director(arcade.Window):
         self.play_song()
 
     def on_update(self, delta_time):
+        self.current_level = constants.currentLevel
         self._cue_action("update")
         self._cue_action("input")
 
@@ -62,7 +63,7 @@ class Director(arcade.Window):
         if len(self._actionTime) >= 4:
             self._actionTime = {}
         for action in self._script[tag]:
-            action.execute(self._entities, self._reticle)
+            action.execute(self._entities, self._reticle, self.current_level)
             self._actionTime[tag] = f"Completed {tag} in {round((time.time() - startTime) * 1000, 2)} ms"
         if len(self._actionTime) >= 3 and constants.debug == True:
             print("\n\n\n")
