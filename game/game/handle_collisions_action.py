@@ -120,9 +120,9 @@ class HandleCollisionsAction(Action):
 
     def _triggerPlayerDetection(self, player, triggers):
         for trigger in triggers:
-            if self.proxCheck(trigger, player):
-                l, r, t, b = self._detectCollision(player, trigger)
-                if not False in {l, r, t, b}:
+            if self.proxCheck(player, trigger):
+                l, r, t, b = self._detectCollision(player, trigger, 0)
+                if True in {l, r, t, b}:
                     trigger.activate()
     
     def _medPlayerDetection(self, player, drops):
@@ -177,9 +177,9 @@ class HandleCollisionsAction(Action):
         return __left, __right, __top, __bottom
 
     def proxCheck(self, entity1, entity2, multiplier=1):
-        # point1 = Point(entity1.center_x, entity1.center_y)
-        # point2 = Point(entity2.center_x, entity2.center_y)
-        # return distance(point1, point2) < entity2._get_width() * multiplier
+        point1 = Point(entity1.center_x, entity1.center_y)
+        point2 = Point(entity2.center_x, entity2.center_y)
+        return distance(point1, point2) < entity2._get_width() * multiplier
         return not (abs(entity1.center_x + entity1.change_x - entity2.center_x + entity2.change_x) >= entity2._get_width() * multiplier) or not (abs(entity1.center_y + entity1.change_y - entity2.center_y + entity2.change_y) >= entity2._get_height() * multiplier)
 
     def rightBound(self, entity, factorChange=0):
