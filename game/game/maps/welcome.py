@@ -10,6 +10,7 @@ class Welcome():
         self._collidableWalls = entities["wall"]
         self._levelController = levelController
         self.font_size = 40
+        self.font_adjust = 350
         self._LOGO = 'game\\images\\dinoSplash.png'
 
     def load(self):
@@ -26,10 +27,14 @@ class Welcome():
         if (260 <= reticle.get_reticleX() <= 420) and (360 <= reticle.get_reticleY() <= 400):
             self.startHover = True
             self.font_size = 50
+            self.font_adjust = 345
+
 
         elif (((reticle.get_reticleX() < 260) or (420 < reticle.get_reticleX())) or ((reticle.get_reticleY() < 360) or (400 < reticle.get_reticleY()))):
             self.startHover = False
             self.font_size = 40
+            self.font_adjust = 350
+
         
         # Welcome Message
         if check_font == None:
@@ -40,4 +45,4 @@ class Welcome():
         self.textDraw()
         
     def textDraw(self):
-        arcade.draw_text('START', 240, 350, arcade.color.CADMIUM_ORANGE, self.font_size, 200, 'center', 'helvetica', True)
+        arcade.draw_text('START', 240, self.font_adjust, arcade.color.CADMIUM_ORANGE, self.font_size, 200, 'center', 'helvetica', True)
