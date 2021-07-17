@@ -108,6 +108,10 @@ class Level1():
         Level1.draw_edges(self)
         Level1.draw_messages(self)
         Level1.draw_floor(self)
+    
+    def drawMeds(self, cast):
+        for drop in cast["drops"]:
+            self._output_service.draw_actor(drop)
 
     def handleTrigger(self, actionIndex):
         pass
