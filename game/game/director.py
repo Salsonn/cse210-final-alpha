@@ -5,6 +5,7 @@ import subprocess
 from game import constants
 from game.point import Point
 from game.math import *
+from game.maps.welcome import Welcome
 
 from game.entity.weapon import Weapon
 from game.entity.player import Player
@@ -18,8 +19,10 @@ class Director(arcade.Window):
         self._input_service = input_service
         self._reticle = reticle
         self._actionTime = {}
+        self.welcome = Welcome(self, entities)
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
         self.menuMusic = None
+        self.startHover = False
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
@@ -47,13 +50,29 @@ class Director(arcade.Window):
         self._input_service.add_mousebtn(button, modifiers)
         if constants.debug:
             print(f"Click detected at {mouseX}, {mouseY}")
+        
+        if (260 <= mouseX <= 420) and (360 <= mouseY <= 400):
+            # CHANGES LEVEL FROM -1 TO 0
+            self._script["output"][0].changeLevel(0)
     
     def on_mouse_release(self, mouseX, mouseY, button, modifiers):
         self._input_service.remove_mousebtn(button, modifiers)
 
     def on_mouse_motion(self, mouseX, mouseY, mouse_dx, mouse_dy):
         self._reticle.set_reticle(Point(mouseX, mouseY), mouse_dx, mouse_dy)
-        
+       
+        '''WORK ON THIS BIT LATER
+           CHANGES FONT SIZE WHEN HOVERING OVER THE START BUTTON'''
+
+        # if (260 <= mouseX <= 420) and (360 <= mouseY <= 400) and not self.startHover:
+        #     self.startHover = True
+        #     self.welcome.font_size += 10
+        #     self.welcome.drawMap()
+
+        # elif self.startHover and (((mouseX < 260) or (420 < mouseX)) or ((mouseY < 360) or (400 < mouseY))):
+        #     self.startHover = False
+        #     self.welcome.font_size -= 10
+        #     self.welcome.drawMap('fontChange')
         
     def _cue_action(self, tag):
         """Executes the actions with the given tag.
