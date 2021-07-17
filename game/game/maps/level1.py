@@ -48,8 +48,8 @@ class Level1():
         arcade.draw_rectangle_filled(constants.windowX / 2, constants.windowY, constants.windowX, 20, self._WALL_COLOR_2)
         arcade.draw_rectangle_filled(constants.windowX / 2, 0, constants.windowX, 20, self._WALL_COLOR_2)
 
-    def draw_messages(self):
-        self._health = 100
+    def draw_messages(self, player):
+        self._health = player.getHealth()
         self._weapons = ['knife', 'sword', 'pistol', 'laser']
 
         # Welcome Message
@@ -109,10 +109,10 @@ class Level1():
     def draw_floor(self):
         self.floor_list.draw()
 
-    def drawMap(self):
-        Level1.draw_edges(self)
-        Level1.draw_messages(self)
-        Level1.draw_floor(self)
+    def drawMap(self, player):
+        self.draw_edges()
+        self.draw_messages(player)
+        self.draw_floor()
     
     def drawMeds(self, cast):
         for drop in cast["drops"]:
