@@ -37,8 +37,7 @@ class Welcome():
             splash.center_x = constants.windowX // 2
             splash.center_y = constants.windowY // 2
             splash.draw()
+        self.textDraw()
         
-        arcade.draw_text('START', 240, 350, arcade.color.CADMIUM_ORANGE, self.font_size, 200, 'center', 'helvetica', True)
-
-    def redrawMap(self):
+    def textDraw(self):
         arcade.draw_text('START', 240, 350, arcade.color.CADMIUM_ORANGE, self.font_size, 200, 'center', 'helvetica', True)

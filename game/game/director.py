@@ -51,7 +51,6 @@ class Director(arcade.Window):
             print(f"Click detected at {mouseX}, {mouseY}")
         
         if (260 <= mouseX <= 420) and (360 <= mouseY <= 400) and constants.currentLevel == -1:
-            # CHANGES LEVEL FROM -1 TO 0
             self._script["output"][0].changeLevel(0)
     
     def on_mouse_release(self, mouseX, mouseY, button, modifiers):
