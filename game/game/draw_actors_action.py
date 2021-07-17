@@ -62,7 +62,7 @@ class DrawActorsAction(Action):
             for enemy in entities["enemy"]:
                 self._output_service.draw_actor(enemy)
 
-        for drop in entities["drops"]:
+        for drop in entities["drop"]:
             self._output_service.draw_actor(drop)
         
         for projectile in entities["projectile"]:

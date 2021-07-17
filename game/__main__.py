@@ -13,7 +13,7 @@ from game.reticle import Reticle
 from game.entity.player import Player
 from game.entity.enemy import Enemy
 from game.entity.weapon import Weapon
-from game.entity.drops import Drops
+from game.entity.drop import Drop
 from game.entity.trigger import Trigger
 
 from game.director import Director
@@ -45,8 +45,7 @@ def main():
     cast["enemy"] = []
 
     # create a medkit to reset the player health to max value
-    drops = Drops((1150, 150))
-    cast["drops"] = [drops]
+    cast["drop"] = []
 
     # create the script {key: tag, value: list}
     script = {}
