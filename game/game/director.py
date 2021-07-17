@@ -18,12 +18,13 @@ class Director(arcade.Window):
         self._input_service = input_service
         self._reticle = reticle
         self._actionTime = {}
-        self.music = None
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
         self.menuMusic = None
 
     def setup(self):
         arcade.set_background_color(arcade.color.BLACK)
+        self.music_list = [constants.menuMusic, constants.levelMusic]
+        self.current_song_index = 0
         self.play_song()
 
     def on_update(self, delta_time):
@@ -52,6 +53,7 @@ class Director(arcade.Window):
 
     def on_mouse_motion(self, mouseX, mouseY, mouse_dx, mouse_dy):
         self._reticle.set_reticle(Point(mouseX, mouseY), mouse_dx, mouse_dy)
+        
         
     def _cue_action(self, tag):
         """Executes the actions with the given tag.

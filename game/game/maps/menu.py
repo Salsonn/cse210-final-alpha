@@ -17,11 +17,13 @@ class MainMenu():
         self._TITLE = 'WELCOME TO THE GAME'
         self._INFO = 'CHOOSE WHAT TO DO'
 
-        self._FLOOR = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
+        # self._FLOOR = '.\images\catacombs\cata_v1.0\mainlevbuild.png'
+        self._FLOOR = 'game\\images\\catacombs\\cata_v1.0\\mainlevbuild.png'
         self._FLOOR_W = 65
         self._FLOOR_H = 48
         
-        self._WALL = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
+        # self._WALL = '.\images\catacombs\cata_v1.0\mainlevbuild.png'
+        self._WALL = 'game\\images\\catacombs\\cata_v1.0\\mainlevbuild.png'
         self._WALL_W = 32
         self._WALL_H = 32
         self._WALL_COLOR = arcade.color.RED
@@ -29,6 +31,7 @@ class MainMenu():
         self._LEFT_WALL_X = 0
         self._LEFT_WALL_Y = constants.windowY / 2
 
+        # self._POT = '.\images\TX_Props.png'
         self._POT = 'game\\images\\TX_Props.png'
         self._POT_W = 24
         self._POT_H = 36
@@ -171,25 +174,30 @@ class MainMenu():
 
     def draw_decor(self):
 
-        # Draw Arch for Instructions
-        arch1 = arcade.Sprite(self._WALL, 1, 640.0, 0.0, 80, 96)
+        # # Draw Arch for Instructions
+        # arch1 = arcade.Sprite(self._WALL, 1, 640.0, 0.0, 80, 96)
+
+        # Draw Arch for Level1
+        arch1 = arcade.Sprite(self._WALL, 1, 640.0, 0.0,80,96)
         arch1.center_x = 27 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         arch1.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 430
         arch1.draw()
 
-        # Draw Arch for Level1
+        # Draw Arch for Instructions
         arch2 = arcade.Sprite(self._WALL, 1, 640.0, 0.0,80,96)
         arch2.center_x = 16.5 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         arch2.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 430
         arch2.draw()
-        # Add level trigger inside arch
-        level1Loader = Trigger(arch2.center_x, arch2.center_y , 80, 96, self, 1)
-        self._triggers.append(level1Loader)
 
         # Draw Pottery
         pot = arcade.Sprite(self._POT, 1, 164, 216, self._POT_W, self._POT_H)
         pot.center_x = 2 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         pot.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 30
+
+        # Add level trigger inside arch
+        level1Loader = Trigger(arch2.center_x, arch2.center_y , 80, 96, self, 1)
+        self._triggers.append(level1Loader)
+        
         pot.draw()
 
     def handleTrigger(self, actionIndex):
