@@ -17,7 +17,7 @@ class Enemy(arcade.Sprite):
         self.check_flip = check_flip
         self.scale = 1.25
     
-    def drawEnemy(self, position, enemyType, enemyScale, check_flip):
+    def drawEnemy(self, position, enemyType, check_flip):
         self._center_x = position[0]
         self._center_y = position[1]
         super().__init__(enemyType, center_x=self._center_x, center_y=self._center_y, scale = self.scale, flipped_horizontally=check_flip)
