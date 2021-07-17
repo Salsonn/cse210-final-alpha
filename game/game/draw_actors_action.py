@@ -12,7 +12,6 @@ class DrawActorsAction(Action):
     
     Stereotype:
         Controller
-
     Attributes:
         _output_service (OutputService): An instance of OutputService.
     """
@@ -31,7 +30,6 @@ class DrawActorsAction(Action):
 
     def execute(self, entities, reticle, current_level):
         """Executes the action using the given actors.
-
         Args:
             entities (dict): The game actors {key: tag, value: list}.
         """

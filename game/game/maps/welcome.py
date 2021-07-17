@@ -45,4 +45,5 @@ class Welcome():
         self.textDraw()
         
     def textDraw(self):
-        arcade.draw_text('START', 240, 350 + self.startBtn_adjust, arcade.color.CADMIUM_ORANGE, self.font_size, 200, 'center', 'helvetica', True)
+        arcade.draw_text('START', 240, 320 + self.startBtn_adjust, arcade.color.CADMIUM_ORANGE, self.font_size, 200, 'center', 'helvetica', True)
+        arcade.draw_rectangle_outline(340, 350, 250, 80, arcade.color.WHITE)
