@@ -195,7 +195,7 @@ class MainMenu():
         pot.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 30
 
         # Add level trigger inside arch
-        level1Loader = Trigger(arch2.center_x, arch2.center_y , 80, 96, self, 1)
+        level1Loader = Trigger(arch2.center_x, arch2.center_y + 20, 80, 76, self, 1)
         self._triggers.append(level1Loader)
         
         pot.draw()
