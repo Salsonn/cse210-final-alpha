@@ -47,6 +47,17 @@ class HandleCollisionsAction(Action):
         if len(entities["trigger"]):
             self._triggerPlayerDetection(entities["player"][0], entities["trigger"])
 
+        # Handle drop collision
+        if len(entities["drop"]):
+            self._dropPlayerDetection(entities["player"][0], entities["drop"])
+
+    def _dropPlayerDetection(self, player, drops):
+        for drop in drops:
+            if self.proxCheck(player, drop):
+                l, r, t, b = self._detectCollision(player, drop, 0)
+                if True in {l, r, t, b}:
+                    drop.interact(drops, player)
+
     def _enemyProjectileDetection(self, enemies, projectiles, player):
         for projectile in projectiles:
             for enemy in enemies:

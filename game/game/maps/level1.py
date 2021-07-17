@@ -1,11 +1,13 @@
 import arcade
 from game import constants
+from game.entity.drop import Drop
 
 class Level1():
 
     def __init__(self, levelController, entities):
         self._triggers = entities["trigger"]
         self._collidableWalls = entities["wall"]
+        self._drops = entities["drop"]
         self._levelController = levelController
 
         self._BACKGROUND_COLOR = arcade.color.BLACK
@@ -37,6 +39,10 @@ class Level1():
         self._triggers.clear()
         self._collidableWalls.clear()
         self.prepare_floor()
+        self.prepare_drops()
+
+    def prepare_drops(self):
+        self._drops.append(Drop((1150, 150)))
 
     def draw_edges(self):
         # Draw the Edges
@@ -111,10 +117,6 @@ class Level1():
         self.draw_edges()
         self.draw_messages(player)
         self.draw_floor()
-    
-    def drawMeds(self, cast):
-        for drop in cast["drops"]:
-            self._output_service.draw_actor(drop)
 
     def handleTrigger(self, actionIndex):
         pass
