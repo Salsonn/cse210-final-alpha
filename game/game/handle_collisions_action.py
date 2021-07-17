@@ -44,7 +44,8 @@ class HandleCollisionsAction(Action):
             self._enemyProjectileDetection(entities["enemy"], entities["projectile"], entities["player"][0])
 
         # Handle level load triggers
-        self._triggerPlayerDetection(entities["player"][0], entities["trigger"])
+        if len(entities["trigger"]):
+            self._triggerPlayerDetection(entities["player"][0], entities["trigger"])
 
     def _enemyProjectileDetection(self, enemies, projectiles, player):
         for projectile in projectiles:
@@ -119,9 +120,10 @@ class HandleCollisionsAction(Action):
 
     def _triggerPlayerDetection(self, player, triggers):
         for trigger in triggers:
-            l, r, t, b = self._detectCollision(player, trigger)
-            if not False in {l, r, t, b}:
-                trigger.activate()
+            if self.proxCheck(trigger, player):
+                l, r, t, b = self._detectCollision(player, trigger)
+                if not False in {l, r, t, b}:
+                    trigger.activate()
 
 
     def _handleCollision(self, entity, l, r, t, b, opposingEntity=None):
