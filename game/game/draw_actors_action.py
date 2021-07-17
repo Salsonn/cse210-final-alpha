@@ -1,6 +1,7 @@
 from game.maps.menu import MainMenu
 from game.maps.welcome import Welcome
 from game.maps.level1 import Level1
+from game.maps.instructions import Instructions
 
 from game.action import Action
 from game import constants
@@ -26,8 +27,9 @@ class DrawActorsAction(Action):
         self._output_service = output_service
         self._mainMenu = MainMenu(self, entities)
         self._welcome = Welcome(self, entities)
+        self._instructions = Instructions()
         self._level1 = Level1(self, entities)
-        self.changeLevel(-1)
+        self.changeLevel(2)
 
     def execute(self, entities, reticle, current_level):
         """Executes the action using the given actors.
@@ -47,6 +49,8 @@ class DrawActorsAction(Action):
             self._mainMenu.drawMap()
         elif self._activeLevel == 1:
             self._level1.drawMap(entities["player"][0])
+        elif self._activeLevel == 2:
+            self._instructions.drawMap()
 
         player = entities["player"][0] # there's only one
         self._output_service.draw_actor(player)

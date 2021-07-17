@@ -5,6 +5,7 @@ from game import constants
 class Instructions:
 
     def __init__(self):
+        
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FONT_COLOR = arcade.color.PALE_BLUE
 
@@ -17,7 +18,8 @@ class Instructions:
         self._MAIN = 'MAIN MENU'
         self._LEVEL1 = 'LEVEL 1'
 
-        self._ARCH = './images/catacombs/cata_v1.0/mainlevbuild.png'
+        # self._ARCH = './images/catacombs/cata_v1.0/mainlevbuild.png'
+        self._ARCH = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
         self._COLUMN_SPACING = 20
         self._ROW_SPACING = 20
         self._LEFT_MARGIN = 110

@@ -86,7 +86,7 @@ class HandleCollisionsAction(Action):
 
         despawnable = []
         despawnable.extend(projectiles)
-        despawnable.extend(enemies)
+        # despawnable.extend(enemies)
         for entity in despawnable:
             if (entity.center_x + (entity._get_width() / 2) <= 0 or entity.center_x + (entity._get_width() / 2) >= constants.windowX) or (entity.center_y + (entity._get_height() / 2) <= 0 or entity.center_y + (entity._get_height() / 2) >= constants.windowY):
                 if entity in projectiles: projectiles.remove(entity)
