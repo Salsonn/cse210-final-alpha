@@ -29,15 +29,15 @@ class DrawActorsAction(Action):
         self._level1 = Level1(self, entities)
         self.changeLevel(-1)
 
-    def execute(self, cast, reticle, current_level):
+    def execute(self, entities, reticle, current_level):
         """Executes the action using the given actors.
 
         Args:
-            cast (dict): The game actors {key: tag, value: list}.
+            entities (dict): The game actors {key: tag, value: list}.
         """
         self._output_service.clear_screen()
 
-        #for ball in cast["balls"]:
+        #for ball in entities["balls"]:
         #    self._output_service.draw_actor(ball)
 
         if self._activeLevel == -1:
@@ -46,22 +46,22 @@ class DrawActorsAction(Action):
         elif self._activeLevel == 0:
             self._mainMenu.drawMap()
         elif self._activeLevel == 1:
-            self._level1.drawMap()
+            self._level1.drawMap(entities["player"][0])
 
-        player = cast["player"][0] # there's only one
+        player = entities["player"][0] # there's only one
         self._output_service.draw_actor(player)
         
-        weapon = cast["weapon"][0]
+        weapon = entities["weapon"][0]
         self._output_service.draw_actor(weapon)
         
         if self._activeLevel == 1:
-            for enemy in cast["enemy"]:
+            for enemy in entities["enemy"]:
                 self._output_service.draw_actor(enemy)
 
-        for drop in cast["drops"]:
+        for drop in entities["drops"]:
             self._output_service.draw_actor(drop)
         
-        for projectile in cast["projectile"]:
+        for projectile in entities["projectile"]:
             self._output_service.draw_actor(projectile)
 
         self._output_service.flush_buffer()
