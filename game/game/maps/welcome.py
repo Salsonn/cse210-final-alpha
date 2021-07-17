@@ -38,7 +38,7 @@ class Welcome():
         
         # Welcome Message
         if check_font == None:
-            splash = arcade.Sprite(self._LOGO , 1)
+            splash = arcade.Sprite(self._LOGO, 1.25)
             splash.center_x = constants.windowX // 2
             splash.center_y = constants.windowY // 2
             splash.draw()
