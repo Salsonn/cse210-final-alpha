@@ -34,9 +34,6 @@ class HandleCollisionsAction(Action):
         if len(entities["enemy"]):
             self._enemyPlayerDetection(entities["player"][0], entities["enemy"])
 
-        # Detects when the player hits a level trigger
-        self._levelChangeDetection(entities["player"][0], entities["trigger"])
-
         # Keep the enemies from trampling each other and hitting walls.
         if len(entities["enemy"]):
             # self._enemySocialDistancing(entities["enemy"], entities["player"][0])
@@ -74,11 +71,6 @@ class HandleCollisionsAction(Action):
                     l, r, t, b = self._detectCollision(enemy, wall, 1)
                     if True in {l, r, t, b}:
                         self._handleCollision(enemy, l, r, t, b)
-
-
-    def _levelChangeDetection(self, player, triggers):
-        if self.levelControl.getLevel() != 0:
-            self.levelControl.changeLevel(0)
 
     def _screenEdgeDetection(self, player, projectiles, enemies):
         # Prevent player from leaving sides of window

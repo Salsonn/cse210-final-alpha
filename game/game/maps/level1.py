@@ -5,7 +5,7 @@ from game import constants
 class Level1():
 
     def __init__(self, levelController, entities):
-        self._enemies = entities["enemy"]
+        self._triggers = entities["trigger"]
         self._collidableWalls = entities["wall"]
         self._levelController = levelController
 
@@ -35,7 +35,9 @@ class Level1():
         self._TILE_SPACING = 1.6
 
     def load(self):
+        self._triggers.clear()
         self._collidableWalls.clear()
+        self.prepare_floor()
 
     def draw_edges(self):
         # Draw the Edges
@@ -57,13 +59,13 @@ class Level1():
         # Weapons
         arcade.draw_text(f'WEAPON:{self._weapons[3]}', constants.windowX - 215, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
 
-    def draw_floor(self):
+    def prepare_floor(self):
         self.floor_list = arcade.SpriteList()
         for i in range(constants.windowY // self._FLOOR_H - 5):
             for j in range(constants.windowX // self._FLOOR_W -1):
 
                 # Create the floor instance
-                floor = arcade.Sprite(self._FLOOR, 1)
+                floor = arcade.Sprite(self._WALL, 1,384.0,400.0,self._FLOOR_W, self._FLOOR_H)
 
                 # Position the floor sprites
                 floor.center_x = j * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 145
@@ -71,7 +73,6 @@ class Level1():
 
                 # Add the floor to the lists
                 self.floor_list.append(floor)
-        self.floor_list.draw()
 
         # self.floor_list = arcade.SpriteList()
         # # Create the floor instance
@@ -100,6 +101,8 @@ class Level1():
             
         #     self.floor_list.append(floor)
         #     self.floor_list.draw()
+    def draw_floor(self):
+        self.floor_list.draw()
 
     def drawMap(self):
         Level1.draw_edges(self)

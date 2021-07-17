@@ -2,6 +2,8 @@ import arcade
 
 from game import constants
 
+from game.entity.trigger import Trigger
+
 class MainMenu():
 
     def __init__(self, levelController, entities):
@@ -40,6 +42,7 @@ class MainMenu():
         self._TILE_SPACING = 1.6
 
     def load(self):
+        self._triggers.clear()
         self._collidableWalls.clear()
         self.prepare_walls()
         self.prepare_floor()
@@ -168,18 +171,20 @@ class MainMenu():
 
     def draw_decor(self):
 
-        # Draw Arch for Level1
-        arch1 = arcade.Sprite(self._WALL, 1, 640.0, 0.0,80,96)
+        # Draw Arch for Instructions
+        arch1 = arcade.Sprite(self._WALL, 1, 640.0, 0.0, 80, 96)
         arch1.center_x = 27 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         arch1.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 430
         arch1.draw()
-        self._triggers.append(arch1)
 
-        # Draw Arch for Instructions
+        # Draw Arch for Level1
         arch2 = arcade.Sprite(self._WALL, 1, 640.0, 0.0,80,96)
         arch2.center_x = 16.5 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         arch2.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 430
         arch2.draw()
+        # Add level trigger inside arch
+        level1Loader = Trigger(arch2.center_x, arch2.center_y , 80, 96, self, 1)
+        self._triggers.append(level1Loader)
 
         # Draw Pottery
         pot = arcade.Sprite(self._POT, 1, 164, 216, self._POT_W, self._POT_H)

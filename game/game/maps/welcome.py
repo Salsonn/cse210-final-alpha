@@ -5,6 +5,7 @@ from game import constants
 class Welcome():
 
     def __init__(self, levelController, entities):
+        self._triggers = entities["trigger"]
         self._collidableWalls = entities["wall"]
         self._levelController = levelController
 
@@ -31,6 +32,7 @@ class Welcome():
         self._BOTTOM_MARGIN = 110
 
     def load(self):
+        self._triggers.clear()
         self._collidableWalls.clear()
     
     def drawMap(self):

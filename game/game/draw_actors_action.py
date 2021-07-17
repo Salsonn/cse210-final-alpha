@@ -24,11 +24,10 @@ class DrawActorsAction(Action):
             _output_service (OutputService): An instance of OutputService.
         """
         self._output_service = output_service
-        self.activeLevel = 0
         self._mainMenu = MainMenu(self, entities)
         self._welcome = Welcome(self, entities)
         self._level1 = Level1(self, entities)
-        self.changeLevel(self.activeLevel)
+        self.changeLevel(0)
 
     def execute(self, cast, reticle):
         """Executes the action using the given actors.
@@ -41,11 +40,11 @@ class DrawActorsAction(Action):
         #for ball in cast["balls"]:
         #    self._output_service.draw_actor(ball)
 
-        if self.activeLevel == 0:
-            self._mainMenu.drawMap()
-        elif self.activeLevel == 1:
+        if self._activeLevel == -1:
             self._welcome.drawMap()
-        elif self.activeLevel == 2:
+        elif self._activeLevel == 0:
+            self._mainMenu.drawMap()
+        elif self._activeLevel == 1:
             self._level1.drawMap()
 
         player = cast["player"][0] # there's only one
@@ -66,12 +65,13 @@ class DrawActorsAction(Action):
         self._output_service.flush_buffer()
 
     def changeLevel(self, newLevel):
-        if newLevel == 0:
+        self._activeLevel = newLevel
+        if newLevel == -1:
+            self._welcome.load()
+        elif newLevel == 0:
             self._mainMenu.load()
         elif newLevel == 1:
-            self._welcome.load()
-        elif newLevel == 2:
             self._level1.load()
 
     def getLevel(self):
-        return self.activeLevel
+        return self._activeLevel
