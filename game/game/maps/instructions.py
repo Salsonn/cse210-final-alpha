@@ -4,8 +4,12 @@ from game import constants
 
 class Instructions:
 
-    def __init__(self):
+    def __init__(self, levelController, entities):
         
+        self._triggers = entities["trigger"]
+        self._collidableWalls = entities["wall"]
+        self._levelController = levelController
+
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._FONT_COLOR = arcade.color.PALE_BLUE
 
@@ -26,6 +30,10 @@ class Instructions:
         self._BOTTOM_MARGIN = 110
         self._TILE_SPACING = 1.6
 
+    def load(self):
+        self._triggers.clear()
+        self._collidableWalls.clear()
+        # self.prepare_floor()
 
     def drawMap(self):
         Instructions.draw_instructions(self)
