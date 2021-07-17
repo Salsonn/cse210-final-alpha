@@ -129,9 +129,8 @@ class HandleCollisionsAction(Action):
         for drop in drops:
             l, r, t, b = self._detectCollision(drops, player)
             if True in {l, r, t, b}:
-                self._handleCollision(drops, l, r, t, b, player)
                 drops.remove(drop)
-                
+                player.setHealth(100)
 
 
     def _handleCollision(self, entity, l, r, t, b, opposingEntity=None):
