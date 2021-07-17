@@ -44,12 +44,8 @@ class ArcadeInputService:
 
         if arcade.key.LEFT in self._keys or arcade.key.A in self._keys:
             x = -1
-            self.change_player_direction((self.player.center_x, self.player.center_y), True)
-
         elif arcade.key.RIGHT in self._keys or arcade.key.D in self._keys:
             x = 1
-            self.change_player_direction((self.player.center_x, self.player.center_y), False)
-
         if arcade.key.UP in self._keys or arcade.key.W in self._keys:
             y = 1
         elif arcade.key.DOWN in self._keys or arcade.key.S in self._keys:
@@ -60,6 +56,3 @@ class ArcadeInputService:
             
     def check_click(self):
         return arcade.MOUSE_BUTTON_LEFT in self._mousebtn
-
-    def change_player_direction(self, player_pos, flip):
-        self.player = Player(player_pos, flip)

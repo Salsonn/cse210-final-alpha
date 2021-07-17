@@ -13,7 +13,6 @@ class EnvironmentAction:
     def __init__(self, enemies):
         self.enemies = enemies
         self.weapon = Weapon(False, (640, 360))
-        self.playerFlipped = False
         self.player = Player((640, 360), False)
         self.enemy_adder = 0
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
@@ -22,7 +21,7 @@ class EnvironmentAction:
     def execute(self, entities, reticle, current_level, script):
         # List of specific actions to take every tick
         self.enemyAItick(self.enemies, entities["player"][0], current_level)
-        self.reticleUpdate(entities, reticle)
+        self.reticleUpdate(entities["player"][0], entities["weapon"][0], reticle)
 
     def enemyAItick(self, enemies, player, current_level):
         if current_level == 1:
@@ -72,19 +71,11 @@ class EnvironmentAction:
         elif 350 <= self.score:
             self.tick_speed = 5
 
-    def reticleUpdate(self, entities, reticle):
-        weapon_angle = self.weapon.update_weapon_angle(entities["player"][0].center_x, entities["player"][0].center_y, reticle.get_reticleX(), reticle.get_reticleY())
-        entities["weapon"][0].angle = weapon_angle
+    def reticleUpdate(self, player, weapon, reticle):
+        weapon_angle = self.weapon.update_weapon_angle(player.center_x, player.center_y, reticle.get_reticleX(), reticle.get_reticleY())
+        weapon.angle = weapon_angle
         flip = self.weapon.flip()
-        if not flip and self.playerFlipped:
-            self.playerFlipped = flip
-            position = entities["player"][0].position
-            entities["weapon"] = [Weapon(flip, position)]
-            entities["player"] = [Player(position, flip)]
-
-        if flip and not self.playerFlipped:
-            self.playerFlipped = flip
-            position = entities["player"][0].position
-            entities["weapon"] = [Weapon(flip, position)]
-            entities["player"] = [Player(position, flip)]
+        position = player.position
+        weapon.flipH(flip)# entities["weapon"] = [Weapon(flip, position)]
+        player.flipH(flip)# entities["player"] = [Player(position, flip)]
             

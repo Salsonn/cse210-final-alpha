@@ -33,10 +33,12 @@ enemyRightRandom = {'min_x': windowX-1, 'max_x': windowX, 'min_y': 75, 'max_y': 
 acceleration = 2 # Pixels per frame per frame
 
 dropsImage = "game\\images\\medkit_sprite.png"
-playerImage = "game\\images\\characters\\Player.gif"
+playerImagePath = "game\\images\\characters\\Player.gif"
+playerImage = [arcade.load_texture(playerImagePath), arcade.load_texture(playerImagePath, flipped_horizontally=True)]
 projectile1Image = "game\\images\\bullet.png"
 enemyImages = ["game\\images\\characters\\Enemy.gif", "game\\images\\characters\\Enemy2.gif", "game\\images\\characters\\Enemy3.gif"]
-weaponImage = "game\\images\\weapons\\ak.png"
+weaponImagePath = "game\\images\\weapons\\ak.png"
+weaponImage = [arcade.load_texture(weaponImagePath, flipped_horizontally=True), arcade.load_texture(weaponImagePath, flipped_horizontally=True, flipped_vertically=True)]
 
 menuMusic = 'game\\sounds\\Warhammer.mp3'
 levelMusic = "game\\sounds\\background.mp3"
