@@ -58,6 +58,10 @@ class MainMenu():
         self._SBOX_W = 32
         self._SBOX_H = 48
 
+        self.SIGN = "game\\images\\TX_Props.png"
+        self._SIGN_W = 34
+        self._SIGN_H = 40
+
         #SOUND = arcadeload_sound('/sounds/Tada-soundmp3')
         
         self._COLUMN_SPACING = 20
@@ -245,6 +249,11 @@ class MainMenu():
         smallBox.center_x = 100
         smallBox.center_y = 470
 
+        # just a sign
+        sign = arcade.Sprite(self.SIGN, 1, 95, 158, self._SIGN_W, self._SIGN_H)
+        sign.center_x = 580
+        sign.center_y = 600
+
         # A starting platform
         platform = arcade.Sprite(self.PLATFORM, 1, 351, 265, self._PLATFORM_W, self._PLATFORM_H)
         platform.center_x = 645
@@ -262,6 +271,7 @@ class MainMenu():
         bench.draw()
         box.draw()
         smallBox.draw()
+        sign.draw()
         platform.draw()
 
     def handleTrigger(self, actionIndex):
