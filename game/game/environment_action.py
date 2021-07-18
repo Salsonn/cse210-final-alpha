@@ -65,15 +65,15 @@ class EnvironmentAction:
             self.tick_speed = constants.tickSpeed / 4
         elif constants.fourthWave <= self.score < constants.fifthWave:
             self.tick_speed = constants.tickSpeed / 8
+        elif constants.fifthWave <= self.score < constants.sixthWave:
+            self.tick_speed = constants.tickSpeed / 12
+        elif constants.sixthWave <= self.score:
+            self.tick_speed = constants.tickSpeed / 24
             if self.change:
                 self.change = False
                 old_weapon, new_weapon = weapon[0], weapon[1]
                 weapon[0], weapon[1] = new_weapon, old_weapon
                 self.weapon = weapon[0]
-        elif constants.fifthWave <= self.score < constants.sixthWave:
-            self.tick_speed = constants.tickSpeed / 12
-        elif constants.sixthWave <= self.score:
-            self.tick_speed = constants.tickSpeed / 24
         else: 
             self.tick_speed = constants.tickSpeed
             if not self.change:
