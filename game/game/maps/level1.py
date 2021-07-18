@@ -38,7 +38,7 @@ class Level1():
         self._POT = 'game\\images\\TX_Props.png'
         self._POT_W = 24
         self._POT_H = 36
-       
+
     def load(self):
         self._triggers.clear()
         self._collidableWalls.clear()
@@ -122,6 +122,15 @@ class Level1():
         pot.center_x = 2 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         pot.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 30
         pot.draw()
+
+        pot2 = arcade.Sprite(self._POT, 1, 164, 216, self._POT_W, self._POT_H)
+        pot2.center_x = 5 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
+        pot2.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 300
+        pot2.draw()
+        pot3 = arcade.Sprite(self._POT, 1, 164, 316, self._POT_W, self._POT_H)
+        pot3.center_x = 5 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
+        pot3.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 1000
+        pot3.draw()
 
     def drawMap(self, player):
         self.draw_edges()
