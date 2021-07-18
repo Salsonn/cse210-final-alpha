@@ -32,8 +32,8 @@ def main():
     cast["projectile"] = []
 
     # create the first weapon, will automatically position near the player
-    weapon1 = Weapon(False, (640, 360), constants.weaponImages[0])
-    weapon2 = Weapon(False, (640, 360), constants.weaponImages[1])
+    weapon1 = Weapon(False, (640, 360), constants.weaponImages[0], constants.weaponDamages[0], constants.weaponRates[0])
+    weapon2 = Weapon(False, (640, 360), constants.weaponImages[1], constants.weaponDamages[1], constants.weaponRates[1])
     cast["weapon"] = [weapon1, weapon2]
 
     # create empty list of collidable walls, will be populated and drawn by the map code

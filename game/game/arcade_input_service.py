@@ -52,9 +52,6 @@ class ArcadeInputService:
             y = 1
         elif arcade.key.DOWN in self._keys or arcade.key.S in self._keys:
             y = -1
-        elif arcade.key.E in self._keys:
-            
-
 
         velocity = Point(x, y)
         return velocity

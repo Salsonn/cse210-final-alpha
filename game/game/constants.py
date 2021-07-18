@@ -49,6 +49,10 @@ weaponImages = ["game\\images\\weapons\\ak.png", "game\\images\\weapons\\machine
 weaponImagePath = weaponImages[0]
 weaponImage = [arcade.load_texture(weaponImagePath, flipped_horizontally=True), arcade.load_texture(weaponImagePath, flipped_horizontally=True, flipped_vertically=True)]
 
+weaponDamages = [1, 2]
+
+weaponRates = [10, 5]
+
 menuMusic = 'game\\sounds\\Warhammer.mp3'
 levelMusic = "game\\sounds\\background.mp3"
 # menuMusic = "game\\sounds\\CoconutMall.mp3"

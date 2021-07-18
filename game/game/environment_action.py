@@ -13,12 +13,13 @@ class EnvironmentAction:
     def __init__(self, entities):
         self._entities = entities
         self.enemies = entities["enemy"]
-        self.weapon = Weapon(False, (640, 360), constants.weaponImages[0])
+        self.weapon = Weapon(False, (640, 360), constants.weaponImages[0], constants.weaponDamages[0], constants.weaponRates[0])
         # self.weapon2 = Weapon(False, (640, 360), constants.weaponImages[1])
         self.player = Player((640, 360), False)
         self.enemy_adder = 0
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
         self.tick_speed = constants.tickSpeed
+        self.change = True
 
     def execute(self, entities, reticle, current_level, script):
         # List of specific actions to take every tick
@@ -59,6 +60,11 @@ class EnvironmentAction:
 
         if constants.firstWave <= self.score < constants.secondWave:
             self.tick_speed = 60
+            if self.change:
+                self.change = False
+                self._entities["weapon"][0] = self._entities["weapon"][1]
+                self.weapon = self._entities["weapon"][0]
+
         elif constants.secondWave <= self.score < constants.thirdWave:
             self.tick_speed = 45
         elif constants.thirdWave <= self.score < constants.fourthWave:
@@ -69,6 +75,7 @@ class EnvironmentAction:
             self.tick_speed = 10
         elif constants.sixthWave <= self.score:
             self.tick_speed = 5
+            self.weapon = Weapon(False, (640, 360), constants.weaponImages[1], constants.weaponDamages[1], constants.weaponRates[1])
 
     def reticleUpdate(self, player, weapon, reticle):
         weapon_angle = self.weapon.update_weapon_angle(player.center_x, player.center_y, reticle.get_reticleX(), reticle.get_reticleY())
