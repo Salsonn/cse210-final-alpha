@@ -4,7 +4,7 @@ from game import constants
 import arcade
 
 class Projectile(arcade.Sprite):
-    def __init__(self, startingX, startingY, dX, dY, bounces):
+    def __init__(self, startingX, startingY, dX, dY, bounces, power):
         super().__init__(constants.projectile1Image, scale=1.25)
 
         self.center_x = startingX
@@ -12,7 +12,7 @@ class Projectile(arcade.Sprite):
         self.change_x = dX
         self.change_y = dY
         self.bounces = bounces # add 1 for every bounce, -1 for infinite bouncing
-        self.__power = 1 # use this for future hitpoint system
+        self.__power = power
 
     def reflect(self, projectiles, l, r, t, b):
         if True in {l, r}:

@@ -16,14 +16,13 @@ class Weapon(arcade.Sprite):
     def __init__(self, check_flip, position, weaponType, weaponDamage, weaponRate):
         super().__init__(weaponType, center_x = 0, center_y = 0, flipped_horizontally=True, flipped_vertically=check_flip, scale = 1.25)
         # self.weapons = constants.weaponImages
-        self.weaponDamage = weaponDamage
-        self.weaponRate = weaponRate
+        self._power = weaponDamage
+        self._cooldown = weaponRate
         self.center_x = position[0]
         self.center_y = position[1]
         self.angle = 0
         self.counter = 0
         # if weaponType == 1:
-        self._cooldown = 10
         self._projectileBounces = 0
 
         # image, scale, image_x, image_y, image_width, image_height, center_x,center_y
@@ -32,8 +31,8 @@ class Weapon(arcade.Sprite):
         player = entities["player"][0]
         if input_service.check_click():
             if self.counter % self._cooldown == 0:
-                add_entity(entities, "projectile", Point(player.center_x, player.center_y), theta(Point(player.center_x, player.center_y), reticle.get_reticle()), self._projectileBounces)
-            self._cooldown += 1
+                add_entity(entities, "projectile", Point(player.center_x, player.center_y), theta(Point(player.center_x, player.center_y), reticle.get_reticle()), self._projectileBounces, self._power)
+            self.counter += 1
 
     def flip(self):
         if self.cartesian in {2, 3}: return True

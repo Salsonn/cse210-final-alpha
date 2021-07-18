@@ -24,15 +24,15 @@ class ControlActorsAction(Action):
         self._input_service = input_service
         self._coolDown = 0
 
-    def execute(self, cast, reticle, current_level, script):
+    def execute(self, entities, reticle, current_level, script):
         """Executes the action using the given actors.
 
         Args:
-            cast (dict): The game actors {key: tag, value: list}.
+            entities (dict): The game actors {key: tag, value: list}.
         """
         impulse = self._input_service.get_direction().scale(constants.acceleration)
-        player = cast["player"][0] # there's only one in the cast
-        weapon = cast["weapon"][0]
+        player = entities["player"][0] # there's only one in the entities
+        weapon = entities["weapon"][0]
         
         # x axis player movement (with acceleration and decelleration)
         if impulse.get_x() != 0:
@@ -52,12 +52,6 @@ class ControlActorsAction(Action):
 
         weapon.center_x = player.center_x
         weapon.center_y = player.center_y
-
-        if self._input_service.check_click():
-            # placeholder code for firing rate. Will need to be expanded upon late
-            if self._coolDown % weapon.weaponRate == 0:
-                add_entity(cast, "projectile", Point(player.center_x, player.center_y), theta(Point(player.center_x, player.center_y), reticle.get_reticle()))
-            self._coolDown += 1
-        weapon.inputCheck(cast, reticle, self._input_service)
+        weapon.inputCheck(entities, reticle, self._input_service)
 
 
