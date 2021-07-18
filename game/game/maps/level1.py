@@ -41,10 +41,6 @@ class Level1():
         self._POT_W = 24
         self._POT_H = 36
 
-        self.STATUE = "game\\images\\TX_Props.png"
-        self._STATUE_W = 37
-        self._STATUE_H = 73
-
     def load(self):
         self.player.clear()
         self.player.append(Player((640, 360), False))
@@ -135,17 +131,10 @@ class Level1():
         pot2.center_x = 5 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         pot2.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 300
         pot2.draw()
-        #there is no third pot, it only puts the second pot where I want if i have this code
         pot3 = arcade.Sprite(self._POT, 1, 164, 316, self._POT_W, self._POT_H)
         pot3.center_x = 5 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         pot3.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 1000
         pot3.draw()
-
-        statue = arcade.Sprite(self.STATUE, 1, 445, 19, self._STATUE_W, self._STATUE_H)
-        statue.center_x = 1100
-        statue.center_y = 500
-        statue.draw()
-
 
     def drawMap(self, player):
         self.draw_edges()
