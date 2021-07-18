@@ -19,7 +19,7 @@ class EnvironmentAction:
         self.tick_speed = constants.tickSpeed
         self.change = True
 
-    def execute(self, entities, reticle, current_level, script):
+    def execute(self, entities, reticle, current_level):
         # List of specific actions to take every tick
         self.enemyAItick(self.enemies, entities["player"][0], current_level)
         self.change_tick(entities["player"][0], entities["weapon"])
