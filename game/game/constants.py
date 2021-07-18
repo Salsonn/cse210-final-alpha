@@ -62,7 +62,7 @@ levelMusic = "game\\sounds\\background.mp3" # "game\\sounds\\ангел.mp3"
 
 currentLevel = 0
 
-mute = True
+mute = False
 # Music length in seconds
 menuMusicLength = 127
 
