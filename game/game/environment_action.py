@@ -57,25 +57,34 @@ class EnvironmentAction:
 
     def change_tick(self, player, weapon):
         self.score = player.getScore()
+        if 1 <= self.score < constants.firstWave:pass
 
-        if constants.firstWave <= self.score < constants.secondWave:
-            self.tick_speed = 60
+        elif constants.firstWave <= self.score < constants.secondWave:
+            self.tick_speed = constants.tickSpeed / 2
+        elif constants.secondWave <= self.score < constants.thirdWave:
+            self.tick_speed = constants.tickSpeed / 3
             if self.change:
                 self.change = False
-                weapon[0] = weapon[1]
+                old_weapon, new_weapon = weapon[0], weapon[1]
+                weapon[0], weapon[1] = new_weapon, old_weapon
                 self.weapon = weapon[0]
 
-        elif constants.secondWave <= self.score < constants.thirdWave:
-            self.tick_speed = 45
         elif constants.thirdWave <= self.score < constants.fourthWave:
-            self.tick_speed = 30
+            self.tick_speed = constants.tickSpeed / 4
         elif constants.fourthWave <= self.score < constants.fifthWave:
-            self.tick_speed = 15
+            self.tick_speed = constants.tickSpeed / 8
         elif constants.fifthWave <= self.score < constants.sixthWave:
-            self.tick_speed = 10
+            self.tick_speed = constants.tickSpeed / 12
         elif constants.sixthWave <= self.score:
-            self.tick_speed = 5
-            self.weapon = Weapon(False, (640, 360), constants.weaponImages[1], constants.weaponDamages[1], constants.weaponRates[1])
+            self.tick_speed = constants.tickSpeed / 24
+        else: 
+            self.tick_speed = constants.tickSpeed
+            if not self.change:
+                self.change = True
+                old_weapon, new_weapon = weapon[0], weapon[1]
+                weapon[0], weapon[1] = new_weapon, old_weapon
+                self.weapon = weapon[0]
+
 
     def reticleUpdate(self, player, weapon, reticle):
         weapon_angle = weapon.update_weapon_angle(player.center_x, player.center_y, reticle.get_reticleX(), reticle.get_reticleY())

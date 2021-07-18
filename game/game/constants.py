@@ -29,8 +29,8 @@ firstWave = 500
 secondWave = 1500
 thirdWave = 4000
 fourthWave = 7750
-fifthWave = 16750
-sixthWave = 25000
+fifthWave = 12750
+sixthWave = 20750
 
 enemyTopRandom = {'min_x': 100, 'max_x': 1000, 'min_y': windowY-1, 'max_y': windowY}
 enemyBottomRandom = {'min_x': 100, 'max_x': 1000, 'min_y': 0, 'max_y': 1}
