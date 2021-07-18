@@ -38,6 +38,18 @@ class MainMenu():
         self._POT_W = 24
         self._POT_H = 36
         
+        self.STATUE = "game\\images\\TX_Props.png"
+        self._STATUE_W = 37
+        self._STATUE_H = 73
+
+        self.PLATFORM = "game\\images\\TX_Props.png"
+        self._PLATFORM_W = 110
+        self._PLATFORM_H = 79
+
+        self.BENCH = "game\\images\\TX_Props.png"
+        self._BENCH_W = 58
+        self._BENCH_H = 47
+
         #SOUND = arcadeload_sound('/sounds/Tada-soundmp3')
         
         self._COLUMN_SPACING = 20
@@ -206,6 +218,21 @@ class MainMenu():
         pot.center_x = 2 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         pot.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 30
 
+        #draw a lovely statue
+        statue = arcade.Sprite(self.STATUE, 1, 445, 19, self._STATUE_W, self._STATUE_H)
+        statue.center_x = 1150
+        statue.center_y = 500
+
+        # a place to rest your bum
+        bench = arcade.Sprite(self.BENCH, 1, 291, 16, self._BENCH_W, self._BENCH_H)
+        bench.center_x = 300
+        bench.center_y = 570
+
+        # A starting platform
+        platform = arcade.Sprite(self.PLATFORM, 1, 351, 265, self._PLATFORM_W, self._PLATFORM_H)
+        platform.center_x = 645
+        platform.center_y = 350
+        
         # Add level trigger inside arch
         level1Loader = Trigger(arch2.center_x, arch2.center_y + 20, 80, 76, self, 1)
         self._triggers.append(level1Loader)
@@ -213,7 +240,10 @@ class MainMenu():
         instructionsLoader = Trigger(arch1.center_x, arch1.center_y + 20, 80, 76, self, 2)
         self._triggers.append(instructionsLoader)
         
+        statue.draw()
         pot.draw()
+        bench.draw()
+        platform.draw()
 
     def handleTrigger(self, actionIndex):
         if actionIndex == 1:
