@@ -97,18 +97,18 @@ class MainMenu():
             # Add the floor to the lists
             self.wall_list_h.append(wall)
 
-        # # Top right wall
-        # for l in range(constants.windowY // self._WALL_H - 4):
+        # Top right wall
+        for l in range(constants.windowY // self._WALL_H - 15):
 
-        #     # Create the floor instance
-        #     wall = arcade.Sprite(self._WALL, 1,736.0,320.0,self._WALL_W, self._WALL_H)
+            # Create the floor instance
+            wall = arcade.Sprite(self._WALL, 1,736.0,320.0,self._WALL_W, self._WALL_H)
 
-        #     # Position the floor sprites
-        #     wall.center_x = l * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) + 520
-        #     wall.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 400
+            # Position the floor sprites
+            wall.center_x = l * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) + 872
+            wall.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 400
 
-        #     # Add the floor to the lists
-        #     self.wall_list_h.append(wall)
+            # Add the floor to the lists
+            self.wall_list_h.append(wall)
 
 
         # # Draw Walls to choose what to do next
@@ -189,13 +189,13 @@ class MainMenu():
         # # Draw Arch for Instructions
         # arch1 = arcade.Sprite(self._WALL, 1, 640.0, 0.0, 80, 96)
 
-        # Draw Arch for Level1
+        # Draw Arch for Instructions
         arch1 = arcade.Sprite(self._WALL, 1, 640.0, 0.0,80,96)
-        arch1.center_x = 27 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
+        arch1.center_x = 27 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 55
         arch1.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 430
         arch1.draw()
 
-        # Draw Arch for Instructions
+        # Draw Arch for Level1
         arch2 = arcade.Sprite(self._WALL, 1, 640.0, 0.0,80,96)
         arch2.center_x = 16.5 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
         arch2.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 430
