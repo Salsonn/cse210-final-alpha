@@ -47,13 +47,10 @@ class EnvironmentAction:
         pX, pY = player.position
         side = cartesian(eX, eY, pX, pY)
 
-        if side == 1 or side == 4 and not enemy.check_flip:
-            enemy.check_flip = True
-            enemy.drawEnemy(enemy.position, enemy.enemyType, enemy.check_flip)
-
-        elif side == 2 or side == 3 and enemy.check_flip:
-            enemy.check_flip = False
-            enemy.drawEnemy(enemy.position, enemy.enemyType, enemy.check_flip)
+        if side == 1 or side == 4:
+            enemy.drawEnemy(enemy.position, enemy.enemyType, True)
+        else: 
+            enemy.drawEnemy(enemy.position, enemy.enemyType, False)
 
     def change_tick(self, player):
         self.score = player.getScore()
@@ -76,6 +73,6 @@ class EnvironmentAction:
         weapon.angle = weapon_angle
         flip = self.weapon.flip()
         position = player.position
-        weapon.flipH(flip)# entities["weapon"] = [Weapon(flip, position)]
-        player.flipH(flip)# entities["player"] = [Player(position, flip)]
+        weapon.flipH(flip)
+        player.flipH(flip)
             

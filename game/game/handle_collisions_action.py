@@ -4,6 +4,7 @@ import arcade
 from game import constants
 from game.math import *
 from game.action import Action
+from game.entity.drop import Drop
 
 class HandleCollisionsAction(Action):
     """A code template for handling collisions. The responsibility of this class of objects is to update the game state when actors collide.
@@ -41,7 +42,10 @@ class HandleCollisionsAction(Action):
 
         # Erase done-for enemies and give the player points
         if len(entities["projectile"]):
-            self._enemyProjectileDetection(entities["enemy"], entities["projectile"], entities["player"][0])
+            result = self._enemyProjectileDetection(entities["enemy"], entities["projectile"], entities["player"][0])
+            if result:
+                if result[0] == 'health':
+                    entities["drop"].append(Drop(result[1]))
 
         # Handle level load triggers
         if len(entities["trigger"]):
@@ -64,8 +68,10 @@ class HandleCollisionsAction(Action):
                 if self.proxCheck(projectile, enemy):
                     l, r, t, b = self._detectCollision(projectile, enemy, 0)
                     if True in {l, r, t, b}:
-                        enemy.damage(projectile, enemies, player)
+                        result = enemy.damage(projectile, enemies, player)
                         projectile.hit(projectiles)
+                        return result
+                    else: return [0] 
 
     def _enemySocialDistancing(self, enemies, player):
         for enemy in enemies:
