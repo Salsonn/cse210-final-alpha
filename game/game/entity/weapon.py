@@ -25,7 +25,7 @@ class Weapon(arcade.Sprite):
         wTheta = round(self.angle, 3)
         if input_service.check_click():
             if self.counter % self._cooldown == 0:
-                add_entity(entities, "projectile", Point(self.position[0], self.position[1]), theta(Point(player.center_x, player.center_y), reticle.get_reticle()), self._projectileBounces, self._power)
+                add_entity(entities, "projectile", Point(self.position[0], self.position[1] - 4), theta(Point(player.center_x, player.center_y), reticle.get_reticle()), self._projectileBounces, self._power)
             self.counter += 1
 
     def flip(self):
