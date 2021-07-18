@@ -35,6 +35,10 @@ class Level1():
         self._BOTTOM_MARGIN = 110
         self._TILE_SPACING = 1.6
 
+        self._POT = 'game\\images\\TX_Props.png'
+        self._POT_W = 24
+        self._POT_H = 36
+       
     def load(self):
         self._triggers.clear()
         self._collidableWalls.clear()
@@ -112,11 +116,18 @@ class Level1():
         #     self.floor_list.draw()
     def draw_floor(self):
         self.floor_list.draw()
+    def draw_decor(self):
+        # Draw Pottery
+        pot = arcade.Sprite(self._POT, 1, 164, 216, self._POT_W, self._POT_H)
+        pot.center_x = 2 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 65
+        pot.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 30
+        pot.draw()
 
     def drawMap(self, player):
         self.draw_edges()
         self.draw_messages(player)
         self.draw_floor()
+        self.draw_decor()
 
     def handleTrigger(self, actionIndex):
         pass
