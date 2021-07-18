@@ -18,7 +18,7 @@ class ArcadeInputService:
     def __init__(self):
         """The class constructor."""
         self._keys = []
-        self._mousebtn = []
+        self._mousebtn = [[]]
         self.player = Player((640, 360), False)
         self.pressed = False
     
@@ -30,10 +30,10 @@ class ArcadeInputService:
         self._keys.remove(key)
 
     def add_mousebtn(self, button, modifiers):
-        self._mousebtn.append(button)
+        self._mousebtn.append([button, True])
 
     def remove_mousebtn(self, button, modifiers):
-        self._mousebtn.remove(button)
+        self._mousebtn.append([button, False])
 
     def get_direction(self):
         """Gets the selected direction for the given player.
@@ -53,8 +53,12 @@ class ArcadeInputService:
         elif arcade.key.DOWN in self._keys or arcade.key.S in self._keys:
             y = -1
 
+        elif arcade.key.E in self._keys:
+            pass
+        
         velocity = Point(x, y)
         return velocity
             
     def check_click(self):
-        return arcade.MOUSE_BUTTON_LEFT in self._mousebtn
+        if [arcade.MOUSE_BUTTON_LEFT, True] == self._mousebtn[-1]:
+            return True
