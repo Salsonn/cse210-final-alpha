@@ -1,5 +1,6 @@
 from game.point import Point
 from game.math import *
+from game.add_entity import add_entity
 import arcade
 from game import constants
 
@@ -12,14 +13,25 @@ class Weapon(arcade.Sprite):
     # NOTE FOR LATER
     # CHECK SPECIFIC WEAPON AND DETERMINE THE SPRITE LOCATION ON THE SPRITE SHEET
 
-    def __init__(self, check_flip, position, weaponType):
+    def __init__(self, check_flip, position, weaponType=1):
         super().__init__(weaponType, center_x = 0, center_y = 0, flipped_horizontally=True, flipped_vertically=check_flip, scale = 1.25)
         self.weapons = constants.weaponImages
         self.center_x = position[0]
         self.center_y = position[1]
         self.angle = 0
+        self.counter = 0
+        if weaponType == 1:
+            self._cooldown = 5
+            self._projectileBounces = 0
 
         # image, scale, image_x, image_y, image_width, image_height, center_x,center_y
+
+    def inputCheck(self, entities, reticle, input_service):
+        player = entities["player"][0]
+        if input_service.check_click():
+            if self.counter % self._cooldown == 0:
+                add_entity(entities, "projectile", Point(player.center_x, player.center_y), theta(Point(player.center_x, player.center_y), reticle.get_reticle()), self._projectileBounces)
+            self._cooldown += 1
 
     def flip(self):
         if self.cartesian in {2, 3}: return True

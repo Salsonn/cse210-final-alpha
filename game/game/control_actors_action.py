@@ -53,10 +53,6 @@ class ControlActorsAction(Action):
         weapon.center_x = player.center_x
         weapon.center_y = player.center_y
 
-        if self._input_service.check_click():
-            # placeholder code for firing rate. Will need to be expanded upon late
-            if self._coolDown % 10 == 0:
-                add_entity(cast, "projectile", Point(player.center_x, player.center_y), theta(Point(player.center_x, player.center_y), reticle.get_reticle()))
-            self._coolDown += 1
+        weapon.inputCheck(cast, reticle, self._input_service)
 
 
