@@ -13,7 +13,7 @@ class Weapon(arcade.Sprite):
     # NOTE FOR LATER
     # CHECK SPECIFIC WEAPON AND DETERMINE THE SPRITE LOCATION ON THE SPRITE SHEET
 
-    def __init__(self, check_flip, position, weaponType, weaponDamage, weaponRate):
+    def __init__(self, check_flip, position, weaponType, weaponDamage, weaponRate, weaponImage):
         super().__init__(weaponType, center_x = 0, center_y = 0, flipped_horizontally=True, flipped_vertically=check_flip, scale = 1.25)
         # self.weapons = constants.weaponImages
         self._power = weaponDamage
@@ -24,6 +24,7 @@ class Weapon(arcade.Sprite):
         self.counter = 0
         # if weaponType == 1:
         self._projectileBounces = 0
+        self._image = weaponImage
 
         # image, scale, image_x, image_y, image_width, image_height, center_x,center_y
 
@@ -39,7 +40,7 @@ class Weapon(arcade.Sprite):
         else: return False
     
     def flipH(self, flipped):
-        self.texture = constants.weaponImage[flipped]
+        self.texture = self._image[flipped]
 
     # WEAPON PICKUP NOT IMPLEMENTED UNTIL FURTHER NOTICE
 

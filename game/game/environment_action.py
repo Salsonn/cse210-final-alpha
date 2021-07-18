@@ -13,7 +13,7 @@ class EnvironmentAction:
     def __init__(self, entities):
         self._entities = entities
         self.enemies = entities["enemy"]
-        self.weapon = Weapon(False, (640, 360), constants.weaponImages[0], constants.weaponDamages[0], constants.weaponRates[0])
+        # self.weapon = Weapon(False, (640, 360), constants.weaponImages[0], constants.weaponDamages[0], constants.weaponRates[0])
         # self.weapon2 = Weapon(False, (640, 360), constants.weaponImages[1])
         self.player = Player((640, 360), False)
         self.enemy_adder = 0
@@ -24,6 +24,7 @@ class EnvironmentAction:
     def execute(self, entities, reticle, current_level, script):
         # List of specific actions to take every tick
         self.enemyAItick(self.enemies, entities["player"][0], current_level)
+        self.change_tick(entities["player"][0], entities["weapon"])
         self.reticleUpdate(entities["player"][0], entities["weapon"][0], reticle)
 
     def enemyAItick(self, enemies, player, current_level):
@@ -40,7 +41,6 @@ class EnvironmentAction:
                     enemies.append(enemy)
                     
             self.enemy_adder += 1
-            self.change_tick(player)
         # position_player = player.position
         # position_enemy = enemies[0].position
         # self.enemies[0].move_enemy(position_player, position_enemy)
@@ -55,15 +55,15 @@ class EnvironmentAction:
         else: 
             enemy.drawEnemy(enemy.position, enemy.enemyType, False)
 
-    def change_tick(self, player):
+    def change_tick(self, player, weapon):
         self.score = player.getScore()
 
         if constants.firstWave <= self.score < constants.secondWave:
             self.tick_speed = 60
             if self.change:
                 self.change = False
-                self._entities["weapon"][0] = self._entities["weapon"][1]
-                self.weapon = self._entities["weapon"][0]
+                weapon[0] = weapon[1]
+                self.weapon = weapon[0]
 
         elif constants.secondWave <= self.score < constants.thirdWave:
             self.tick_speed = 45
@@ -78,9 +78,9 @@ class EnvironmentAction:
             self.weapon = Weapon(False, (640, 360), constants.weaponImages[1], constants.weaponDamages[1], constants.weaponRates[1])
 
     def reticleUpdate(self, player, weapon, reticle):
-        weapon_angle = self.weapon.update_weapon_angle(player.center_x, player.center_y, reticle.get_reticleX(), reticle.get_reticleY())
+        weapon_angle = weapon.update_weapon_angle(player.center_x, player.center_y, reticle.get_reticleX(), reticle.get_reticleY())
         weapon.angle = weapon_angle
-        flip = self.weapon.flip()
+        flip = weapon.flip()
         position = player.position
         weapon.flipH(flip)
         player.flipH(flip)

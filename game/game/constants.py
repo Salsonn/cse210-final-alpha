@@ -46,8 +46,10 @@ projectile1Image = "game\\images\\bullet.png"
 enemyImages = ["game\\images\\characters\\Enemy.gif", "game\\images\\characters\\Enemy2.gif", "game\\images\\characters\\Enemy3.gif"]
 
 weaponImages = ["game\\images\\weapons\\ak.png", "game\\images\\weapons\\machinegun.png"]
-weaponImagePath = weaponImages[0]
-weaponImage = [arcade.load_texture(weaponImagePath, flipped_horizontally=True), arcade.load_texture(weaponImagePath, flipped_horizontally=True, flipped_vertically=True)]
+weaponImagePath1 = weaponImages[0]
+weapon1Image = [arcade.load_texture(weaponImagePath1, flipped_horizontally=True), arcade.load_texture(weaponImagePath1, flipped_horizontally=True, flipped_vertically=True)]
+weaponImagePath2 = weaponImages[1]
+weapon2Image = [arcade.load_texture(weaponImagePath2, flipped_horizontally=True), arcade.load_texture(weaponImagePath2, flipped_horizontally=True, flipped_vertically=True)]
 
 weaponDamages = [1, 2]
 
