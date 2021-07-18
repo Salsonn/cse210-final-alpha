@@ -5,14 +5,6 @@ import arcade
 from game import constants
 
 class Weapon(arcade.Sprite):
-
-    '''
-    A class that allows the weapon to follow the mouse cursor
-    '''
-
-    # NOTE FOR LATER
-    # CHECK SPECIFIC WEAPON AND DETERMINE THE SPRITE LOCATION ON THE SPRITE SHEET
-
     def __init__(self, check_flip, position, weaponType, weaponDamage, weaponRate, weaponImage):
         super().__init__(weaponType, center_x = 0, center_y = 0, flipped_horizontally=True, flipped_vertically=check_flip, scale = 1.25)
         # self.weapons = constants.weaponImages
@@ -30,9 +22,10 @@ class Weapon(arcade.Sprite):
 
     def inputCheck(self, entities, reticle, input_service):
         player = entities["player"][0]
+        wTheta = round(self.angle, 3)
         if input_service.check_click():
             if self.counter % self._cooldown == 0:
-                add_entity(entities, "projectile", Point(player.center_x, player.center_y), theta(Point(player.center_x, player.center_y), reticle.get_reticle()), self._projectileBounces, self._power)
+                add_entity(entities, "projectile", Point(self.position[0], self.position[1]), theta(Point(player.center_x, player.center_y), reticle.get_reticle()), self._projectileBounces, self._power)
             self.counter += 1
 
     def flip(self):
@@ -76,8 +69,8 @@ class Weapon(arcade.Sprite):
         finalY = abs(playerY - mouseY)
         h = hypotenuse(finalX, finalY)
         av = angle(h, finalY)
-        self.angle = direction(self.cartesian, av)
+        theta = direction(self.cartesian, av)
         
-        return self.angle
+        return theta
 
         
