@@ -3,10 +3,12 @@ import arcade
 from game import constants
 
 from game.entity.trigger import Trigger
+from game.entity.player import Player
 
 class MainMenu():
 
     def __init__(self, levelController, entities):
+        self.player = entities["player"]
         self._levelController = levelController
         self._collidableWalls = entities["wall"]
         self._triggers = entities["trigger"]
@@ -45,6 +47,8 @@ class MainMenu():
         self._TILE_SPACING = 1.6
 
     def load(self):
+        self.player.clear()
+        self.player.append(Player((640, 360), False))
         self._triggers.clear()
         self._collidableWalls.clear()
         self.prepare_walls()

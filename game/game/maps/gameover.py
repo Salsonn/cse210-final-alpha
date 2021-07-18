@@ -1,5 +1,6 @@
 import arcade
 from game import constants
+from game.entity.trigger import Trigger
 
 class Gameover:
 
@@ -7,8 +8,9 @@ class Gameover:
         
         self._triggers = entities["trigger"]
         self._collidableWalls = entities["wall"]
-        self._levelController = levelController
         self._enemies = entities["enemy"]
+        self._drops = entities["drop"]
+        self._levelController = levelController
 
         self._BACKGROUND_COLOR = arcade.color.BLACK
         self._GAME_OVER_COLOR = arcade.color.RED_DEVIL
@@ -34,6 +36,7 @@ class Gameover:
         self._TILE_SPACING = 1.6
 
     def load(self):
+        self._drops.clear()
         self._triggers.clear()
         self._collidableWalls.clear()
         self._enemies.clear()
@@ -54,16 +57,22 @@ class Gameover:
         
     def draw_doors(self):
         # Draw Arch for Main MENU
-        arch1 = arcade.Sprite(self._ARCH, 1, 398.0, 14.0,84,93)
-        arch1.center_x = 4 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 80
-        arch1.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 405
-        arch1.draw()
+        archYes = arcade.Sprite(self._ARCH, 1, 398.0, 14.0,84,93)
+        archYes.center_x = 4 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 80
+        archYes.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 405
+        archYes.draw()
+
+        level1Loader = Trigger(archYes.center_x, archYes.center_y + 20, 80, 76, self, 1)
+        self._triggers.append(level1Loader)
 
         # Draw Arch for Level 1
-        arch2 = arcade.Sprite(self._ARCH, 1, 398.0, 14.0,84,93)
-        arch2.center_x = 31 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 84
-        arch2.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 405
-        arch2.draw()
+        archNo = arcade.Sprite(self._ARCH, 1, 398.0, 14.0,84,93)
+        archNo.center_x = 31 * (self._COLUMN_SPACING * self._TILE_SPACING) + (self._LEFT_MARGIN * self._TILE_SPACING) - 84
+        archNo.center_y = (self._ROW_SPACING * self._TILE_SPACING) + (self._BOTTOM_MARGIN * self._TILE_SPACING) + 405
+        archNo.draw()
+        
+        quitTrigger = Trigger(archNo.center_x, archYes.center_y + 20, 80, 76, self, 2)
+        self._triggers.append(quitTrigger)
 
     def draw_messages(self):
         # Draw Level 1  text for Arch
@@ -71,3 +80,10 @@ class Gameover:
         
         # Draw Main Menu  text for Arch
         arcade.draw_text(self._DISMISS, constants.windowX - 370, constants.windowY - 60, self._DISMISS_COLOR, 20, 340, 'center', 'calibri', True)
+
+        
+    def handleTrigger(self, actionIndex):
+        if actionIndex == 1:
+            self._levelController.changeLevel(-1)
+        elif actionIndex == 2:
+            exit()

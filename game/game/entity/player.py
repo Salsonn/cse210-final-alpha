@@ -14,14 +14,12 @@ class Player(arcade.Sprite):
 
     def changeScore(self, delta):
         self.__score += delta
-        constants.playerScore = self.__score
 
     def getScore(self):
         return self.__score
 
     def loseHealth(self, damage, script):
         self.__health -= damage
-        constants.playerHealth = self.__health
         if self.__health <= 0:
             script["output"][0].changeLevel(-3)
             # This is where the game will stop running and the end screen will display with their final score.
