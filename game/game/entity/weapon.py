@@ -23,7 +23,7 @@ class Weapon(arcade.Sprite):
         self.angle = 0
         self.counter = 0
         # if weaponType == 1:
-        self._cooldown = 5
+        self._cooldown = 10
         self._projectileBounces = 0
 
         # image, scale, image_x, image_y, image_width, image_height, center_x,center_y
