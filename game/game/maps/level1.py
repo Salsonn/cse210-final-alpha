@@ -1,10 +1,12 @@
 import arcade
 from game import constants
 from game.entity.drop import Drop
+from game.entity.player import Player
 
 class Level1():
 
     def __init__(self, levelController, entities):
+        self.player = entities["player"]
         self._triggers = entities["trigger"]
         self._collidableWalls = entities["wall"]
         self._drops = entities["drop"]
@@ -24,7 +26,7 @@ class Level1():
         self._LEFT_WALL_X = 0
         self._LEFT_WALL_Y = constants.windowY / 2
         self._TITLE = 'WELCOME TO THE GAME'
-        self._LEVEL1 = 'LEVEL 1'
+        self._LEVEL1 = 'Dungeon'
         self._RADIUS = 150
         #SOUND = arcadeload_sound('/sounds/Tada-soundmp3')
         self._INFO = 'CHOOSE WHAT TO DO'
@@ -40,6 +42,8 @@ class Level1():
         self._POT_H = 36
 
     def load(self):
+        self.player.clear()
+        self.player.append(Player((640, 360), False))
         self._triggers.clear()
         self._collidableWalls.clear()
         self.prepare_floor()
@@ -70,7 +74,7 @@ class Level1():
         arcade.draw_text(f'Score:{self._score}', 200, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
 
         # Weapons
-        arcade.draw_text(f'WEAPON:{self._weapons[3]}', constants.windowX - 215, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
+        # arcade.draw_text(f'WEAPON:{self._weapons[3]}', constants.windowX - 215, 15, self._FONT_COLOR, 25, 200, 'left', 'calibri', True)
 
     def prepare_floor(self):
         self.floor_list = arcade.SpriteList()
