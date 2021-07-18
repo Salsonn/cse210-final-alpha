@@ -20,6 +20,8 @@ blueEnemyPoints = 60
 yellowEnemyPoints = 40
 redEnemyPoints = 30
 
+enemyCapacity = 25
+
 playerScore = 0
 playerHealth = 100
 
