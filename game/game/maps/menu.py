@@ -179,7 +179,7 @@ class MainMenu():
         arcade.draw_text(self._INFO, constants.windowX / len(self._TITLE) + 100, constants.windowY - 40, self._FONT_COLOR, 25, 340, 'center', 'calibri', True)
 
         # Level Message
-        arcade.draw_text('Level 1', 470, constants.windowY - 40, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
+        arcade.draw_text('Dungeon', 470, constants.windowY - 35, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)
         
         # Instruction message
         arcade.draw_text('Instructions', constants.windowX - 470, constants.windowY - 40, self._FONT_COLOR, 20, 340, 'center', 'calibri', True)

@@ -16,12 +16,12 @@ class Instructions:
 
         self._TITLE = 'Instructions'
         self._LINE1 = 'USE THE WASD OR ARROW KEYS TO MOVE'
-        self._LINE2 = 'USE THE MOUSE TO SHOOT THE ENEMIES'
+        self._LINE2 = 'CLICK AND HOLD TO SHOOT THE ENEMIES'
         self._LINE3 = 'TRY NOT TO DIE!'
         self._LINE4 = 'GOODLUCK!'
 
         self._MAIN = 'MAIN MENU'
-        self._LEVEL1 = 'LEVEL 1'
+        self._LEVEL1 = 'Dungeon'
 
         # self._ARCH = './images/catacombs/cata_v1.0/mainlevbuild.png'
         self._ARCH = 'game\images\catacombs\cata_v1.0\mainlevbuild.png'
