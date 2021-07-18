@@ -1,6 +1,7 @@
 import sys
 from game.point import Point
 from game.entity.player import Player
+from game import constants
 
 import arcade
 
@@ -19,6 +20,7 @@ class ArcadeInputService:
         self._keys = []
         self._mousebtn = []
         self.player = Player((640, 360), False)
+        self.pressed = False
     
     def set_key(self, key, modifiers):
         #Ignoring modifies ar this point...
@@ -50,6 +52,9 @@ class ArcadeInputService:
             y = 1
         elif arcade.key.DOWN in self._keys or arcade.key.S in self._keys:
             y = -1
+        elif arcade.key.E in self._keys:
+            
+
 
         velocity = Point(x, y)
         return velocity

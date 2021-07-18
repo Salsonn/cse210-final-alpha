@@ -32,8 +32,9 @@ def main():
     cast["projectile"] = []
 
     # create the first weapon, will automatically position near the player
-    weapon = Weapon(False, (640, 360))
-    cast["weapon"] = [weapon]
+    weapon1 = Weapon(False, (640, 360), constants.weaponImages[0])
+    weapon2 = Weapon(False, (640, 360), constants.weaponImages[1])
+    cast["weapon"] = [weapon1, weapon2]
 
     # create empty list of collidable walls, will be populated and drawn by the map code
     cast["wall"] = []
@@ -59,7 +60,7 @@ def main():
     move_actors_action = MoveActorsAction()
     draw_actors_action = DrawActorsAction(output_service, cast)
     handle_collisions_action = HandleCollisionsAction(draw_actors_action)
-    environment_action = EnvironmentAction(cast["enemy"])
+    environment_action = EnvironmentAction(cast)
 
     
     script["input"] = [control_actors_action]

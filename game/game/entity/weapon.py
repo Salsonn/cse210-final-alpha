@@ -12,8 +12,9 @@ class Weapon(arcade.Sprite):
     # NOTE FOR LATER
     # CHECK SPECIFIC WEAPON AND DETERMINE THE SPRITE LOCATION ON THE SPRITE SHEET
 
-    def __init__(self, check_flip, position):
-        super().__init__(constants.weaponImagePath, center_x = 0, center_y = 0, flipped_horizontally=True, flipped_vertically=check_flip, scale = 1.25)
+    def __init__(self, check_flip, position, weaponType):
+        super().__init__(weaponType, center_x = 0, center_y = 0, flipped_horizontally=True, flipped_vertically=check_flip, scale = 1.25)
+        self.weapons = constants.weaponImages
         self.center_x = position[0]
         self.center_y = position[1]
         self.angle = 0
@@ -23,7 +24,6 @@ class Weapon(arcade.Sprite):
     def flip(self):
         if self.cartesian in {2, 3}: return True
         else: return False
-
     
     def flipH(self, flipped):
         self.texture = constants.weaponImage[flipped]

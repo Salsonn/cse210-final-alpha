@@ -23,7 +23,7 @@ redEnemyPoints = 30
 playerScore = 0
 playerHealth = 100
 
-tickSpeed = 120
+tickSpeed = 60
 
 firstWave = 500
 secondWave = 1500
@@ -44,7 +44,9 @@ playerImagePath = "game\\images\\characters\\Player.gif"
 playerImage = [arcade.load_texture(playerImagePath), arcade.load_texture(playerImagePath, flipped_horizontally=True)]
 projectile1Image = "game\\images\\bullet.png"
 enemyImages = ["game\\images\\characters\\Enemy.gif", "game\\images\\characters\\Enemy2.gif", "game\\images\\characters\\Enemy3.gif"]
-weaponImagePath = "game\\images\\weapons\\ak.png"
+
+weaponImages = ["game\\images\\weapons\\ak.png", "game\\images\\weapons\\machinegun.png"]
+weaponImagePath = weaponImages[0]
 weaponImage = [arcade.load_texture(weaponImagePath, flipped_horizontally=True), arcade.load_texture(weaponImagePath, flipped_horizontally=True, flipped_vertically=True)]
 
 menuMusic = 'game\\sounds\\Warhammer.mp3'

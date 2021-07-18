@@ -33,8 +33,7 @@ class Enemy(arcade.Sprite):
         red_position = random.choice(random_position)
 
         randomHealth = random.random()
-        if randomHealth * 100 < 15:
-            chosenHealth = 'health'
+        if randomHealth * 100 < 15: chosenHealth = 'health'
         else: chosenHealth = None
 
         blue_enemy = Enemy((random.randrange(blue_position["min_x"], blue_position["max_x"]), random.randrange(blue_position["min_y"], blue_position["max_y"])), constants.enemyImages[2], constants.blueEnemySpeed, constants.blueEnemyPoints, constants.blueEnemyDamage, None)
