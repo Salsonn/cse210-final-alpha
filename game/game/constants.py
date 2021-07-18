@@ -55,14 +55,14 @@ weaponDamages = [1, 2]
 
 weaponRates = [10, 5]
 
-menuMusic = 'game\\sounds\\Warhammer.mp3'
-levelMusic = "game\\sounds\\background.mp3"
-# menuMusic = "game\\sounds\\CoconutMall.mp3"
-# levelMusic = "game\\sounds\\ангел.mp3"
+menuMusic = "game\\sounds\\Warhammer.mp3" #"game\\sounds\\CoconutMall.mp3"
+levelMusic = "game\\sounds\\background.mp3" # "game\\sounds\\ангел.mp3"
+
+
 
 currentLevel = 0
 
-mute = False
+mute = True
 # Music length in seconds
 menuMusicLength = 127
 

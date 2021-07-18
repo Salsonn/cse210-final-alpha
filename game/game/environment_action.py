@@ -13,15 +13,13 @@ class EnvironmentAction:
     def __init__(self, entities):
         self._entities = entities
         self.enemies = entities["enemy"]
-        # self.weapon = Weapon(False, (640, 360), constants.weaponImages[0], constants.weaponDamages[0], constants.weaponRates[0])
-        # self.weapon2 = Weapon(False, (640, 360), constants.weaponImages[1])
         self.player = Player((640, 360), False)
         self.enemy_adder = 0
         self.enemy = Enemy((150, 450), constants.enemyImages[0], 4, 50, 5, True)
         self.tick_speed = constants.tickSpeed
         self.change = True
 
-    def execute(self, entities, reticle, current_level, script):
+    def execute(self, entities, reticle, current_level):
         # List of specific actions to take every tick
         self.enemyAItick(self.enemies, entities["player"][0], current_level)
         self.change_tick(entities["player"][0], entities["weapon"])

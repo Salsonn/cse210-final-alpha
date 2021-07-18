@@ -18,12 +18,11 @@ class Player(arcade.Sprite):
     def getScore(self):
         return self.__score
 
-    def loseHealth(self, damage, script):
+    def loseHealth(self, damage):
         self.__health -= damage
         if self.__health <= 0:
-            script["output"][0].changeLevel(-3)
-            # This is where the game will stop running and the end screen will display with their final score.
-            # print(f'YOU DIED, YOUR FINAL SCORE WAS {self.__score}')
+            return True
+        return False
             
     def heal(self):
         self.__health = 100

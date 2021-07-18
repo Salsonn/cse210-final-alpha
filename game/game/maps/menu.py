@@ -201,9 +201,14 @@ class MainMenu():
         # Add level trigger inside arch
         level1Loader = Trigger(arch2.center_x, arch2.center_y + 20, 80, 76, self, 1)
         self._triggers.append(level1Loader)
+
+        instructionsLoader = Trigger(arch1.center_x, arch1.center_y + 20, 80, 76, self, 2)
+        self._triggers.append(instructionsLoader)
         
         pot.draw()
 
     def handleTrigger(self, actionIndex):
         if actionIndex == 1:
             self._levelController.changeLevel(1)
+        elif actionIndex == 2:
+            self._levelController.changeLevel(-2)

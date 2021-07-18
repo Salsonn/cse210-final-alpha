@@ -13,7 +13,7 @@ class MoveActorsAction(Action):
         _input_service (InputService): An instance of InputService.
     """
 
-    def execute(self, entities, reticle, current_level, script):
+    def execute(self, entities, reticle, current_level):
         """Executes the action using the given actors.
 
         Args:

@@ -33,7 +33,7 @@ class DrawActorsAction(Action):
         self._gameover = Gameover(self, entities, entities["player"][0].getScore())
         self.changeLevel(-1)
 
-    def execute(self, entities, reticle, current_level, script):
+    def execute(self, entities, reticle, current_level):
         """Executes the action using the given actors.
 
         Args:

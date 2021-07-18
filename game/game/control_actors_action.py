@@ -24,7 +24,7 @@ class ControlActorsAction(Action):
         self._input_service = input_service
         self._coolDown = 0
 
-    def execute(self, entities, reticle, current_level, script):
+    def execute(self, entities, reticle, current_level):
         """Executes the action using the given actors.
 
         Args:
