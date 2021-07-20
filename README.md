@@ -58,15 +58,13 @@ The following are different general tasks, claimed and unclaimed:
   * Weapons
   * Projectiles
   * Game Art
+  * Enemies
 
 #### Josh (coder199420 | coder20)
   * Map Design
 
 #### Tyler (Tjcaldron)
   * Ammo and health drops
-
-#### Undelegated
-  * Enemies (saving for later)
 
 
 ## Required Technologies
